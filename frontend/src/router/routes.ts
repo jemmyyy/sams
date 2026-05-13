@@ -21,6 +21,8 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: 'timetable', component: () => import('pages/coach/TimetablePage.vue') },
       { path: 'attendance', component: () => import('pages/coach/AttendancePage.vue') },
+      { path: 'reports', component: () => import('pages/coach/SessionReportPage.vue') },
+      { path: 'ratings', component: () => import('pages/coach/RatingPage.vue') },
     ],
   },
   // Always leave this as last one,
