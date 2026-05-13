@@ -1,0 +1,42 @@
+# Django
+*.py[cod]
+__pycache__/
+*.so
+.python-version
+backend/db.sqlite3
+backend/media/
+backend/static/
+backend/logs/*.log
+.env
+.venv
+venv/
+ENV/
+env/
+
+# Node / Vue / Quasar
+node_modules/
+frontend/dist/
+frontend/.quasar/
+frontend/.temp/
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+
+# Docker
+docker/data/
+
+# OS
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project specific
+SAMS_Client_Presentation\ \(1\).pptx
+SAMS_Requirements_Specification_1\ \(1\).docx

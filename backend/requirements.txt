@@ -1,0 +1,31 @@
+# Django Core
+Django>=5.0.0,<5.1.0
+django-environ>=0.11.2
+psycopg[binary]>=3.1.18
+gunicorn>=22.0.0
+
+# DRF & Auth
+djangorestframework>=3.15.1
+django-cors-headers>=4.3.1
+djangorestframework-simplejwt>=5.3.1
+django-filter>=24.2
+
+# Async & Caching
+celery[redis]>=5.4.0
+django-redis>=5.4.0
+redis>=5.0.4
+
+# Utilities
+python-slugify>=8.0.4
+asgiref>=3.8.1
+pytz>=2024.1
+
+# Quality & Testing (installed in dev only, but listed here for completeness)
+pytest-django>=4.8.0
+pytest-cov>=5.0.0
+pytest-xdist>=3.6.1
+ruff>=0.4.4
+pre-commit>=3.7.1
+factory-boy>=3.3.0
+django-debug-toolbar>=4.4.2
+django-extensions>=3.2.3
