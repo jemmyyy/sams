@@ -15,6 +15,14 @@ const routes: RouteRecordRaw[] = [
       { path: 'profile', component: () => import('pages/customer/ProfilePage.vue') },
     ],
   },
+  {
+    path: '/coach',
+    component: () => import('layouts/CoachLayout.vue'),
+    children: [
+      { path: 'timetable', component: () => import('pages/coach/TimetablePage.vue') },
+      { path: 'attendance', component: () => import('pages/coach/AttendancePage.vue') },
+    ],
+  },
   // Always leave this as last one,
   // but you can also remove it
   {

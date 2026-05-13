@@ -26,4 +26,6 @@ urlpatterns = [
     path('api/v1/attendance/', include('apps.attendance.urls', namespace='attendance')),
     path('api/v1/communication/', include('apps.communication.urls', namespace='communication')),
     path('api/v1/cancellations/', include('apps.cancellations.urls', namespace='cancellations')),
+    path('api/v1/ratings/', include('apps.ratings.urls', namespace='ratings')),
+    path('api/v1/reports/', include('apps.reports.urls', namespace='reports')),
 ]
