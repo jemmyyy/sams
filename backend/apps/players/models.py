@@ -1,5 +1,6 @@
-from django.db import models
 from apps.common.models import TenantAwareModel
+from django.db import models
+
 
 class Player(TenantAwareModel):
     first_name = models.CharField(max_length=100)

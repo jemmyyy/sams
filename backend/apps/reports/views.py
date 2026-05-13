@@ -1,7 +1,9 @@
-from rest_framework import viewsets
 from apps.permissions.permissions import IsCoach, IsOperations
-from ..models import SessionReport
-from ..serializers import SessionReportSerializer
+from rest_framework import viewsets
+
+from .models import SessionReport
+from .serializers import SessionReportSerializer
+
 
 class SessionReportViewSet(viewsets.ModelViewSet):
     queryset = SessionReport.objects.all()

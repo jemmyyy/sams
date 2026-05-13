@@ -1,5 +1,6 @@
+from apps.common.models import SoftDeleteModel, TimeStampedModel, UUIDModel
 from django.db import models
-from apps.common.models import UUIDModel, TimeStampedModel, SoftDeleteModel
+
 
 class Academy(UUIDModel, TimeStampedModel, SoftDeleteModel):
     name = models.CharField(max_length=255)

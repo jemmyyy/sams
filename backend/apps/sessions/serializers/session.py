@@ -1,25 +1,30 @@
 from rest_framework import serializers
-from ..models import SessionSeries, SessionOccurrence, Venue, Enrollment
+
+from ..models import Enrollment, SessionOccurrence, SessionSeries, Venue
+
 
 class VenueSerializer(serializers.ModelSerializer):
     class Meta:
         model = Venue
-        fields = '__all__'
+        fields = "__all__"
+
 
 class SessionSeriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = SessionSeries
-        fields = '__all__'
-        read_only_fields = ('academy',)
+        fields = "__all__"
+        read_only_fields = ("academy",)
+
 
 class SessionOccurrenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = SessionOccurrence
-        fields = '__all__'
-        read_only_fields = ('academy',)
+        fields = "__all__"
+        read_only_fields = ("academy",)
+
 
 class EnrollmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Enrollment
-        fields = '__all__'
-        read_only_fields = ('academy',)
+        fields = "__all__"
+        read_only_fields = ("academy",)

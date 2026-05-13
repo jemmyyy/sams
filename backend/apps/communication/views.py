@@ -1,7 +1,9 @@
-from rest_framework import viewsets
 from apps.permissions.permissions import IsOperations
-from ..models import Announcement
-from ..serializers import AnnouncementSerializer
+from rest_framework import viewsets
+
+from .models import Announcement
+from .serializers import AnnouncementSerializer
+
 
 class AnnouncementViewSet(viewsets.ModelViewSet):
     queryset = Announcement.objects.all()

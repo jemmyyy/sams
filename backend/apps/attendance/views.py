@@ -1,8 +1,9 @@
-from rest_framework import viewsets, status
-from rest_framework.response import Response
-from apps.permissions.permissions import IsOperations, IsCoach
-from ..models import Attendance
-from ..serializers import AttendanceSerializer
+from apps.permissions.permissions import IsCoach, IsOperations
+from rest_framework import viewsets
+
+from .models import Attendance
+from .serializers import AttendanceSerializer
+
 
 class AttendanceViewSet(viewsets.ModelViewSet):
     queryset = Attendance.objects.all()

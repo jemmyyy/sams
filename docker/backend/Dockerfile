@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
+COPY backend/requirements.txt .
 RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
 
 # Stage 2: Runtime
@@ -20,7 +20,7 @@ FROM python:3.12-slim-bookworm
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV PATH="/install/bin:$PATH"
-ENV PYTHONPATH="/app/backend:/app/backend/apps:$PYTHONPATH"
+ENV PYTHONPATH="/app/backend:/app/backend/apps:/install/lib/python3.12/site-packages:$PYTHONPATH"
 
 WORKDIR /app
 

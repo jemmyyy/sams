@@ -1,5 +1,6 @@
-from rest_framework.views import exception_handler
 from rest_framework.response import Response
+from rest_framework.views import exception_handler
+
 
 def standardized_exception_handler(exc, context):
     response = exception_handler(exc, context)
@@ -9,8 +10,6 @@ def standardized_exception_handler(exc, context):
         pass
     else:
         # For unhandled exceptions
-        response = Response({
-            "detail": "An internal server error occurred."
-        }, status=500)
+        response = Response({"detail": "An internal server error occurred."}, status=500)
 
     return response

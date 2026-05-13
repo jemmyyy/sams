@@ -1,12 +1,13 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
+
 from .views import CancellationRequestViewSet
 
 router = DefaultRouter()
-router.register(r'', CancellationRequestViewSet)
+router.register(r"", CancellationRequestViewSet)
 
-app_name = 'cancellations'
+app_name = "cancellations"
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("", include(router.urls)),
 ]

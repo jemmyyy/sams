@@ -1,13 +1,17 @@
 import uuid
+
 from django.db import models
 from django.utils import timezone
+
 from .thread_local import get_current_academy_id
+
 
 class UUIDModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     class Meta:
         abstract = True
+
 
 class TimeStampedModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -16,9 +20,11 @@ class TimeStampedModel(models.Model):
     class Meta:
         abstract = True
 
+
 class SoftDeleteManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(is_deleted=False)
+
 
 class SoftDeleteModel(models.Model):
     is_deleted = models.BooleanField(default=False)
@@ -38,6 +44,7 @@ class SoftDeleteModel(models.Model):
     class Meta:
         abstract = True
 
+
 class TenantManager(SoftDeleteManager):
     def get_queryset(self):
         qs = super().get_queryset()
@@ -46,17 +53,16 @@ class TenantManager(SoftDeleteManager):
             return qs.filter(academy_id=academy_id)
         return qs
 
+
 class TenantAwareModel(UUIDModel, TimeStampedModel, SoftDeleteModel):
     academy = models.ForeignKey(
-        'academies.Academy',
-        on_delete=models.CASCADE,
-        related_name="%(class)ss"
+        "academies.Academy", on_delete=models.CASCADE, related_name="%(class)ss"
     )
 
     objects = TenantManager()
 
     def save(self, *args, **kwargs):
-        if not hasattr(self, 'academy_id') or self.academy_id is None:
+        if not hasattr(self, "academy_id") or self.academy_id is None:
             academy_id = get_current_academy_id()
             if academy_id:
                 self.academy_id = academy_id

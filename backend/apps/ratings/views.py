@@ -1,7 +1,9 @@
-from rest_framework import viewsets
 from apps.permissions.permissions import IsCoach, IsOperations
-from ..models import PlayerRating
-from ..serializers import PlayerRatingSerializer
+from rest_framework import viewsets
+
+from .models import PlayerRating
+from .serializers import PlayerRatingSerializer
+
 
 class PlayerRatingViewSet(viewsets.ModelViewSet):
     queryset = PlayerRating.objects.all()

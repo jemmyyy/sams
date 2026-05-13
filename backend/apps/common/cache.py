@@ -1,10 +1,12 @@
-from django.core.cache import cache
 from apps.common.thread_local import get_current_academy_id
+from django.core.cache import cache
+
 
 class TenantSafeCache:
     """
     Utility for academy-scoped caching.
     """
+
     @staticmethod
     def _make_key(key):
         academy_id = get_current_academy_id()
