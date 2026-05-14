@@ -58,7 +58,7 @@
 
         <q-card-section class="text-center text-grey-4">
           Don't have an account? 
-          <q-btn flat color="secondary" label="Register Now" to="/register" dense no-caps class="text-weight-bold" />
+          <q-btn flat color="secondary" label="Register Now" to="/auth/register" dense no-caps class="text-weight-bold" />
         </q-card-section>
       </q-card>
 
@@ -86,7 +86,7 @@ const loginData = reactive({
 async function handleLogin() {
   if (!loginData.username || !loginData.password) return;
   
-  loading.ref = true;
+  loading.value = true;
   try {
     await authStore.login(loginData);
     $q.notify({

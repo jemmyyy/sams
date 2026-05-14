@@ -44,7 +44,7 @@
 
         <q-card-section class="text-center text-grey-4">
           Already have an account? 
-          <q-btn flat color="secondary" label="Sign In" to="/login" dense no-caps class="text-weight-bold" />
+          <q-btn flat color="secondary" label="Sign In" to="/auth/login" dense no-caps class="text-weight-bold" />
         </q-card-section>
       </q-card>
       
@@ -80,7 +80,7 @@ async function handleRegister() {
       message: 'Account created! Please sign in.',
       position: 'top'
     });
-    router.push('/login');
+    router.push('/auth/login');
   } catch (error: any) {
     $q.notify({
       type: 'negative',
