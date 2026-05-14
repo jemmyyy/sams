@@ -28,13 +28,20 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const sessions = ref([
+interface Session {
+  id: number;
+  title: string;
+  time: string;
+  venue: string;
+}
+
+const sessions = ref<Session[]>([
   { id: 1, title: 'Morning Drills', time: '08:00 AM', venue: 'Court 1' },
   { id: 2, title: 'Elite Juniors', time: '10:00 AM', venue: 'Main Arena' },
   { id: 3, title: 'Afternoon Group', time: '04:00 PM', venue: 'Court 3' }
 ]);
 
-function viewSession(session: any) {
+function viewSession(session: Session) {
   console.log('Viewing session', session);
 }
 </script>

@@ -47,13 +47,19 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const players = ref([
+interface Player {
+  id: number;
+  name: string;
+  lastRating: string;
+}
+
+const players = ref<Player[]>([
   { id: 1, name: 'Adam Smith', lastRating: '4.5' },
   { id: 2, name: 'Sarah Jones', lastRating: '4.2' }
 ]);
 
 const showRatingDialog = ref(false);
-const selectedPlayer = ref<any>(null);
+const selectedPlayer = ref<Player | null>(null);
 const currentRating = ref({
   technique: 0,
   stamina: 0,
@@ -61,7 +67,7 @@ const currentRating = ref({
   notes: ''
 });
 
-function ratePlayer(player: any) {
+function ratePlayer(player: Player) {
   selectedPlayer.value = player;
   showRatingDialog.value = true;
 }
