@@ -1,18 +1,29 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated class="bg-primary text-white">
-      <q-toolbar>
-        <q-toolbar-title> SAMS - Academy Management </q-toolbar-title>
-        <div>v1.0.0</div>
-      </q-toolbar>
-    </q-header>
-
     <q-page-container>
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <transition
+          appear
+          enter-active-class="animated fadeIn"
+          leave-active-class="animated fadeOut"
+        >
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup lang="ts">
-// Main entry layout
+// Main entrance layout with global transitions
 </script>
+
+<style lang="scss">
+body {
+  background-color: #f5f7fa;
+}
+
+.animated {
+  animation-duration: 0.4s;
+}
+</style>
