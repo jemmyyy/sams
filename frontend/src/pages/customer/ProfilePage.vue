@@ -90,8 +90,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-
 const skills = [
   { name: 'Technique', value: 0.85 },
   { name: 'Stamina', value: 0.70 },
