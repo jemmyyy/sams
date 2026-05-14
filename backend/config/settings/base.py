@@ -175,6 +175,27 @@ CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = TIME_ZONE
 
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    "refresh-daily-revenue": {
+        "task": "apps.analytics.tasks.refresh_daily_revenue",
+        "schedule": crontab(hour=1, minute=0), # Daily at 1 AM
+    },
+    "refresh-daily-attendance": {
+        "task": "apps.analytics.tasks.refresh_daily_attendance",
+        "schedule": crontab(hour=1, minute=30), # Daily at 1:30 AM
+    },
+    "refresh-monthly-enrollment": {
+        "task": "apps.analytics.tasks.refresh_monthly_enrollment",
+        "schedule": crontab(hour=2, minute=0, day_of_month=1), # Monthly on the 1st
+    },
+    "process-scheduled-reports": {
+        "task": "apps.reports.tasks.process_scheduled_reports",
+        "schedule": crontab(minute=0), # Hourly
+    },
+}
+
 # Logging
 LOGGING = {
     "version": 1,

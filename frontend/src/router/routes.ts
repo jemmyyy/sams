@@ -42,8 +42,11 @@ const routes: RouteRecordRaw[] = [
     meta: { requiresAuth: true },
     children: [
       { path: 'dashboard', component: () => import('../pages/operations/DashboardPage.vue'), name: 'ops-dashboard' },
+      { path: 'analytics', component: () => import('../pages/operations/AnalyticsPage.vue'), name: 'ops-analytics' },
+      { path: 'reports', component: () => import('../pages/operations/ReportsPage.vue'), name: 'ops-reports' },
       { path: 'players', component: () => import('../pages/operations/PlayerManagementPage.vue'), name: 'ops-players' },
       { path: 'finances', component: () => import('../pages/operations/FinancesPage.vue'), name: 'ops-finances' },
+      { path: 'notifications', component: () => import('../pages/common/NotificationsPage.vue'), name: 'ops-notifications' },
     ],
   },
   {

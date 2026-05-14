@@ -9,7 +9,7 @@
         </q-toolbar-title>
 
         <div class="row items-center q-gutter-sm">
-          <q-btn flat round dense icon="notifications">
+          <q-btn flat round dense icon="notifications" to="/operations/notifications">
             <q-badge floating color="info" rounded>2</q-badge>
           </q-btn>
           <q-avatar size="32px" class="cursor-pointer">
@@ -26,6 +26,16 @@
         <q-item clickable v-ripple to="/operations/dashboard" class="menu-item q-mx-md q-mb-sm" active-class="active-ops-item">
           <q-item-section avatar><q-icon name="dashboard" /></q-item-section>
           <q-item-section class="text-weight-medium">Dashboard</q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple to="/operations/analytics" class="menu-item q-mx-md q-mb-sm" active-class="active-ops-item">
+          <q-item-section avatar><q-icon name="insights" /></q-item-section>
+          <q-item-section class="text-weight-medium">Analytics</q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple to="/operations/reports" class="menu-item q-mx-md q-mb-sm" active-class="active-ops-item">
+          <q-item-section avatar><q-icon name="description" /></q-item-section>
+          <q-item-section class="text-weight-medium">Reports</q-item-section>
         </q-item>
 
         <q-item clickable v-ripple to="/operations/players" class="menu-item q-mx-md q-mb-sm" active-class="active-ops-item">

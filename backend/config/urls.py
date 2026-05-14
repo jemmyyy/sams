@@ -30,4 +30,6 @@ urlpatterns = [
     path("api/v1/ratings/", include("apps.ratings.urls", namespace="ratings")),
     path("api/v1/reports/", include("apps.reports.urls", namespace="reports")),
     path("api/v1/payments/", include("apps.payments.urls", namespace="payments")),
+    path("api/v1/notifications/", include("apps.notifications.urls")),
+    path("api/v1/analytics/", include("apps.analytics.urls")),
 ]
