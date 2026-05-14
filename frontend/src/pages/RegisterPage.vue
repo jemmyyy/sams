@@ -81,10 +81,11 @@ async function handleRegister() {
       position: 'top'
     });
     router.push('/auth/login');
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { detail?: string } } };
     $q.notify({
       type: 'negative',
-      message: error.response?.data?.detail || 'Registration failed. Please check your data.',
+      message: err.response?.data?.detail || 'Registration failed. Please check your data.',
       position: 'top'
     });
   } finally {

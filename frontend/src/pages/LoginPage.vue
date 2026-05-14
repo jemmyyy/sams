@@ -98,10 +98,11 @@ async function handleLogin() {
     // In a real app, logic would check role to redirect. 
     // For now, we'll default to customer as a placeholder.
     router.push('/customer/timetable');
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { detail?: string } } };
     $q.notify({
       type: 'negative',
-      message: error.response?.data?.detail || 'Authentication failed. Please check your credentials.',
+      message: err.response?.data?.detail || 'Authentication failed. Please check your credentials.',
       position: 'top'
     });
   } finally {
