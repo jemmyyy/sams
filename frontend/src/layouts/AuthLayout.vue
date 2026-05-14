@@ -12,7 +12,10 @@
 
 <style lang="scss">
 .auth-bg {
+  background: #0d123d; // Solid fallback
   background: linear-gradient(135deg, #0d123d 0%, #1a237e 100%);
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 </style>

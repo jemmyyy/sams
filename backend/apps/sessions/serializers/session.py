@@ -17,6 +17,9 @@ class SessionSeriesSerializer(serializers.ModelSerializer):
 
 
 class SessionOccurrenceSerializer(serializers.ModelSerializer):
+    title = serializers.CharField(source='series.title', read_only=True)
+    venue_name = serializers.CharField(source='venue.name', read_only=True)
+    
     class Meta:
         model = SessionOccurrence
         fields = "__all__"

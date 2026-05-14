@@ -27,17 +27,26 @@ class RegisterView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+import logging
+logger = logging.getLogger(__name__)
+
 class LoginView(APIView):
     permission_classes = [AllowAny]
+    authentication_classes = []
 
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
+            username = serializer.validated_data["username"]
+            password = serializer.validated_data["password"]
+            logger.info(f"Attempting login for: {username}")
             user = authenticate(
-                username=serializer.validated_data["username"],
-                password=serializer.validated_data["password"],
+                request,
+                username=username,
+                password=password,
             )
             if user:
+                logger.info(f"Login success for: {username}")
                 refresh = RefreshToken.for_user(user)
                 return Response(
                     {
@@ -46,7 +55,9 @@ class LoginView(APIView):
                         "access": str(refresh.access_token),
                     }
                 )
+            logger.warning(f"Login failed for user: {username} - Authenticate returned None")
             return Response({"detail": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+        logger.warning(f"Login serializer invalid: {serializer.errors}")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

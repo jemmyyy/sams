@@ -65,17 +65,17 @@
             Upcoming Action
           </div>
           <q-list separator>
-            <q-item v-for="session in 3" :key="session" class="q-py-md">
+            <q-item v-for="session in sessions" :key="session.id" class="q-py-md">
               <q-item-section avatar>
                 <div class="date-badge bg-primary text-white text-center q-pa-xs">
-                  <div class="text-caption">MAY</div>
-                  <div class="text-h6 text-weight-black">15</div>
+                  <div class="text-caption">{{ new Date(session.start_datetime).toLocaleDateString('en-US', { month: 'short' }).toUpperCase() }}</div>
+                  <div class="text-h6 text-weight-black">{{ new Date(session.start_datetime).getDate() }}</div>
                 </div>
               </q-item-section>
               <q-item-section>
-                <q-item-label class="text-weight-bold text-primary">Elite Juniors Training</q-item-label>
+                <q-item-label class="text-weight-bold text-primary">{{ session.title }}</q-item-label>
                 <q-item-label caption>
-                  <q-icon name="schedule" /> 10:00 AM • <q-icon name="place" /> Court 1
+                  <q-icon name="schedule" /> {{ new Date(session.start_datetime).toLocaleTimeString() }} • <q-icon name="place" /> {{ session.venue_name }}
                 </q-item-label>
               </q-item-section>
               <q-item-section side>
@@ -90,9 +90,30 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import api from '../../api';
+
+interface Session {
+  id: number;
+  start_datetime: string;
+  end_datetime: string;
+  status: string;
+  title: string;
+  venue_name: string;
+}
 
 const viewMode = ref('week');
+const sessions = ref<Session[]>([]);
+
+onMounted(async () => {
+  try {
+    const response = await api.get('sessions/occurrences/');
+    // Standardized response format: response.data.data
+    sessions.value = response.data.data.results || response.data.data;
+  } catch (error) {
+    console.error('Failed to fetch sessions:', error);
+  }
+});
 </script>
 
 <style lang="scss" scoped>

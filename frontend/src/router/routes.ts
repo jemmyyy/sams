@@ -3,45 +3,52 @@ import type { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('../layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') },
+      { path: '', component: () => import('../pages/IndexPage.vue'), name: 'home' },
     ],
   },
   {
     path: '/auth',
-    component: () => import('layouts/AuthLayout.vue'),
+    component: () => import('../layouts/AuthLayout.vue'),
     children: [
-      { path: 'login', component: () => import('pages/LoginPage.vue'), name: 'login' },
-      { path: 'register', component: () => import('pages/RegisterPage.vue'), name: 'register' },
+      { path: 'login', component: () => import('../pages/LoginPage.vue'), name: 'login' },
+      { path: 'register', component: () => import('../pages/RegisterPage.vue'), name: 'register' },
     ],
   },
   {
     path: '/customer',
-    component: () => import('layouts/CustomerLayout.vue'),
+    component: () => import('../layouts/CustomerLayout.vue'),
     meta: { requiresAuth: true },
     children: [
-      { path: 'timetable', component: () => import('pages/customer/TimetablePage.vue') },
-      { path: 'profile', component: () => import('pages/customer/ProfilePage.vue') },
+      { path: 'timetable', component: () => import('../pages/customer/TimetablePage.vue'), name: 'customer-timetable' },
+      { path: 'profile', component: () => import('../pages/customer/ProfilePage.vue'), name: 'customer-profile' },
     ],
   },
   {
     path: '/coach',
-    component: () => import('layouts/CoachLayout.vue'),
+    component: () => import('../layouts/CoachLayout.vue'),
     meta: { requiresAuth: true },
     children: [
-      { path: 'timetable', component: () => import('pages/coach/TimetablePage.vue') },
-      { path: 'attendance', component: () => import('pages/coach/AttendancePage.vue') },
-      { path: 'reports', component: () => import('pages/coach/SessionReportPage.vue') },
-      { path: 'ratings', component: () => import('pages/coach/RatingPage.vue') },
+      { path: 'timetable', component: () => import('../pages/coach/TimetablePage.vue'), name: 'coach-timetable' },
+      { path: 'attendance', component: () => import('../pages/coach/AttendancePage.vue'), name: 'coach-attendance' },
+      { path: 'reports', component: () => import('../pages/coach/SessionReportPage.vue'), name: 'coach-reports' },
+      { path: 'ratings', component: () => import('../pages/coach/RatingPage.vue'), name: 'coach-ratings' },
     ],
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
+  {
+    path: '/operations',
+    component: () => import('../layouts/OperationsLayout.vue'),
+    meta: { requiresAuth: true },
+    children: [
+      { path: 'dashboard', component: () => import('../pages/operations/DashboardPage.vue'), name: 'ops-dashboard' },
+      { path: 'players', component: () => import('../pages/operations/PlayerManagementPage.vue'), name: 'ops-players' },
+      { path: 'finances', component: () => import('../pages/operations/FinancesPage.vue'), name: 'ops-finances' },
+    ],
+  },
   {
     path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue'),
+    component: () => import('../pages/ErrorNotFound.vue'),
   },
 ];
 

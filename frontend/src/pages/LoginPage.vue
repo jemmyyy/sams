@@ -21,7 +21,6 @@
             dark
             color="secondary"
             class="sport-input"
-            :rules="[val => !!val || 'Field is required']"
           >
             <template v-slot:prepend>
               <q-icon name="person" />
@@ -37,7 +36,6 @@
             color="secondary"
             class="sport-input"
             @keyup.enter="handleLogin"
-            :rules="[val => !!val || 'Field is required']"
           >
             <template v-slot:prepend>
               <q-icon name="lock" />
@@ -58,7 +56,7 @@
 
         <q-card-section class="text-center text-grey-4">
           Don't have an account? 
-          <q-btn flat color="secondary" label="Register Now" to="/auth/register" dense no-caps class="text-weight-bold" />
+          <q-btn flat color="secondary" label="Register Now" :to="{ name: 'register' }" dense no-caps class="text-weight-bold" />
         </q-card-section>
       </q-card>
 
@@ -70,7 +68,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import { useAuthStore } from 'stores/auth';
+import { useAuthStore } from '../stores/auth';
 import { useQuasar } from 'quasar';
 
 const $q = useQuasar();
@@ -94,15 +92,18 @@ async function handleLogin() {
       message: 'Login Successful! Welcome back champion.',
       position: 'top'
     });
-    
-    // In a real app, logic would check role to redirect. 
-    // For now, we'll default to customer as a placeholder.
-    router.push('/customer/timetable');
+    if (loginData.username === 'admin' || loginData.username === 'ops') {
+      router.push({ name: 'ops-dashboard' });
+    } else if (loginData.username === 'coach') {
+      router.push({ name: 'coach-timetable' });
+    } else {
+      router.push({ name: 'customer-timetable' });
+    }
   } catch (error: unknown) {
     const err = error as { response?: { data?: { detail?: string } } };
     $q.notify({
       type: 'negative',
-      message: err.response?.data?.detail || 'Authentication failed. Please check your credentials.',
+      message: err.response?.data?.detail || 'Authentication failed.',
       position: 'top'
     });
   } finally {

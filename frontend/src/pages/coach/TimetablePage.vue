@@ -23,7 +23,7 @@
             <q-item-section>
               <q-item-label class="text-h6 text-weight-black text-primary">{{ session.title }}</q-item-label>
               <q-item-label caption class="text-grey-7">
-                <q-icon name="schedule" class="q-mr-xs" />{{ session.time }} • <q-icon name="place" class="q-mr-xs" />{{ session.venue }}
+                <q-icon name="schedule" class="q-mr-xs" />{{ new Date(session.start_datetime).toLocaleTimeString() }} • <q-icon name="place" class="q-mr-xs" />{{ session.venue_name }}
               </q-item-label>
             </q-item-section>
             
@@ -46,22 +46,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import api from '../../api';
 
 interface Session {
   id: number;
-  title: string;
-  time: string;
-  venue: string;
+  start_datetime: string;
+  end_datetime: string;
+  status: string;
+  venue: number;
+  series: number;
 }
 
-const sessions = ref<Session[]>([
-  { id: 1, title: 'MORNING DRILLS - UNDER 12', time: '08:00 AM', venue: 'Court 1' },
-  { id: 2, title: 'ELITE JUNIORS - HIGH PERFORMANCE', time: '10:00 AM', venue: 'Main Arena' },
-  { id: 3, title: 'AFTERNOON GROUP - BEGINNERS', time: '04:00 PM', venue: 'Court 3' }
-]);
+const sessions = ref<any[]>([]);
 
-function viewSession(session: Session) {
+onMounted(async () => {
+  try {
+    const response = await api.get('sessions/occurrences/');
+    // Standardized response format: response.data.data
+    sessions.value = response.data.data.results || response.data.data;
+  } catch (error) {
+    console.error('Failed to fetch sessions:', error);
+  }
+});
+
+function viewSession(session: any) {
   console.log('Viewing session', session);
 }
 </script>

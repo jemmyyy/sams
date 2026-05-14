@@ -7,7 +7,7 @@
 
     <div class="content-wrapper column items-center q-pa-lg">
       <!-- Hero Section -->
-      <div class="hero-section text-center q-mb-xl" v-scroll-reveal>
+      <div class="hero-section text-center q-mb-xl">
         <div class="text-overline text-secondary text-weight-bolder letter-spacing-3 q-mb-sm">
           NEXT-GEN MANAGEMENT
         </div>
@@ -22,29 +22,43 @@
       <!-- Portal Grid -->
       <div class="portal-grid row justify-center q-col-gutter-xl full-width max-width-1000">
         <!-- Customer Portal Card -->
-        <div class="col-12 col-sm-5">
-          <q-card class="portal-card glass-card text-white cursor-pointer" @click="$router.push('/auth/login')">
+        <div class="col-12 col-sm-4">
+          <q-card class="portal-card glass-card text-white cursor-pointer" @click="$router.push({ name: 'login' })">
             <q-card-section class="column items-center q-py-xl">
               <div class="icon-box q-mb-lg">
-                <q-icon name="group" size="64px" color="secondary" />
+                <q-icon name="group" size="48px" color="secondary" />
               </div>
-              <div class="text-h4 text-weight-bold q-mb-sm">CUSTOMERS</div>
-              <div class="text-subtitle2 text-grey-4 text-center">Manage your children's training, ratings, and schedule.</div>
+              <div class="text-h5 text-weight-bold q-mb-sm">CUSTOMERS</div>
+              <div class="text-caption text-grey-4 text-center">Manage your children's training, ratings, and schedule.</div>
               <q-btn flat color="secondary" label="Enter Arena" icon-right="chevron_right" class="q-mt-md" />
             </q-card-section>
           </q-card>
         </div>
 
         <!-- Coach Portal Card -->
-        <div class="col-12 col-sm-5">
-          <q-card class="portal-card glass-card text-white cursor-pointer" @click="$router.push('/auth/login')">
+        <div class="col-12 col-sm-4">
+          <q-card class="portal-card glass-card text-white cursor-pointer" @click="$router.push({ name: 'login' })">
             <q-card-section class="column items-center q-py-xl">
               <div class="icon-box q-mb-lg">
-                <q-icon name="sports" size="64px" color="accent" />
+                <q-icon name="sports" size="48px" color="accent" />
               </div>
-              <div class="text-h4 text-weight-bold q-mb-sm">COACHES</div>
-              <div class="text-subtitle2 text-grey-4 text-center">Track attendance, submit reports, and rate performance.</div>
+              <div class="text-h5 text-weight-bold q-mb-sm">COACHES</div>
+              <div class="text-caption text-grey-4 text-center">Track attendance, submit reports, and rate performance.</div>
               <q-btn flat color="accent" label="Start Session" icon-right="chevron_right" class="q-mt-md" />
+            </q-card-section>
+          </q-card>
+        </div>
+
+        <!-- Operations Portal Card -->
+        <div class="col-12 col-sm-4">
+          <q-card class="portal-card glass-card text-white cursor-pointer" @click="$router.push({ name: 'login' })">
+            <q-card-section class="column items-center q-py-xl">
+              <div class="icon-box q-mb-lg">
+                <q-icon name="admin_panel_settings" size="48px" color="info" />
+              </div>
+              <div class="text-h5 text-weight-bold q-mb-sm">OPERATIONS</div>
+              <div class="text-caption text-grey-4 text-center">Manage players, finances, and academy settings.</div>
+              <q-btn flat color="info" label="HQ Command" icon-right="chevron_right" class="q-mt-md" />
             </q-card-section>
           </q-card>
         </div>
@@ -59,7 +73,7 @@
           label="Academy Staff Login"
           icon="admin_panel_settings"
           class="staff-btn"
-          to="/auth/login"
+          :to="{ name: 'login' }"
         />
       </div>
     </div>
