@@ -27,11 +27,22 @@ export default defineRouter((/* { store, ssrContext } */) => {
     scrollBehavior: () => ({ left: 0, top: 0 }),
     routes,
 
-    // Leave this as is and make changes in quasar.conf.js instead!
-    // quasar.conf.js -> build -> vueRouterMode
-    // quasar.conf.js -> build -> publicPath
+    // Leave this as is and make changes in quasar.config.ts instead!
+    // quasar.config.ts > build > vueRouterMode
+    // quasar.config.ts > build > publicPath
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
 
+  Router.beforeEach((to, from, next) => {
+    const isAuthenticated = !!localStorage.getItem('access_token');
+
+    if (to.meta.requiresAuth && !isAuthenticated) {
+      next({ name: 'login' });
+    } else {
+      next();
+    }
+  });
+
   return Router;
-});
+  });
+

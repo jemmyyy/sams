@@ -23,7 +23,7 @@
       <div class="portal-grid row justify-center q-col-gutter-xl full-width max-width-1000">
         <!-- Customer Portal Card -->
         <div class="col-12 col-sm-5">
-          <q-card class="portal-card glass-card text-white cursor-pointer" @click="$router.push('/customer/timetable')">
+          <q-card class="portal-card glass-card text-white cursor-pointer" @click="$router.push('/login')">
             <q-card-section class="column items-center q-py-xl">
               <div class="icon-box q-mb-lg">
                 <q-icon name="group" size="64px" color="secondary" />
@@ -37,7 +37,7 @@
 
         <!-- Coach Portal Card -->
         <div class="col-12 col-sm-5">
-          <q-card class="portal-card glass-card text-white cursor-pointer" @click="$router.push('/coach/timetable')">
+          <q-card class="portal-card glass-card text-white cursor-pointer" @click="$router.push('/login')">
             <q-card-section class="column items-center q-py-xl">
               <div class="icon-box q-mb-lg">
                 <q-icon name="sports" size="64px" color="accent" />
@@ -59,6 +59,7 @@
           label="Academy Staff Login"
           icon="admin_panel_settings"
           class="staff-btn"
+          to="/login"
         />
       </div>
     </div>
