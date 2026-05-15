@@ -1,82 +1,61 @@
 <template>
-  <q-layout view="lHh Lpr lFf" class="bg-grey-1">
-    <q-header elevated class="bg-secondary text-white">
-      <q-toolbar class="q-py-sm">
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title class="text-weight-bold letter-spacing-1">
-          SAMS<span class="text-primary">.</span> COACH
+  <q-layout view="lHh Lpr lFf" class="apex-layout">
+    <q-header class="bg-white text-navy border-bottom">
+      <q-toolbar class="q-py-md max-w-xl">
+        <q-btn flat dense round icon="menu" @click="toggleLeftDrawer" class="q-mr-sm" />
+        <q-toolbar-title class="text-apex text-h5">
+          SAMS<span class="text-victory">.</span><span class="text-weight-light text-grey-6 q-ml-sm">COACH</span>
         </q-toolbar-title>
-
-        <div class="row items-center q-gutter-sm">
-          <q-chip outline color="white" text-color="white" class="gt-xs">
-            <q-avatar color="primary" text-color="white">P</q-avatar>
-            PRO COACH
-          </q-chip>
-          <q-btn flat round dense icon="notifications">
-            <q-badge floating color="primary" rounded>5</q-badge>
+        <q-space />
+        <div class="row items-center q-gutter-md">
+          <q-btn flat round icon="notifications_none" color="grey-7">
+            <q-badge floating color="victory" rounded>2</q-badge>
           </q-btn>
-          <q-avatar size="32px" class="cursor-pointer">
-            <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-          </q-avatar>
+          <q-separator vertical inset class="q-mx-sm" />
+          <div class="user-profile row items-center q-gutter-sm pointer" @click="toggleLeftDrawer">
+            <div class="column items-end gt-xs">
+              <span class="text-weight-bold text-caption text-navy">{{ authStore.user?.first_name }} {{ authStore.user?.last_name }}</span>
+              <span class="text-grey-6 text-min uppercase">Academy Coach</span>
+            </div>
+            <q-avatar size="40px" class="apex-avatar shadow-sm">
+              <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+            </q-avatar>
+          </div>
         </div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      class="bg-white"
-      :width="280"
-    >
-      <q-list class="q-mt-md">
-        <q-item-label header class="text-overline text-grey-6 q-pb-md">COACH COMMAND</q-item-label>
-        
-        <q-item clickable v-ripple to="/coach/timetable" class="menu-item q-mx-md q-mb-sm" active-class="active-coach-item">
-          <q-item-section avatar>
-            <q-icon name="sports" />
-          </q-item-section>
-          <q-item-section class="text-weight-medium">My Training Schedule</q-item-section>
-        </q-item>
-
-        <q-item clickable v-ripple to="/coach/attendance" class="menu-item q-mx-md q-mb-sm" active-class="active-coach-item">
-          <q-item-section avatar>
-            <q-icon name="check_circle" />
-          </q-item-section>
-          <q-item-section class="text-weight-medium">Mark Attendance</q-item-section>
-        </q-item>
-
-        <q-item clickable v-ripple to="/coach/reports" class="menu-item q-mx-md q-mb-sm" active-class="active-coach-item">
-          <q-item-section avatar>
-            <q-icon name="description" />
-          </q-item-section>
-          <q-item-section class="text-weight-medium">Session Reports</q-item-section>
-        </q-item>
-
-        <q-item clickable v-ripple to="/coach/ratings" class="menu-item q-mx-md q-mb-sm" active-class="active-coach-item">
-          <q-item-section avatar>
-            <q-icon name="stars" />
-          </q-item-section>
-          <q-item-section class="text-weight-medium">Rate Performance</q-item-section>
-        </q-item>
-        
-        <q-separator class="q-my-lg" />
-        
-        <q-item clickable v-ripple class="menu-item q-mx-md text-negative">
-          <q-item-section avatar>
-            <q-icon name="power_settings_new" />
-          </q-item-section>
-          <q-item-section class="text-weight-medium">Logout</q-item-section>
-        </q-item>
-      </q-list>
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="apex-sidebar" :width="280">
+      <div class="column full-height">
+        <div class="q-mt-xl q-px-xl q-mb-lg">
+           <div class="text-overline text-grey-5 letter-spacing-1">Field Command</div>
+        </div>
+        <q-list class="q-px-md q-gutter-y-xs">
+          <q-item clickable v-ripple to="/coach/timetable" class="apex-menu-item" active-class="active-item">
+            <q-item-section avatar><q-icon name="calendar_today" size="22px" /></q-item-section>
+            <q-item-section class="text-weight-medium">Schedule</q-item-section>
+          </q-item>
+          <q-item clickable v-ripple to="/coach/attendance" class="apex-menu-item" active-class="active-item">
+            <q-item-section avatar><q-icon name="fact_check" size="22px" /></q-item-section>
+            <q-item-section class="text-weight-medium">Attendance</q-item-section>
+          </q-item>
+          <q-item clickable v-ripple to="/coach/reports" class="apex-menu-item" active-class="active-item">
+            <q-item-section avatar><q-icon name="history_edu" size="22px" /></q-item-section>
+            <q-item-section class="text-weight-medium">Session Reports</q-item-section>
+          </q-item>
+          <q-item clickable v-ripple to="/coach/ratings" class="apex-menu-item" active-class="active-item">
+            <q-item-section avatar><q-icon name="military_tech" size="22px" /></q-item-section>
+            <q-item-section class="text-weight-medium">Rate Athletes</q-item-section>
+          </q-item>
+        </q-list>
+        <q-space />
+        <div class="q-pa-md">
+          <q-item clickable v-ripple @click="logout" class="apex-menu-item logout-btn">
+            <q-item-section avatar><q-icon name="power_settings_new" color="negative" size="22px" /></q-item-section>
+            <q-item-section class="text-weight-bold text-negative">Exit Arena</q-item-section>
+          </q-item>
+        </div>
+      </div>
     </q-drawer>
 
     <q-page-container>
@@ -87,30 +66,67 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useAuthStore } from '../stores/auth';
 
 const leftDrawerOpen = ref(false);
+const authStore = useAuthStore();
 
-function toggleLeftDrawer () {
+function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
+}
+
+function logout() {
+  authStore.logout();
 }
 </script>
 
 <style lang="scss" scoped>
-.letter-spacing-1 { letter-spacing: 1px; }
+.text-navy { color: var(--sams-navy); }
+.text-victory { color: var(--sams-victory-red); }
+.border-bottom { border-bottom: 1px solid var(--sams-border); }
+.text-min { font-size: 11px; }
 
-.menu-item {
+.apex-layout {
+  background-color: var(--sams-slate-bg);
+}
+
+.apex-avatar {
+  border: 2px solid white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.apex-sidebar {
+  background-color: white;
+  border-right: 1px solid var(--sams-border);
+}
+
+.apex-menu-item {
   border-radius: 12px;
-  color: $primary;
+  color: #64748b;
+  padding: 12px 20px;
   transition: all 0.3s ease;
   
   &:hover {
-    background: rgba($secondary, 0.05);
+    color: var(--sams-navy);
+    background: #f1f5f9;
   }
 }
 
-.active-coach-item {
-  background: $secondary !important;
-  color: white !important;
-  box-shadow: 0 4px 15px rgba($secondary, 0.3);
+.active-item {
+  color: var(--sams-victory-red) !important;
+  background: #fff1f2 !important;
+  font-weight: 700 !important;
+  &::after {
+    content: '';
+    position: absolute;
+    right: 8px; top: 50%; transform: translateY(-50%);
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--sams-victory-red);
+  }
+}
+
+.logout-btn {
+  border: 1px solid #fee2e2;
+  &:hover { background: #fef2f2; border-color: #fecaca; }
 }
 </style>

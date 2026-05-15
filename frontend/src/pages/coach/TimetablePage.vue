@@ -1,170 +1,139 @@
 <template>
-  <q-page class="coach-portal q-pa-lg">
-    <div class="row items-center q-mb-xl">
-      <div class="col">
-        <div class="text-overline text-accent text-weight-bolder letter-spacing-2">FIELD COMMAND</div>
-        <h1 class="text-h3 text-white text-weight-black q-my-none">Coach Dashboard</h1>
-        <p class="text-grey-4 q-mt-sm">Track athlete progress and session performance</p>
+  <q-page class="q-pa-xl">
+    <!-- Field Header -->
+    <div class="row items-center justify-between q-mb-xl">
+      <div class="column">
+        <h1 class="text-apex heading-lg text-navy no-margin">Field Command</h1>
+        <div class="text-subtitle1 text-grey-6">Real-time session management and tactical oversight.</div>
       </div>
-      <div class="col-auto">
-        <q-btn color="accent" icon="play_arrow" label="Start Session" rounded class="q-px-lg shadow-10 pulse-animation" />
-      </div>
+      <q-btn unelevated class="apex-btn-victory" label="Deploy Active Session" icon="play_circle_filled" />
     </div>
 
     <div class="row q-col-gutter-lg">
-      <!-- Session Focus -->
+      <!-- Live Session Focus -->
       <div class="col-12 col-md-7">
-        <q-card flat class="session-card glass-card text-white">
-          <q-card-section class="row items-center">
-            <div>
-              <div class="text-h5 text-weight-bold">Upcoming: Football Intermediate</div>
-              <div class="text-subtitle2 text-grey-4">Starts in 15 minutes • Venue: Main Pitch</div>
-            </div>
-            <q-space />
-            <q-badge color="accent" class="q-pa-sm" rounded>LIVE SOON</q-badge>
-          </q-card-section>
-          
-          <q-separator dark class="opacity-10" />
-
-          <q-card-section class="row q-col-gutter-md">
-            <div class="col-4 text-center">
-              <div class="text-h4 text-weight-bold">24</div>
-              <div class="text-caption text-grey-5">ENROLLED</div>
-            </div>
-            <div class="col-4 text-center">
-              <div class="text-h4 text-weight-bold">18</div>
-              <div class="text-caption text-grey-5">CHECKED IN</div>
-            </div>
-            <div class="col-4 text-center text-accent">
-              <div class="text-h4 text-weight-bold">85%</div>
-              <div class="text-caption text-grey-5">UTILIZATION</div>
-            </div>
-          </q-card-section>
-
-          <q-card-actions align="center" class="q-pb-lg">
-            <q-btn outline color="accent" label="View Roster" class="q-px-xl" rounded />
-          </q-card-actions>
-        </q-card>
-
-        <!-- Timetable Preview -->
-        <div class="q-mt-lg">
-          <div class="text-h6 text-white text-weight-bold q-mb-md">Your Schedule Today</div>
-          <div class="column q-gutter-y-sm">
-            <q-card v-for="s in [1, 2]" :key="s" flat class="mini-session-card glass-card text-white q-pa-md">
-              <div class="row items-center">
-                <div class="time-box q-mr-md">16:00</div>
-                <div>
-                  <div class="text-weight-bold">Football Beginners - Group A</div>
-                  <div class="text-caption text-grey-4">Main Pitch • 20 Players</div>
-                </div>
-                <q-space />
-                <q-btn flat round dense icon="chevron_right" />
-              </div>
-            </q-card>
+        <div class="apex-card overflow-hidden">
+          <div class="q-pa-lg border-bottom row items-center justify-between" style="background: #fff1f2">
+             <div class="row items-center">
+                <div class="live-indicator q-mr-md"></div>
+                <span class="text-apex text-subtitle1 text-victory">Live: Football Tactical U16</span>
+             </div>
+             <span class="text-mono text-grey-7 font-weight-bold">Started 45m ago</span>
           </div>
+          
+          <div class="q-pa-xl">
+             <div class="row q-col-gutter-xl text-center">
+                <div class="col-4">
+                   <div class="text-apex text-h3 text-navy">24</div>
+                   <div class="text-caption text-grey-6 uppercase font-weight-bold">Present</div>
+                </div>
+                <div class="col-4 border-left border-right">
+                   <div class="text-apex text-h3 text-grey-4">2</div>
+                   <div class="text-caption text-grey-6 uppercase font-weight-bold">Absent</div>
+                </div>
+                <div class="col-4">
+                   <div class="text-apex text-h3 text-victory">92%</div>
+                   <div class="text-caption text-grey-6 uppercase font-weight-bold">Engagement</div>
+                </div>
+             </div>
+
+             <div class="q-mt-xl">
+                <div class="row items-center justify-between q-mb-sm">
+                   <span class="text-weight-bold text-navy">Session Completion</span>
+                   <span class="text-weight-black text-victory">75%</span>
+                </div>
+                <q-linear-progress :value="0.75" color="victory" track-color="red-1" rounded size="10px" />
+             </div>
+          </div>
+
+          <div class="row border-top">
+             <q-btn flat class="col q-py-lg text-weight-bold text-navy" label="Mark Attendance" icon="check_circle_outline" />
+             <q-separator vertical class="opacity-10" />
+             <q-btn flat class="col q-py-lg text-weight-bold text-navy" label="Field Report" icon="history_edu" />
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="q-mt-xl">
+           <div class="text-apex text-h6 text-navy q-mb-lg">Today's Sorties</div>
+           <div class="column q-gutter-y-sm">
+              <div v-for="i in [1, 2]" :key="i" class="apex-card q-pa-md row items-center">
+                 <div class="time-block q-mr-xl text-navy">16:00</div>
+                 <div class="column">
+                    <span class="text-weight-bold text-navy uppercase">Stamina Conditioning</span>
+                    <span class="text-caption text-grey-6">Pitch_02 // Group_Alpha</span>
+                 </div>
+                 <q-space />
+                 <q-btn flat round icon="chevron_right" color="grey-4" />
+              </div>
+           </div>
         </div>
       </div>
 
-      <!-- Performance & Reports -->
+      <!-- Efficiency & Quick Access -->
       <div class="col-12 col-md-5">
-        <q-card flat class="performance-card glass-card text-white q-mb-lg">
-          <q-card-section>
-            <div class="text-h6 text-weight-bold">Coach Stats</div>
-            <div class="text-caption text-grey-4">Month of May Performance</div>
-          </q-card-section>
-          <q-card-section class="column q-gutter-y-lg">
-            <div>
-              <div class="row items-center q-mb-xs">
-                <span class="text-caption text-grey-4">Attendance Consistency</span>
-                <q-space />
-                <span class="text-weight-bold text-accent">92%</span>
+        <div class="apex-card q-pa-xl q-mb-lg">
+           <div class="text-apex text-h6 text-navy q-mb-xl">Monthly Performance</div>
+           <div class="column q-gutter-y-lg">
+              <div v-for="stat in coachPerformance" :key="stat.label">
+                 <div class="row items-center justify-between q-mb-xs">
+                    <span class="text-caption text-grey-6 uppercase font-weight-bold">{{ stat.label }}</span>
+                    <span class="text-weight-black text-navy">{{ stat.value }}%</span>
+                 </div>
+                 <q-linear-progress :value="stat.value/100" color="navy" track-color="blue-1" rounded size="6px" />
               </div>
-              <q-linear-progress :value="0.92" color="accent" track-color="grey-9" rounded />
-            </div>
-            <div>
-              <div class="row items-center q-mb-xs">
-                <span class="text-caption text-grey-4">Report Submission Rate</span>
-                <q-space />
-                <span class="text-weight-bold text-info">100%</span>
-              </div>
-              <q-linear-progress :value="1.0" color="info" track-color="grey-9" rounded />
-            </div>
-          </q-card-section>
-        </q-card>
+           </div>
+        </div>
 
-        <q-card flat class="actions-card glass-card text-white">
-          <q-list dark padding>
-            <q-item clickable v-ripple to="/coach/attendance">
-              <q-item-section avatar><q-icon name="how_to_reg" color="accent" /></q-item-section>
-              <q-item-section>
-                <q-item-label class="text-weight-bold">Mark Attendance</q-item-label>
-                <q-item-label caption class="text-grey-4">Open active session roster</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item clickable v-ripple to="/coach/reports">
-              <q-item-section avatar><q-icon name="summarize" color="info" /></q-item-section>
-              <q-item-section>
-                <q-item-label class="text-weight-bold">Session Reports</q-item-label>
-                <q-item-label caption class="text-grey-4">Submit summary and feedback</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item clickable v-ripple to="/coach/ratings">
-              <q-item-section avatar><q-icon name="star" color="warning" /></q-item-section>
-              <q-item-section>
-                <q-item-label class="text-weight-bold">Rate Athletes</q-item-label>
-                <q-item-label caption class="text-grey-4">Skill assessment and levels</q-item-label>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-card>
+        <div class="row q-col-gutter-md">
+           <div class="col-6" v-for="link in fieldLinks" :key="link.label">
+              <div class="apex-card q-pa-lg column items-center text-center cursor-pointer">
+                 <q-icon :name="link.icon" size="32px" color="navy" class="q-mb-sm opacity-40" />
+                 <span class="text-caption text-weight-bold text-navy uppercase letter-spacing-1">{{ link.label }}</span>
+              </div>
+           </div>
+        </div>
       </div>
     </div>
   </q-page>
 </template>
 
 <script setup lang="ts">
-// Coach Portal Logic
+const coachPerformance = [
+  { label: 'Reporting Rate', value: 100 },
+  { label: 'Attendance Precision', value: 98 },
+  { label: 'Session Rating Avg', value: 85 },
+];
+
+const fieldLinks = [
+  { label: 'Athlete Intel', icon: 'manage_search' },
+  { label: 'Skill Matrix', icon: 'military_tech' },
+  { label: 'Venue Status', icon: 'map' },
+  { label: 'Tactical Notes', icon: 'edit_note' },
+];
 </script>
 
 <style lang="scss" scoped>
-.coach-portal {
-  background: #0f172a;
-  min-height: 100vh;
+.text-navy { color: var(--sams-navy); }
+.text-victory { color: var(--sams-victory-red); }
+.border-bottom { border-bottom: 1px solid var(--sams-border); }
+.border-top { border-top: 1px solid var(--sams-border); }
+
+.live-indicator {
+  width: 10px; height: 10px;
+  background: var(--sams-victory-red);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--sams-victory-red);
+  animation: pulse-red 1.5s infinite;
 }
 
-.letter-spacing-2 { letter-spacing: 2px; }
+@keyframes pulse-red { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
 
-.glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 24px;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-}
-
-.time-box {
-  background: rgba($accent, 0.1);
-  color: $accent;
-  padding: 8px 12px;
-  border-radius: 12px;
-  font-weight: 800;
-  font-family: 'JetBrains Mono', monospace;
-}
-
-.pulse-animation {
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba($accent, 0.4); }
-  70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba($accent, 0); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba($accent, 0); }
+.time-block {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 20px;
 }
 
 .opacity-10 { opacity: 0.1; }
+.opacity-40 { opacity: 0.4; }
 </style>

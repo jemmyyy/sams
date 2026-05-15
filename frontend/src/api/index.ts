@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useAuthStore } from '../stores/auth';
 
 const api = axios.create({
   baseURL: process.env.API_URL || 'http://localhost/api/v1/',
@@ -16,5 +17,17 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+// Bulletproof 401/403 Handling
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      const authStore = useAuthStore();
+      authStore.logout();
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default api;

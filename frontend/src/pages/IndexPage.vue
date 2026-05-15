@@ -1,194 +1,143 @@
 <template>
-  <q-page class="landing-page flex flex-center overflow-hidden">
-    <!-- Animated Background Elements -->
-    <div class="bg-shape shape-1"></div>
-    <div class="bg-shape shape-2"></div>
-    <div class="bg-shape shape-3"></div>
+  <q-page class="apex-landing flex flex-center no-scroll">
+    <!-- Subtle Background Accent -->
+    <div class="bg-accent-blob"></div>
 
-    <div class="content-wrapper column items-center q-pa-lg">
-      <!-- Hero Section -->
-      <div class="hero-section text-center">
-        <div class="text-overline text-secondary text-weight-bolder letter-spacing-3 q-mb-xs">
-          NEXT-GEN MANAGEMENT
+    <div class="content-container column items-center full-width animate-fade-in">
+      <!-- High-Impact Hero -->
+      <div class="hero-section text-center q-mb-xl">
+        <div class="row items-center justify-center q-mb-sm">
+           <div class="victory-line"></div>
+           <span class="text-apex text-victory uppercase letter-spacing-5 q-mx-md">Elite Performance</span>
+           <div class="victory-line"></div>
         </div>
-        <h1 class="text-h1 text-white text-weight-black no-margin sport-title">
-          SAMS<span class="text-secondary">.</span>
-        </h1>
-        <div class="text-h6 text-grey-4 text-weight-light q-mt-sm max-width-600">
-          The heartbeat of Egyptian sports academies. Professional, modular, and built for champions.
+        <h1 class="heading-xl text-apex text-navy no-margin">SAMS<span class="text-victory">.</span></h1>
+        <p class="text-h6 text-grey-7 text-weight-light max-width-600 q-mt-md">
+          The premium intelligence layer for Egypt's leading sports academies. 
+          <span class="text-weight-bold text-navy">Built for champions, by experts.</span>
+        </p>
+      </div>
+
+      <!-- Balanced Portal Grid -->
+      <div class="portal-grid row justify-center q-col-gutter-xl full-width max-w-xl">
+        <!-- CUSTOMER PORTAL -->
+        <div class="col-12 col-md-4">
+          <div class="apex-portal-card column items-center q-pa-xl cursor-pointer" @click="$router.push({ name: 'login-customer' })">
+            <div class="portal-icon-container bg-slate row justify-center items-center q-mb-lg">
+               <q-icon name="groups" size="48px" color="navy" />
+            </div>
+            <div class="text-apex text-h5 text-navy q-mb-sm">ARENA</div>
+            <div class="text-caption text-grey-6 text-center uppercase letter-spacing-1">Athlete & Parent Access</div>
+            <q-btn flat class="q-mt-xl text-weight-bold text-navy" label="Enter Arena" icon-right="arrow_forward" />
+          </div>
+        </div>
+
+        <!-- COACH PORTAL -->
+        <div class="col-12 col-md-4">
+          <div class="apex-portal-card column items-center q-pa-xl cursor-pointer featured-card" @click="$router.push({ name: 'login-coach' })">
+            <div class="portal-icon-container bg-victory row justify-center items-center q-mb-lg">
+               <q-icon name="sports" size="48px" color="white" />
+            </div>
+            <div class="text-apex text-h5 text-white q-mb-sm">FIELD</div>
+            <div class="text-caption text-white opacity-80 text-center uppercase letter-spacing-1">Tactical Coach Command</div>
+            <q-btn flat class="q-mt-xl text-weight-bold text-white" label="Deploy to Field" icon-right="bolt" />
+          </div>
+        </div>
+
+        <!-- OPERATIONS PORTAL -->
+        <div class="col-12 col-md-4">
+          <div class="apex-portal-card column items-center q-pa-xl cursor-pointer" @click="$router.push({ name: 'login-ops' })">
+            <div class="portal-icon-container bg-slate row justify-center items-center q-mb-lg">
+               <q-icon name="dashboard_customize" size="48px" color="navy" />
+            </div>
+            <div class="text-apex text-h5 text-navy q-mb-sm">HQ</div>
+            <div class="text-caption text-grey-6 text-center uppercase letter-spacing-1">Academy Logistics HQ</div>
+            <q-btn flat class="q-mt-xl text-weight-bold text-navy" label="HQ Command" icon-right="shield" />
+          </div>
         </div>
       </div>
 
-      <!-- Portal Grid -->
-      <div class="portal-grid row justify-center q-col-gutter-lg full-width max-width-1000 q-mt-md">
-        <!-- Customer Portal Card -->
-        <div class="col-12 col-sm-4">
-          <q-card class="portal-card glass-card text-white cursor-pointer" @click="$router.push({ name: 'login', query: { role: 'customer' } })">
-            <q-card-section class="column items-center q-py-lg">
-              <div class="icon-box q-mb-md">
-                <q-icon name="group" size="42px" color="secondary" />
-              </div>
-              <div class="text-h5 text-weight-bold q-mb-xs">CUSTOMERS</div>
-              <div class="text-caption text-grey-4 text-center">Manage your children's training and schedule.</div>
-              <q-btn flat color="secondary" label="Enter Arena" icon-right="chevron_right" class="q-mt-sm" />
-            </q-card-section>
-          </q-card>
+      <!-- Clean Footer Tech -->
+      <div class="landing-footer full-width row items-center justify-between q-px-xl q-py-lg">
+        <div class="row items-center q-gutter-md">
+           <q-badge rounded color="green" class="status-dot" />
+           <span class="text-mono text-caption text-grey-6">SYSTEM STATUS: OPTIMAL</span>
         </div>
-
-        <!-- Coach Portal Card -->
-        <div class="col-12 col-sm-4">
-          <q-card class="portal-card glass-card text-white cursor-pointer" @click="$router.push({ name: 'login', query: { role: 'coach' } })">
-            <q-card-section class="column items-center q-py-lg">
-              <div class="icon-box q-mb-md">
-                <q-icon name="sports" size="42px" color="accent" />
-              </div>
-              <div class="text-h5 text-weight-bold q-mb-xs">COACHES</div>
-              <div class="text-caption text-grey-4 text-center">Track attendance and rate performance.</div>
-              <q-btn flat color="accent" label="Start Session" icon-right="chevron_right" class="q-mt-sm" />
-            </q-card-section>
-          </q-card>
-        </div>
-
-        <!-- Operations Portal Card -->
-        <div class="col-12 col-sm-4">
-          <q-card class="portal-card glass-card text-white cursor-pointer" @click="$router.push({ name: 'login', query: { role: 'operations' } })">
-            <q-card-section class="column items-center q-py-lg">
-              <div class="icon-box q-mb-md">
-                <q-icon name="admin_panel_settings" size="42px" color="info" />
-              </div>
-              <div class="text-h5 text-weight-bold q-mb-xs">OPERATIONS</div>
-              <div class="text-caption text-grey-4 text-center">Manage players, finances, and academy HQ.</div>
-              <q-btn flat color="info" label="HQ Command" icon-right="chevron_right" class="q-mt-sm" />
-            </q-card-section>
-          </q-card>
-        </div>
-      </div>
-
-      <!-- Footer Action -->
-      <div class="q-mt-md text-center">
-        <q-btn
-          flat
-          rounded
-          color="grey-5"
-          label="Staff Portal"
-          icon="shield"
-          class="staff-btn"
-          @click="$router.push({ name: 'login', query: { role: 'operations' } })"
-        />
+        <div class="text-mono text-caption text-grey-6">©2026 SAMS ARCHITECTURE // VERSION 1.2</div>
       </div>
     </div>
   </q-page>
 </template>
 
 <script setup lang="ts">
-// Creative Landing Page Implementation
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
+function goToLogin(role: string) {
+  router.push({ name: 'login', query: { role } });
+}
 </script>
 
 <style lang="scss" scoped>
-.landing-page {
-  background: linear-gradient(135deg, #0d123d 0%, #1a237e 100%);
-  height: 100vh;
-  width: 100vw;
+.apex-landing {
+  background-color: var(--sams-slate-bg);
   position: relative;
-  font-family: 'Inter', sans-serif;
+  overflow: hidden;
 }
 
-.sport-title {
-  font-size: clamp(3rem, 10vw, 7rem);
-  line-height: 0.9;
-  letter-spacing: -4px;
-}
-
-.letter-spacing-3 {
-  letter-spacing: 4px;
-}
-
-.max-width-600 { max-width: 600px; }
-.max-width-1000 { max-width: 1000px; }
-
-// Animated Shapes
-.bg-shape {
+.bg-accent-blob {
   position: absolute;
-  filter: blur(80px);
+  top: -10%; right: -5%;
+  width: 40vw; height: 40vw;
+  background: radial-gradient(circle, rgba(225, 29, 72, 0.05) 0%, transparent 70%);
   z-index: 0;
-  opacity: 0.4;
-  border-radius: 50%;
 }
 
-.shape-1 {
-  width: 30vw;
-  height: 30vw;
-  background: $secondary;
-  top: -10vh;
-  left: -10vw;
-  animation: float 20s infinite alternate;
-}
+.text-navy { color: var(--sams-navy); }
+.text-victory { color: var(--sams-victory-red); }
+.letter-spacing-5 { letter-spacing: 5px; }
 
-.shape-2 {
-  width: 40vw;
-  height: 40vw;
-  background: $accent;
-  bottom: -15vh;
-  right: -10vw;
-  animation: float 25s infinite alternate-reverse;
-}
+.victory-line { width: 40px; height: 2px; background: var(--sams-victory-red); }
 
-.shape-3 {
-  width: 20vw;
-  height: 20vw;
-  background: #6200ea;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.2;
-}
-
-@keyframes float {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(5vw, 5vh) scale(1.1); }
-}
-
-.content-wrapper {
+.apex-portal-card {
+  background: white;
+  border-radius: 24px;
+  border: 1px solid var(--sams-border);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 1;
-  width: 100%;
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
+  
   &:hover {
-    transform: translateY(-10px) scale(1.02);
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    
-    .icon-box {
-      transform: scale(1.1) rotate(5deg);
-    }
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px -12px rgba(15, 23, 42, 0.12);
+    border-color: rgba(15, 23, 42, 0.1);
   }
 }
 
-.icon-box {
-  background: rgba(255, 255, 255, 0.05);
-  width: 80px;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  transition: transform 0.3s ease;
+.featured-card {
+  background: var(--sams-navy);
+  box-shadow: 0 20px 40px -8px rgba(15, 23, 42, 0.3);
+  border: none;
+  &:hover {
+    box-shadow: 0 30px 60px -12px rgba(225, 29, 72, 0.3);
+    background: #0f172a;
+  }
 }
 
-.staff-btn {
-  font-size: 13px;
-  text-transform: none;
-  opacity: 0.6;
-  &:hover { opacity: 1; }
+.portal-icon-container {
+  width: 90px; height: 90px;
+  border-radius: 20px;
+  &.bg-slate { background: #f1f5f9; }
+  &.bg-victory { background: var(--sams-victory-red); }
 }
+
+.landing-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid var(--sams-border);
+}
+
+.status-dot { width: 8px; height: 8px; }
+.max-width-600 { max-width: 600px; }
 </style>

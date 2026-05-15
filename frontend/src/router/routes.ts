@@ -13,13 +13,16 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../layouts/AuthLayout.vue'),
     children: [
       { path: 'login', component: () => import('../pages/LoginPage.vue'), name: 'login' },
+      { path: 'login/customer', component: () => import('../pages/LoginPage.vue'), name: 'login-customer', meta: { targetRole: 'customer' } },
+      { path: 'login/coach', component: () => import('../pages/LoginPage.vue'), name: 'login-coach', meta: { targetRole: 'coach' } },
+      { path: 'login/ops', component: () => import('../pages/LoginPage.vue'), name: 'login-ops', meta: { targetRole: 'operations' } },
       { path: 'register', component: () => import('../pages/RegisterPage.vue'), name: 'register' },
     ],
   },
   {
     path: '/customer',
     component: () => import('../layouts/CustomerLayout.vue'),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, role: 'customer' },
     children: [
       { path: 'timetable', component: () => import('../pages/customer/TimetablePage.vue'), name: 'customer-timetable' },
       { path: 'profile', component: () => import('../pages/customer/ProfilePage.vue'), name: 'customer-profile' },
@@ -28,7 +31,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/coach',
     component: () => import('../layouts/CoachLayout.vue'),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, role: 'coach' },
     children: [
       { path: 'timetable', component: () => import('../pages/coach/TimetablePage.vue'), name: 'coach-timetable' },
       { path: 'attendance', component: () => import('../pages/coach/AttendancePage.vue'), name: 'coach-attendance' },
@@ -39,7 +42,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/operations',
     component: () => import('../layouts/OperationsLayout.vue'),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, role: 'operations' },
     children: [
       { path: 'dashboard', component: () => import('../pages/operations/DashboardPage.vue'), name: 'ops-dashboard' },
       { path: 'analytics', component: () => import('../pages/operations/AnalyticsPage.vue'), name: 'ops-analytics' },

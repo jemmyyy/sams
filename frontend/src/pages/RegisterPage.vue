@@ -1,54 +1,56 @@
 <template>
-  <q-page class="auth-bg flex flex-center q-pa-md">
-    <div class="column items-center full-width" style="max-width: 500px">
-      <!-- Logo/Brand -->
-      <div class="text-center q-mb-lg">
-        <h1 class="text-h3 text-white text-weight-black no-margin">SAMS<span class="text-secondary">.</span></h1>
-        <div class="text-overline text-grey-4 letter-spacing-3">NEW ATHLETE REGISTRATION</div>
+  <q-page class="apex-auth flex flex-center">
+    <div class="column items-center full-width animate-fade-in" style="max-width: 500px">
+      <!-- Branded Header -->
+      <div class="text-center q-mb-xl">
+        <h2 class="text-apex text-navy no-margin">SAMS<span class="text-victory">.</span></h2>
+        <div class="text-overline text-grey-6 letter-spacing-5">Athlete Enrollment</div>
       </div>
 
-      <q-card class="auth-card glass-card full-width q-pa-lg shadow-24 text-white">
-        <q-card-section class="text-center q-pb-none">
-          <div class="text-h5 text-weight-bold uppercase letter-spacing-1">CREATE ACCOUNT</div>
-          <div class="text-body2 text-grey-4 q-mt-sm">Join the championship management system</div>
-        </q-card-section>
+      <div class="login-container full-width">
+        <div class="login-accent" style="background: var(--sams-victory-red)"></div>
+        <div class="apex-card q-pa-xl">
+          <div class="text-center q-mb-xl">
+             <div class="text-h5 text-apex text-navy uppercase">Join the Academy</div>
+             <div class="text-caption text-grey-6 q-mt-sm">Start your professional sports journey today</div>
+          </div>
 
-        <q-card-section class="row q-col-gutter-md q-mt-md">
-          <div class="col-12 col-sm-6">
-            <q-input v-model="regData.first_name" label="First Name" filled dark color="secondary" class="sport-input" />
+          <div class="row q-col-gutter-md">
+            <div class="col-12 col-sm-6">
+              <q-input v-model="regData.first_name" label="First Name" outlined stack-label color="navy" class="apex-input" />
+            </div>
+            <div class="col-12 col-sm-6">
+              <q-input v-model="regData.last_name" label="Last Name" outlined stack-label color="navy" class="apex-input" />
+            </div>
+            <div class="col-12">
+              <q-input v-model="regData.username" label="Username" outlined stack-label color="navy" class="apex-input" />
+            </div>
+            <div class="col-12">
+              <q-input v-model="regData.email" label="Email Address" type="email" outlined stack-label color="navy" class="apex-input" />
+            </div>
+            <div class="col-12">
+              <q-input v-model="regData.password" label="Password" type="password" outlined stack-label color="navy" class="apex-input" />
+            </div>
           </div>
-          <div class="col-12 col-sm-6">
-            <q-input v-model="regData.last_name" label="Last Name" filled dark color="secondary" class="sport-input" />
-          </div>
-          <div class="col-12">
-            <q-input v-model="regData.username" label="Username" filled dark color="secondary" class="sport-input" />
-          </div>
-          <div class="col-12">
-            <q-input v-model="regData.email" label="Email Address" type="email" filled dark color="secondary" class="sport-input" />
-          </div>
-          <div class="col-12">
-            <q-input v-model="regData.password" label="Password" type="password" filled dark color="secondary" class="sport-input" />
-          </div>
-        </q-card-section>
 
-        <q-card-section>
-          <q-btn
-            color="secondary"
-            class="full-width q-py-md text-weight-black"
-            size="lg"
-            label="START MY JOURNEY"
-            :loading="loading"
-            @click="handleRegister"
-          />
-        </q-card-section>
+          <div class="q-mt-xl">
+            <q-btn
+              unelevated
+              class="full-width q-py-md apex-btn-primary shadow-lg"
+              label="Create Athlete Account"
+              :loading="loading"
+              @click="handleRegister"
+            />
+          </div>
 
-        <q-card-section class="text-center text-grey-4">
-          Already have an account? 
-          <q-btn flat color="secondary" label="Sign In" :to="{ name: 'login' }" dense no-caps class="text-weight-bold" />
-        </q-card-section>
-      </q-card>
-      
-      <q-btn flat color="grey-5" label="Back to Home" icon="arrow_back" to="/" class="q-mt-lg" />
+          <div class="text-center q-mt-xl">
+            <div class="text-grey-7 q-mb-sm">Already a member?</div>
+            <q-btn flat color="navy" label="Sign In to Arena" :to="{ name: 'login-customer' }" dense no-caps class="text-weight-bold" />
+          </div>
+        </div>
+      </div>
+
+      <q-btn flat color="grey-7" label="Return to Home" to="/" icon="arrow_back" class="q-mt-lg" dense no-caps />
     </div>
   </q-page>
 </template>
@@ -80,12 +82,11 @@ async function handleRegister() {
       message: 'Account created! Please sign in.',
       position: 'top'
     });
-    router.push({ name: 'login' });
-  } catch (error: unknown) {
-    const err = error as { response?: { data?: { detail?: string } } };
+    router.push({ name: 'login-customer' });
+  } catch (error: any) {
     $q.notify({
       type: 'negative',
-      message: err.response?.data?.detail || 'Registration failed. Please check your data.',
+      message: error.response?.data?.detail || 'Registration failed. Please check your data.',
       position: 'top'
     });
   } finally {
@@ -95,23 +96,37 @@ async function handleRegister() {
 </script>
 
 <style lang="scss" scoped>
-.auth-card {
-  border-radius: 32px;
+.apex-auth {
+  background-color: var(--sams-slate-bg);
+  min-height: 100vh;
 }
 
-.letter-spacing-3 { letter-spacing: 3px; }
-.letter-spacing-1 { letter-spacing: 1px; }
+.text-navy { color: var(--sams-navy); }
+.text-victory { color: var(--sams-victory-red); }
+.letter-spacing-5 { letter-spacing: 5px; }
 
-.sport-input {
+.login-container {
+  position: relative;
+}
+
+.login-accent {
+  position: absolute;
+  top: -2px; left: 50%; transform: translateX(-50%);
+  width: 100px; height: 4px;
+  border-radius: 0 0 4px 4px;
+  z-index: 2;
+}
+
+.apex-card {
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+}
+
+.apex-input {
   :deep(.q-field__control) {
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    background: #f8fafc;
+    &:hover { background: #f1f5f9; }
   }
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 </style>

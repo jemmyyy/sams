@@ -1,1 +1,91 @@
-// app global css
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@700&display=swap');
+
+:root {
+  // Brand Colors
+  --sams-navy: #0b1120;
+  --sams-victory-red: #e11d48;
+  --sams-energy-volt: #d9f99d;
+  --sams-slate-bg: #f8fafc;
+  --sams-border: #e2e8f0;
+  
+  // Design Tokens
+  --sams-radius: 16px;
+  --sams-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --sams-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+body {
+  background-color: var(--sams-slate-bg);
+  color: var(--sams-navy);
+  font-family: 'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Typography System
+.text-apex {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.text-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+}
+
+.heading-xl { font-size: clamp(3.5rem, 8vw, 6rem); line-height: 1; }
+.heading-lg { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; }
+
+// Component Refinements
+.apex-card {
+  background: white;
+  border-radius: var(--sams-radius);
+  border: 1px solid var(--sams-border);
+  box-shadow: var(--sams-shadow);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sams-shadow-lg);
+    border-color: rgba(225, 29, 72, 0.2);
+  }
+}
+
+.apex-btn-primary {
+  background: var(--sams-navy);
+  color: white;
+  border-radius: 12px;
+  font-weight: 600;
+  text-transform: none;
+  padding: 12px 24px;
+  
+  &::before { display: none; }
+  &:hover { background: #1e293b; }
+}
+
+.apex-btn-victory {
+  background: var(--sams-victory-red);
+  color: white;
+  border-radius: 12px;
+  font-weight: 700;
+  padding: 12px 32px;
+  box-shadow: 0 4px 14px 0 rgba(225, 29, 72, 0.39);
+}
+
+// Layout Utilities
+.max-w-xl { max-width: 1200px; margin-left: auto; margin-right: auto; }
+.max-w-lg { max-width: 1000px; margin-left: auto; margin-right: auto; }
+
+// Animations
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }

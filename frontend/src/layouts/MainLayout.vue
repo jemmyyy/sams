@@ -7,11 +7,5 @@
 </template>
 
 <script setup lang="ts">
-// Main entrance layout - simplified (removed transitions)
+// Minimal wrapper for the high-impact landing page
 </script>
-
-<style lang="scss">
-body {
-  background-color: #f5f7fa;
-}
-</style>

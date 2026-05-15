@@ -5,44 +5,70 @@ import {
   createWebHashHistory,
   createWebHistory,
 } from 'vue-router';
+
 import routes from './routes';
+import { useAuthStore } from '../stores/auth';
 
-/*
- * If not building with SSR mode, you can
- * directly export the Router instantiation;
- *
- * The function below can be async too; either use
- * async/await or return a Promise which resolves
- * with the Router instance.
- */
-
-export default route((/* { store, ssrContext } */) => {
+export default route(function (/* { store, ssrContext } */) {
   const createHistory = process.env.SERVER
     ? createMemoryHistory
-    : process.env.VUE_ROUTER_MODE === 'history'
-      ? createWebHistory
-      : createWebHashHistory;
+    : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory);
 
   const Router = createRouter({
     scrollBehavior: () => ({ left: 0, top: 0 }),
     routes,
-
-    // Leave this as is and make changes in quasar.config.ts instead!
-    // quasar.config.ts > build > vueRouterMode
-    // quasar.config.ts > build > publicPath
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
 
-  Router.beforeEach((to, from, next) => {
-    const isAuthenticated = !!localStorage.getItem('access_token');
-
-    if (to.meta.requiresAuth && !isAuthenticated) {
-      next({ name: 'login' });
-    } else {
-      next();
+  // Strict SAMS Security Protocol
+  Router.beforeEach(async (to, from, next) => {
+    const authStore = useAuthStore();
+    
+    // 1. Session Bootstrap: Fetch user profile if token exists but state is empty
+    if (authStore.isAuthenticated && !authStore.isInitialized) {
+      await authStore.init();
     }
+
+    const isLoggedIn = !!authStore.user;
+    const isAuthRoute = to.name === 'login' || to.name === 'register'; // Home is NOT a guest-only route, it's public
+    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+    const requiredRole = to.matched.find(record => record.meta.role)?.meta.role as string | undefined;
+
+    // 2. Prevent logged-in users from hitting Auth routes (Login/Register)
+    if (isLoggedIn && isAuthRoute) {
+      const portal = authStore.primaryPortal;
+      if (to.name !== portal) {
+        return next({ name: portal });
+      }
+    }
+
+    // 3. Handle Guest access to protected routes
+    if (requiresAuth && !isLoggedIn) {
+      // Preserve the intended destination and requested role
+      return next({ 
+        name: 'login', 
+        query: { 
+          redirect: to.fullPath, 
+          role: requiredRole || 'customer' 
+        } 
+      });
+    }
+
+    // 4. Role Enforcement
+    if (isLoggedIn && requiredRole) {
+      const accessGranted = authStore.hasRole(requiredRole);
+      
+      if (!accessGranted) {
+        console.error(`SECURITY_VIOLATION: ${authStore.user?.username} attempted access to ${to.path} without role ${requiredRole}`);
+        const portal = authStore.primaryPortal;
+        if (to.name !== portal) {
+          return next({ name: portal });
+        }
+      }
+    }
+
+    next();
   });
 
   return Router;
-  });
-
+});
