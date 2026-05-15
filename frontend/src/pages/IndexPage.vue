@@ -12,48 +12,75 @@
         </div>
         <h1 class="text-heading heading-xl no-margin">SAMS<span class="text-primary">.</span></h1>
         <p class="text-h6 text-grey-7 text-weight-light max-width-600 q-mx-auto q-mt-md">
-          Empowering the next generation of Egyptian champions. One integrated platform for <span class="text-weight-bold text-navy">Logistics, Performance, and Growth.</span>
+          Empowering the next generation of Egyptian champions. One integrated platform for <span class="text-weight-bold text-white">Logistics, Performance, and Growth.</span>
         </p>
       </div>
 
       <!-- Clean Portal Selection -->
-      <div class="row q-col-gutter-lg justify-center full-width">
+      <div class="row q-col-gutter-lg justify-center full-width items-stretch">
         <!-- Customer Portal -->
         <div class="col-12 col-md-4">
-          <q-card flat bordered class="sams-card portal-choice q-pa-xl cursor-pointer" @click="goToLogin('customer')">
+          <q-card flat bordered class="sams-card portal-choice q-pa-xl column full-height">
             <q-card-section class="column items-center">
               <q-icon name="group" size="56px" color="primary" class="q-mb-md" />
-              <div class="text-heading text-h5">Athlete Arena</div>
+              <div class="text-heading text-h5 text-white">Athlete Arena</div>
               <div class="text-caption text-grey-6 q-mt-sm">Parents & Players Portal</div>
             </q-card-section>
+            <q-space />
+            <q-card-actions vertical class="q-gutter-y-sm q-pa-none q-mt-lg">
+              <q-btn unelevated color="primary" :label="$t('auth.signIn')" @click="goToLogin('customer')" class="full-width sams-btn" />
+              <q-btn outline color="primary" :label="$t('auth.joinAcademy')" to="/auth/register" class="full-width sams-btn" />
+            </q-card-actions>
           </q-card>
         </div>
 
         <!-- Coach Portal -->
         <div class="col-12 col-md-4">
-          <q-card flat bordered class="sams-card portal-choice q-pa-xl cursor-pointer featured" @click="goToLogin('coach')">
+          <q-card flat bordered class="sams-card portal-choice q-pa-xl column full-height featured">
             <q-card-section class="column items-center">
               <q-icon name="sports" size="56px" color="white" class="q-mb-md" />
               <div class="text-heading text-h5 text-white">Tactical Field</div>
               <div class="text-caption text-grey-4 q-mt-sm">Coach Command Center</div>
             </q-card-section>
+            <q-space />
+            <q-card-actions vertical class="q-gutter-y-sm q-pa-none q-mt-lg">
+              <q-btn unelevated color="primary" :label="$t('auth.signIn')" @click="goToLogin('coach')" class="full-width sams-btn" />
+              <div style="height: 36px"></div> <!-- Spacer to match Join Academy button height -->
+            </q-card-actions>
           </q-card>
         </div>
 
         <!-- Operations Portal -->
         <div class="col-12 col-md-4">
-          <q-card flat bordered class="sams-card portal-choice q-pa-xl cursor-pointer" @click="goToLogin('operations')">
+          <q-card flat bordered class="sams-card portal-choice q-pa-xl column full-height">
             <q-card-section class="column items-center">
               <q-icon name="admin_panel_settings" size="56px" color="primary" class="q-mb-md" />
               <div class="text-heading text-h5">Academy HQ</div>
               <div class="text-caption text-grey-6 q-mt-sm">Operational Command</div>
             </q-card-section>
+            <q-space />
+            <q-card-actions vertical class="q-gutter-y-sm q-pa-none q-mt-lg">
+              <q-btn unelevated color="primary" :label="$t('auth.signIn')" @click="goToLogin('operations')" class="full-width sams-btn" />
+              <div style="height: 36px"></div> <!-- Spacer to match Join Academy button height -->
+            </q-card-actions>
           </q-card>
         </div>
       </div>
 
+      <!-- Language Toggle -->
+      <div class="q-mt-xl">
+        <q-btn 
+          flat 
+          color="grey-5" 
+          :label="appStore.locale === 'en-US' ? 'العربية' : 'English'" 
+          icon="language" 
+          @click="appStore.toggleLocale" 
+          class="text-weight-bold"
+        />
+      </div>
+
       <!-- Grounded Footer -->
-      <div class="q-mt-xl row items-center q-gutter-md text-grey-5">
+      <div class="q-mt-lg row items-center q-gutter-md text-grey-6">
         <span class="text-mono text-min uppercase">©2026 SAMS Architecture</span>
         <q-separator vertical inset dark class="opacity-20" />
         <span class="text-mono text-min uppercase">Secure Enterprise Environment</span>
@@ -64,7 +91,10 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import { useAppStore } from '../stores/app';
+
 const router = useRouter();
+const appStore = useAppStore();
 
 function goToLogin(role: string) {
   router.push({ name: 'login', query: { role } });

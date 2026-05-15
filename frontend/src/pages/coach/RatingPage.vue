@@ -11,28 +11,31 @@
     </div>
 
     <div class="row q-col-gutter-lg">
-      <div v-for="player in players" :key="player.id" class="col-12 col-sm-6 col-md-4">
-        <q-card flat bordered class="sport-card bg-white q-pa-md hover-elevate transition-all" @click="ratePlayer(player)">
+      <div v-if="playersStore.loading" class="q-pa-xl col-12 text-center">
+        <q-spinner color="primary" size="3em" />
+      </div>
+      <div v-else v-for="player in playersStore.players" :key="player.id" class="col-12 col-sm-6 col-md-4">
+        <q-card flat bordered class="sams-card q-pa-md hover-elevate transition-all" @click="ratePlayer(player)">
           <q-item class="q-pa-none">
             <q-item-section avatar>
               <q-avatar size="64px" class="shadow-2 border-primary">
-                <img :src="`https://i.pravatar.cc/150?u=${player.id}`">
+                <img :src="`https://ui-avatars.com/api/?name=${player.first_name}+${player.last_name}&background=random`">
               </q-avatar>
             </q-item-section>
             <q-item-section>
-              <q-item-label class="text-weight-black text-h6 text-primary">{{ player.name }}</q-item-label>
-              <q-item-label caption>Current Rank: #{{ player.id }}</q-item-label>
+              <q-item-label class="text-weight-black text-h6 text-primary">{{ player.first_name }} {{ player.last_name }}</q-item-label>
+              <q-item-label caption class="text-grey-5">Reg: {{ player.registration_number }}</q-item-label>
             </q-item-section>
             <q-item-section side>
                <q-btn flat round color="secondary" icon="star_half" />
             </q-item-section>
           </q-item>
 
-          <q-separator class="q-my-md opacity-20" />
+          <q-separator dark class="q-my-md opacity-20" />
 
           <div class="row items-center justify-between">
-            <div class="text-caption text-weight-bold uppercase text-grey-6">Last Performance</div>
-            <div class="text-h6 text-secondary text-weight-black">{{ player.lastRating }} <q-icon name="trending_up" color="positive" size="xs" /></div>
+            <div class="text-caption text-weight-bold uppercase text-grey-6">Status</div>
+            <div class="text-subtitle2 text-secondary text-weight-black">Active <q-icon name="trending_up" color="positive" size="xs" /></div>
           </div>
         </q-card>
       </div>
@@ -40,37 +43,37 @@
 
     <!-- Designer Rating Dialog -->
     <q-dialog v-model="showRatingDialog" transition-show="scale" transition-hide="scale">
-      <q-card class="sport-card bg-white" style="min-width: 400px; border-radius: 30px">
-        <div class="bg-gradient-primary text-white q-pa-xl text-center">
-          <q-avatar size="100px" class="q-mb-md border-white shadow-10">
-            <img :src="`https://i.pravatar.cc/150?u=${selectedPlayer?.id}`">
+      <q-card class="sams-card" style="min-width: 400px; border-radius: 30px">
+        <div class="bg-surface-2 text-white q-pa-xl text-center border-b">
+          <q-avatar size="100px" class="q-mb-md border-primary shadow-10">
+            <img :src="`https://ui-avatars.com/api/?name=${selectedPlayer?.first_name}+${selectedPlayer?.last_name}&background=random`">
           </q-avatar>
-          <div class="text-h4 text-weight-black uppercase">{{ selectedPlayer?.name }}</div>
-          <div class="text-subtitle1 opacity-80 letter-spacing-2">PERFORMANCE EVALUATION</div>
+          <div class="text-h4 text-weight-black uppercase text-white">{{ selectedPlayer?.first_name }} {{ selectedPlayer?.last_name }}</div>
+          <div class="text-subtitle1 text-grey-5 letter-spacing-2">PERFORMANCE EVALUATION</div>
         </div>
 
-        <q-card-section class="q-pa-xl column q-gutter-y-lg">
+        <q-card-section class="q-pa-xl column q-gutter-y-lg bg-surface-1">
           <div class="column q-gutter-y-md">
              <div class="row items-center justify-between">
-               <span class="text-weight-bold uppercase">Technical Mastery</span>
+               <span class="text-weight-bold uppercase text-white">Technical Mastery</span>
                <q-rating v-model="currentRating.technique" size="2.5em" color="secondary" icon="sports_handball" />
              </div>
              <div class="row items-center justify-between">
-               <span class="text-weight-bold uppercase">Stamina / Power</span>
+               <span class="text-weight-bold uppercase text-white">Stamina / Power</span>
                <q-rating v-model="currentRating.stamina" size="2.5em" color="secondary" icon="bolt" />
              </div>
              <div class="row items-center justify-between">
-               <span class="text-weight-bold uppercase">Mental Strategy</span>
+               <span class="text-weight-bold uppercase text-white">Mental Strategy</span>
                <q-rating v-model="currentRating.teamwork" size="2.5em" color="secondary" icon="psychology" />
              </div>
           </div>
 
-          <q-input v-model="currentRating.notes" type="textarea" label="Professional Observations" outlined bg-color="grey-1" class="q-mt-md" rounded-borders />
+          <q-input v-model="currentRating.notes" type="textarea" label="Professional Observations" outlined dark bg-color="surface-2" class="q-mt-md sams-input" rounded-borders />
         </q-card-section>
 
-        <q-card-actions align="center" class="q-pa-xl bg-grey-1">
+        <q-card-actions align="center" class="q-pa-xl bg-surface-2 border-t">
           <q-btn flat label="ABORT" color="grey-6" v-close-popup class="q-px-lg" />
-          <q-btn unelevated label="COMMIT RATINGS" color="primary" v-close-popup class="q-px-xl text-weight-black shadow-5" rounded size="lg" />
+          <q-btn unelevated label="COMMIT RATINGS" color="primary" v-close-popup class="q-px-xl text-weight-black shadow-5" rounded size="lg" @click="submitRating" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -78,23 +81,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useRatingsStore } from '../../stores/ratings';
+import { usePlayersStore } from '../../stores/players';
+import { useQuasar } from 'quasar';
 
-interface Player {
-  id: number;
-  name: string;
-  lastRating: string;
-}
-
-const players = ref<Player[]>([
-  { id: 1, name: 'ADAM SMITH', lastRating: '4.8' },
-  { id: 2, name: 'SARAH JONES', lastRating: '4.5' },
-  { id: 3, name: 'MIKE BROWN', lastRating: '4.2' },
-  { id: 4, name: 'EMMA WILSON', lastRating: '4.9' }
-]);
+const $q = useQuasar();
+const ratingsStore = useRatingsStore();
+const playersStore = usePlayersStore();
 
 const showRatingDialog = ref(false);
-const selectedPlayer = ref<Player | null>(null);
+const selectedPlayer = ref<any>(null);
 const currentRating = ref({
   technique: 4,
   stamina: 3,
@@ -102,9 +99,30 @@ const currentRating = ref({
   notes: ''
 });
 
-function ratePlayer(player: Player) {
+onMounted(() => {
+  playersStore.fetchPlayers();
+});
+
+function ratePlayer(player: any) {
   selectedPlayer.value = player;
+  // Reset or load existing
+  currentRating.value = { technique: 3, stamina: 3, teamwork: 3, notes: '' };
   showRatingDialog.value = true;
+}
+
+async function submitRating() {
+  if (!selectedPlayer.value) return;
+  
+  try {
+    await ratingsStore.submitRating({
+      player: selectedPlayer.value.id,
+      coach: 'current-coach-id', // Handled by backend JWT usually
+      ...currentRating.value
+    });
+    $q.notify({ type: 'positive', message: 'Rating submitted successfully' });
+  } catch (error) {
+    $q.notify({ type: 'negative', message: 'Failed to submit rating' });
+  }
 }
 </script>
 
@@ -112,23 +130,20 @@ function ratePlayer(player: Player) {
 .letter-spacing-1 { letter-spacing: 1px; }
 .letter-spacing-2 { letter-spacing: 2px; }
 
-.sport-card {
-  border-radius: 24px;
-}
+.bg-surface-1 { background-color: var(--sams-surface-1); }
+.bg-surface-2 { background-color: var(--sams-surface-2); }
+.border-b { border-bottom: 1px solid var(--sams-border); }
+.border-t { border-top: 1px solid var(--sams-border); }
 
-.bg-gradient-primary {
-  background: linear-gradient(135deg, #1a237e 0%, #0d123d 100%);
-}
-
-.border-primary { border: 2px solid $primary; }
+.border-primary { border: 2px solid var(--sams-primary); }
 .border-white { border: 3px solid white; }
 
 .hover-elevate {
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   &:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
-    border-color: $secondary;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4) !important;
+    border-color: var(--sams-primary);
   }
 }
 

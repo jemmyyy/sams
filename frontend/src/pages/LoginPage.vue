@@ -1,67 +1,71 @@
 <template>
-  <q-page class="sams-auth flex flex-center">
+  <q-page class="sams-auth-dark flex flex-center">
     <div class="column items-center full-width animate-up" style="max-width: 420px">
       <!-- Branded Header -->
       <div class="text-center q-mb-xl">
-        <h2 class="text-heading text-navy no-margin">SAMS<span class="text-primary">.</span></h2>
+        <h2 class="text-heading text-white no-margin">SAMS<span class="text-primary">.</span></h2>
         <div class="text-overline text-grey-6 letter-spacing-5">Secure Access Gateway</div>
       </div>
 
       <!-- Professional Login Card -->
       <q-card flat bordered class="sams-card full-width q-pa-xl">
         <div class="text-center q-mb-xl">
-           <div class="text-h5 text-heading text-navy uppercase">{{ targetRole }} Sign In</div>
+           <div class="text-h5 text-heading text-white uppercase">{{ targetRole }} {{ $t('auth.signIn') }}</div>
            <div class="text-caption text-grey-6 q-mt-sm">Access your academy dashboard</div>
         </div>
 
         <div class="q-gutter-y-lg">
-          <q-input
+          <SamsInput
             v-model="loginData.username"
-            label="Username"
-            outlined
-            color="primary"
-            class="sams-input"
+            :label="$t('auth.username')"
           >
             <template v-slot:prepend>
               <q-icon name="person_outline" color="grey-6" />
             </template>
-          </q-input>
+          </SamsInput>
 
-          <q-input
+          <SamsInput
             v-model="loginData.password"
-            label="Password"
+            :label="$t('auth.password')"
             type="password"
-            outlined
-            color="primary"
-            class="sams-input"
             @keyup.enter="handleLogin"
           >
             <template v-slot:prepend>
               <q-icon name="lock_outline" color="grey-6" />
             </template>
-          </q-input>
+          </SamsInput>
         </div>
 
         <div class="q-mt-xl">
           <q-btn
             unelevated
-            class="full-width q-py-md sams-btn-action"
-            label="Sign In"
+            class="full-width q-py-md sams-btn-primary"
+            :label="$t('auth.signIn')"
             :loading="loading"
             @click="handleLogin"
           />
         </div>
 
         <div class="text-center q-mt-xl">
-          <q-btn flat color="grey-7" label="Back to Home" to="/" icon="arrow_back" dense no-caps />
+          <template v-if="targetRole === 'customer'">
+            <div class="text-grey-7 q-mb-sm">Don't have an athlete account?</div>
+            <q-btn flat color="primary" :label="$t('auth.register')" to="/auth/register" class="text-weight-bold q-mb-md" no-caps />
+          </template>
+          <div>
+            <q-btn flat color="grey-7" :label="$t('common.backToHome')" to="/" icon="arrow_back" dense no-caps />
+          </div>
         </div>
       </q-card>
 
-      <!-- Trust Footer -->
-      <div class="row items-center q-mt-xl q-gutter-sm opacity-40">
-         <q-icon name="verified_user" size="18px" />
-         <span class="text-caption text-weight-bold uppercase">Enterprise Security Active</span>
-      </div>
+      <!-- Language Toggle in Auth -->
+      <q-btn 
+        flat 
+        color="grey-6" 
+        size="sm"
+        :label="appStore.locale === 'en-US' ? 'العربية' : 'English'" 
+        @click="appStore.toggleLocale" 
+        class="q-mt-lg"
+      />
     </div>
   </q-page>
 </template>
@@ -70,12 +74,15 @@
 import { ref, reactive, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '../stores/auth';
+import { useAppStore } from '../stores/app';
 import { useQuasar } from 'quasar';
+import SamsInput from '../components/common/SamsInput.vue';
 
 const $q = useQuasar();
 const router = useRouter();
 const route = useRoute();
 const authStore = useAuthStore();
+const appStore = useAppStore();
 
 const loading = ref(false);
 const loginData = reactive({
@@ -121,8 +128,17 @@ async function handleLogin() {
     }
 
   } catch (error: any) {
+    let msg = 'Authentication failed.';
+    if (!error.response) {
+      msg = 'Network error. Cannot reach the server.';
+    } else if (error.response.data?.detail) {
+      msg = error.response.data.detail;
+    } else if (error.response.data?.non_field_errors) {
+      msg = error.response.data.non_field_errors[0];
+    }
+    
     $q.notify({
-      message: error.response?.data?.detail || 'Invalid credentials.',
+      message: msg,
       color: 'negative',
       icon: 'error_outline',
       position: 'top'
@@ -134,15 +150,24 @@ async function handleLogin() {
 </script>
 
 <style lang="scss" scoped>
-.sams-auth {
+.sams-auth-dark {
   background-color: var(--sams-bg);
   min-height: 100vh;
 }
 
-.sams-input {
+.sams-input-dark {
   :deep(.q-field__control) {
+    background-color: var(--sams-surface-1);
     border-radius: 12px;
   }
+}
+
+.sams-btn-action-dark {
+  background: var(--sams-primary);
+  color: white;
+  border-radius: 10px;
+  font-weight: 700;
+  &:hover { background: #1d4ed8; }
 }
 
 .letter-spacing-5 { letter-spacing: 5px; }

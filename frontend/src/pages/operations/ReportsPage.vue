@@ -2,17 +2,17 @@
   <q-page class="q-pa-xl animate-up">
     <div class="row items-center justify-between q-mb-xl">
       <div class="column">
-        <h1 class="text-heading heading-lg no-margin">Intelligence Exports</h1>
-        <div class="text-subtitle1 text-grey-6">Generate and manage academy data reports.</div>
+        <h1 class="text-heading heading-lg no-margin text-white">Intelligence Exports</h1>
+        <div class="text-subtitle1 text-grey-5">Generate and manage academy data reports.</div>
       </div>
-      <q-btn unelevated class="sams-btn sams-btn-action" label="Request Report" icon="add" />
+      <q-btn unelevated class="sams-btn sams-btn-action" label="Request Report" icon="add" outline color="primary" />
     </div>
 
     <div class="row q-col-gutter-lg">
       <div class="col-12 col-md-8">
         <q-card flat bordered class="sams-card">
-           <div class="q-pa-lg border-bottom bg-slate-50">
-              <div class="text-heading text-subtitle1">Recent Generations</div>
+           <div class="q-pa-lg border-bottom bg-surface-2">
+              <div class="text-heading text-subtitle1 text-white">Recent Generations</div>
            </div>
            <q-table
              flat
@@ -20,10 +20,11 @@
              :columns="reportColumns"
              row-key="id"
              class="sams-table"
+             dark
            >
              <template v-slot:body-cell-status="props">
                <q-td :props="props">
-                 <q-badge rounded :color="props.value === 'Ready' ? 'green-1' : 'blue-1'" :text-color="props.value === 'Ready' ? 'green-9' : 'blue-9'" class="q-px-md">
+                 <q-badge rounded :color="props.value === 'Ready' ? 'success' : 'primary'" text-color="white" class="q-px-md">
                    {{ props.value }}
                  </q-badge>
                </q-td>
@@ -31,7 +32,7 @@
              <template v-slot:body-cell-actions="props">
                <q-td :props="props">
                  <q-btn flat round dense icon="download" color="primary" />
-                 <q-btn flat round dense icon="delete_outline" color="grey-4" />
+                 <q-btn flat round dense icon="delete_outline" color="grey-6" />
                </q-td>
              </template>
            </q-table>
@@ -39,9 +40,9 @@
       </div>
 
       <div class="col-12 col-md-4">
-        <q-card flat bordered class="sams-card q-pa-lg bg-navy text-white">
+        <q-card flat bordered class="sams-card q-pa-lg bg-surface-1 text-white">
            <div class="text-heading text-h6 q-mb-md">Automated Schedules</div>
-           <div class="text-caption text-grey-4 q-mb-xl">Recurring intelligence delivery</div>
+           <div class="text-caption text-grey-5 q-mb-xl">Recurring intelligence delivery</div>
            
            <q-list dark separator class="q-px-none">
               <q-item v-for="s in [1, 2]" :key="s" class="q-px-none q-py-md">
@@ -71,14 +72,20 @@ const reportColumns = [
   { name: 'actions', label: '', field: 'actions', align: 'right' as const },
 ];
 
-const reports = [
-  { id: 1, date: 'May 15, 09:30', type: 'Financial Summary', status: 'Ready' },
-  { id: 2, date: 'May 14, 18:00', type: 'Attendance Audit', status: 'Ready' },
-  { id: 3, date: 'May 15, 11:00', type: 'Retention Matrix', status: 'Processing' },
-];
+const reports = ref<any[]>([]); // To be fetched from API
 </script>
 
 <style lang="scss" scoped>
-.bg-navy { background-color: var(--sams-navy); }
+.bg-surface-1 { background-color: var(--sams-surface-1); }
+.bg-surface-2 { background-color: var(--sams-surface-2); }
 .border-bottom { border-bottom: 1px solid var(--sams-border); }
+
+.sams-table {
+  background-color: var(--sams-surface-1);
+  :deep(.q-table__card) { box-shadow: none; background: transparent; }
+  :deep(thead tr) { background: var(--sams-surface-2); }
+  :deep(thead th) { color: var(--sams-text-secondary); font-weight: 700; height: 56px; border-bottom: 1px solid var(--sams-border); }
+  :deep(tbody tr) { height: 60px; &:hover { background: rgba(255, 255, 255, 0.02); } }
+  :deep(tbody td) { border-bottom: 1px solid var(--sams-border); color: var(--sams-text-primary); }
+}
 </style>

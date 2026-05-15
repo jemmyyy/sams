@@ -1,54 +1,51 @@
 <template>
-  <q-page class="apex-auth flex flex-center">
-    <div class="column items-center full-width animate-fade-in" style="max-width: 500px">
+  <q-page class="sams-auth-dark flex flex-center">
+    <div class="column items-center full-width animate-up" style="max-width: 500px">
       <!-- Branded Header -->
       <div class="text-center q-mb-xl">
-        <h2 class="text-apex text-navy no-margin">SAMS<span class="text-victory">.</span></h2>
+        <h2 class="text-heading text-white no-margin">SAMS<span class="text-primary">.</span></h2>
         <div class="text-overline text-grey-6 letter-spacing-5">Athlete Enrollment</div>
       </div>
 
-      <div class="login-container full-width">
-        <div class="login-accent" style="background: var(--sams-victory-red)"></div>
-        <div class="apex-card q-pa-xl">
-          <div class="text-center q-mb-xl">
-             <div class="text-h5 text-apex text-navy uppercase">Join the Academy</div>
-             <div class="text-caption text-grey-6 q-mt-sm">Start your professional sports journey today</div>
-          </div>
+      <q-card flat bordered class="sams-card full-width q-pa-xl">
+        <div class="text-center q-mb-xl">
+           <div class="text-h5 text-heading text-white uppercase">Join the Academy</div>
+           <div class="text-caption text-grey-6 q-mt-sm">Start your professional sports journey today</div>
+        </div>
 
-          <div class="row q-col-gutter-md">
-            <div class="col-12 col-sm-6">
-              <q-input v-model="regData.first_name" label="First Name" outlined stack-label color="navy" class="apex-input" />
-            </div>
-            <div class="col-12 col-sm-6">
-              <q-input v-model="regData.last_name" label="Last Name" outlined stack-label color="navy" class="apex-input" />
-            </div>
-            <div class="col-12">
-              <q-input v-model="regData.username" label="Username" outlined stack-label color="navy" class="apex-input" />
-            </div>
-            <div class="col-12">
-              <q-input v-model="regData.email" label="Email Address" type="email" outlined stack-label color="navy" class="apex-input" />
-            </div>
-            <div class="col-12">
-              <q-input v-model="regData.password" label="Password" type="password" outlined stack-label color="navy" class="apex-input" />
-            </div>
+        <div class="row q-col-gutter-md">
+          <div class="col-12 col-sm-6">
+            <q-input v-model="regData.first_name" label="First Name" outlined dark stack-label color="primary" class="sams-input-dark" />
           </div>
-
-          <div class="q-mt-xl">
-            <q-btn
-              unelevated
-              class="full-width q-py-md apex-btn-primary shadow-lg"
-              label="Create Athlete Account"
-              :loading="loading"
-              @click="handleRegister"
-            />
+          <div class="col-12 col-sm-6">
+            <q-input v-model="regData.last_name" label="Last Name" outlined dark stack-label color="primary" class="sams-input-dark" />
           </div>
-
-          <div class="text-center q-mt-xl">
-            <div class="text-grey-7 q-mb-sm">Already a member?</div>
-            <q-btn flat color="navy" label="Sign In to Arena" :to="{ name: 'login-customer' }" dense no-caps class="text-weight-bold" />
+          <div class="col-12">
+            <q-input v-model="regData.username" label="Username" outlined dark stack-label color="primary" class="sams-input-dark" />
+          </div>
+          <div class="col-12">
+            <q-input v-model="regData.email" label="Email Address" type="email" outlined dark stack-label color="primary" class="sams-input-dark" />
+          </div>
+          <div class="col-12">
+            <q-input v-model="regData.password" label="Password" type="password" outlined dark stack-label color="primary" class="sams-input-dark" />
           </div>
         </div>
-      </div>
+
+        <div class="q-mt-xl">
+          <q-btn
+            unelevated
+            class="full-width q-py-md sams-btn-action-dark"
+            label="Create Athlete Account"
+            :loading="loading"
+            @click="handleRegister"
+          />
+        </div>
+
+        <div class="text-center q-mt-xl">
+          <div class="text-grey-7 q-mb-sm">Already a member?</div>
+          <q-btn flat color="primary" label="Sign In to Arena" :to="{ name: 'login-customer' }" dense no-caps class="text-weight-bold" />
+        </div>
+      </q-card>
 
       <q-btn flat color="grey-7" label="Return to Home" to="/" icon="arrow_back" class="q-mt-lg" dense no-caps />
     </div>
@@ -96,37 +93,25 @@ async function handleRegister() {
 </script>
 
 <style lang="scss" scoped>
-.apex-auth {
-  background-color: var(--sams-slate-bg);
+.sams-auth-dark {
+  background-color: var(--sams-bg);
   min-height: 100vh;
 }
 
-.text-navy { color: var(--sams-navy); }
-.text-victory { color: var(--sams-victory-red); }
-.letter-spacing-5 { letter-spacing: 5px; }
-
-.login-container {
-  position: relative;
-}
-
-.login-accent {
-  position: absolute;
-  top: -2px; left: 50%; transform: translateX(-50%);
-  width: 100px; height: 4px;
-  border-radius: 0 0 4px 4px;
-  z-index: 2;
-}
-
-.apex-card {
-  border-radius: 24px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
-}
-
-.apex-input {
+.sams-input-dark {
   :deep(.q-field__control) {
+    background-color: var(--sams-surface-1);
     border-radius: 12px;
-    background: #f8fafc;
-    &:hover { background: #f1f5f9; }
   }
 }
+
+.sams-btn-action-dark {
+  background: var(--sams-primary);
+  color: white;
+  border-radius: 10px;
+  font-weight: 700;
+  &:hover { background: #1d4ed8; }
+}
+
+.letter-spacing-5 { letter-spacing: 5px; }
 </style>

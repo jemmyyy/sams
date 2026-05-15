@@ -11,7 +11,7 @@ export default defineConfig((/* ctx */) => {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: [],
+    boot: ['i18n'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#css
     css: ['app.scss'],
@@ -83,6 +83,16 @@ export default defineConfig((/* ctx */) => {
       port: 8080,
       host: '0.0.0.0',
       open: false, // opens browser window automatically
+      proxy: {
+        '/api': {
+          target: 'http://backend:8000',
+          changeOrigin: true,
+        },
+        '/media': {
+          target: 'http://backend:8000',
+          changeOrigin: true,
+        },
+      },
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#framework

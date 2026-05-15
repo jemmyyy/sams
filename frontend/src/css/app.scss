@@ -1,26 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
 
 :root {
-  // Grounded Pro Palette
-  --sams-bg: #f8fafc;
-  --sams-navy: #0f172a;
-  --sams-primary: #2563eb;
-  --sams-victory-red: #e11d48;
-  --sams-energy-volt: #84cc16;
-  --sams-slate-dark: #1e293b;
-  --sams-border: #e2e8f0;
+  // Obsidian Arena Palette (Dark Mode Only)
+  --sams-bg: #09090b;          // Deepest Slate
+  --sams-surface-1: #0f172a;   // Obsidian (Cards, Sidebars)
+  --sams-surface-2: #1e293b;   // Charcoal (Headers, Inputs)
   
+  --sams-text-primary: #f8fafc;
+  --sams-text-secondary: #94a3b8;
+  
+  --sams-primary: #3b82f6;      // Pro Blue
+  --sams-victory-red: #e11d48;
+  --sams-success: #10b981;
+  
+  --sams-border: rgba(255, 255, 255, 0.08);
   --sams-radius: 16px;
-  --sams-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --sams-shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 body {
   background-color: var(--sams-bg);
-  color: var(--sams-navy);
+  color: var(--sams-text-primary);
   font-family: 'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
   margin: 0;
-  padding: 0;
 }
 
 // Typography System
@@ -33,25 +35,20 @@ body {
 .heading-xl { font-size: clamp(3rem, 7vw, 5rem); line-height: 1; }
 .heading-lg { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; }
 
-// Component Refinements
+// Component System
 .sams-card {
-  background: white;
+  background-color: var(--sams-surface-1) !important;
   border-radius: var(--sams-radius);
   border: 1px solid var(--sams-border);
-  box-shadow: var(--sams-shadow);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
   overflow: hidden;
+  color: var(--sams-text-primary);
   
   &:hover {
-    box-shadow: var(--sams-shadow-lg);
+    border-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
   }
-}
-
-.sams-header {
-  background: white;
-  border-bottom: 1px solid var(--sams-border);
-  color: var(--sams-navy);
 }
 
 .sams-btn {
@@ -62,22 +59,30 @@ body {
 }
 
 .sams-btn-primary {
-  background: var(--sams-navy);
-  color: white;
-  &:hover { background: var(--sams-slate-dark); }
-}
-
-.sams-btn-action {
   background: var(--sams-primary);
   color: white;
-  &:hover { background: #1d4ed8; }
 }
 
-// Layout Utilities
+.sams-btn-victory {
+  background: var(--sams-victory-red);
+  color: white;
+}
+
+.sams-input {
+  :deep(.q-field__control) {
+    background-color: var(--sams-surface-2) !important;
+    border-radius: 12px;
+    color: var(--sams-text-primary);
+  }
+  :deep(.q-field__label), :deep(.q-field__marginal) {
+    color: var(--sams-text-secondary);
+  }
+}
+
+// Global Layout
 .max-w-xl { max-width: 1280px; margin: 0 auto; }
 .full-viewport { height: 100vh; width: 100vw; overflow: hidden; }
 
-// Animations
 @keyframes slide-up {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -86,3 +91,9 @@ body {
 .animate-up {
   animation: slide-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+
+// Scrollbar Overrides
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--sams-bg); }
+::-webkit-scrollbar-thumb { background: var(--sams-surface-2); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--sams-text-secondary); }

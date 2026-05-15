@@ -45,6 +45,9 @@ export const useAuthStore = defineStore('auth', {
       try {
         const response = await api.get('accounts/profile/');
         this.user = response.data;
+        if (this.user?.primary_academy_id) {
+          localStorage.setItem('academy_id', this.user.primary_academy_id);
+        }
         this.isInitialized = true;
         this.authError = null;
       } catch (error) {
@@ -68,6 +71,9 @@ export const useAuthStore = defineStore('auth', {
         
         localStorage.setItem('access_token', response.data.access);
         localStorage.setItem('refresh_token', response.data.refresh);
+        if (response.data.user.primary_academy_id) {
+          localStorage.setItem('academy_id', response.data.user.primary_academy_id);
+        }
         // Also save user for immediate recovery on refresh before init finishes
         localStorage.setItem('user_meta', JSON.stringify(response.data.user));
       } catch (error: any) {

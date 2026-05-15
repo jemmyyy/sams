@@ -26,6 +26,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: 'timetable', component: () => import('../pages/customer/TimetablePage.vue'), name: 'customer-timetable' },
       { path: 'profile', component: () => import('../pages/customer/ProfilePage.vue'), name: 'customer-profile' },
+      { path: 'cancellations', component: () => import('../pages/customer/CancellationsPage.vue'), name: 'customer-cancellations' },
     ],
   },
   {
