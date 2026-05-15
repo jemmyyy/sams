@@ -2,48 +2,48 @@
   <q-page class="q-pa-lg">
     <div class="row items-center q-mb-xl">
       <div class="col">
-        <h4 class="text-weight-black no-margin text-dark uppercase letter-spacing-1">
-          FINANCIAL <span class="text-info">COMMAND</span>
+        <div class="text-mono text-min text-grey-5 letter-spacing-2 uppercase q-mb-sm">Financial Oversight</div>
+        <h4 class="text-apex heading-md no-margin text-white">
+          FINANCIAL <span class="text-victory-red">COMMAND</span>
         </h4>
-        <div class="text-grey-7 text-subtitle1">Manage revenue and receivables</div>
       </div>
     </div>
 
     <div class="row q-col-gutter-lg q-mb-lg">
       <div class="col-12 col-md-4">
-        <q-card flat bordered class="ops-card bg-info text-white">
+        <q-card flat class="elite-card">
           <q-card-section>
-            <div class="text-subtitle2 uppercase opacity-80">Total Invoiced</div>
-            <div class="text-h3 text-weight-black" v-if="stats">EGP {{ stats.total_invoiced || 0 }}</div>
-            <q-spinner-puff v-else color="white" size="2em" />
+            <div class="text-mono text-min text-grey-5 uppercase q-mb-sm">Total Invoiced</div>
+            <div class="text-h3 text-weight-black text-white text-apex" v-if="stats">EGP {{ stats.total_invoiced || 0 }}</div>
+            <q-spinner-puff v-else color="victory-red" size="2em" />
           </q-card-section>
         </q-card>
       </div>
-      
+
       <div class="col-12 col-md-4">
-        <q-card flat bordered class="ops-card bg-white">
+        <q-card flat class="elite-card">
           <q-card-section>
-            <div class="text-subtitle2 text-grey-6 uppercase">Total Outstanding</div>
-            <div class="text-h3 text-weight-black text-warning" v-if="stats">EGP {{ stats.total_outstanding || 0 }}</div>
-             <q-spinner-puff v-else color="warning" size="2em" />
+            <div class="text-mono text-min text-grey-5 uppercase q-mb-sm">Total Outstanding</div>
+            <div class="text-h3 text-weight-black text-energy-volt text-apex" v-if="stats">EGP {{ stats.total_outstanding || 0 }}</div>
+            <q-spinner-puff v-else color="energy-volt" size="2em" />
           </q-card-section>
         </q-card>
       </div>
-      
+
       <div class="col-12 col-md-4">
-        <q-card flat bordered class="ops-card bg-white">
+        <q-card flat class="elite-card">
           <q-card-section>
-            <div class="text-subtitle2 text-grey-6 uppercase">Overdue Invoices</div>
-            <div class="text-h3 text-weight-black text-negative" v-if="stats">{{ stats.overdue_count || 0 }}</div>
-            <q-spinner-puff v-else color="negative" size="2em" />
+            <div class="text-mono text-min text-grey-5 uppercase q-mb-sm">Overdue Invoices</div>
+            <div class="text-h3 text-weight-black text-victory-red text-apex" v-if="stats">{{ stats.overdue_count || 0 }}</div>
+            <q-spinner-puff v-else color="victory-red" size="2em" />
           </q-card-section>
         </q-card>
       </div>
     </div>
 
-    <q-card flat bordered class="ops-card bg-white">
-       <q-card-actions class="q-pa-md bg-grey-1">
-         <q-btn color="info" label="Export Report" icon="download" @click="exportReport" />
+    <q-card flat class="elite-card q-px-md q-py-sm">
+       <q-card-actions class="q-pa-md">
+         <q-btn unelevated class="btn-victory text-mono" label="Export Report" icon="download" @click="exportReport" />
        </q-card-actions>
     </q-card>
   </q-page>
@@ -55,12 +55,13 @@ import api from '../../api';
 import { useQuasar } from 'quasar';
 
 const $q = useQuasar();
-const stats = ref<any>(null);
+const stats = ref<Record<string, unknown> | null>(null);
 
 onMounted(async () => {
   try {
     const response = await api.get('payments/dashboard/');
-    stats.value = response.data.data;
+    // api interceptor already unwraps StandardizedJSONRenderer { success, data, errors }
+    stats.value = response.data;
   } catch (error) {
     console.error('Failed to fetch stats:', error);
   }
@@ -74,7 +75,7 @@ async function exportReport() {
       message: res.data.status || 'Export initiated.',
       position: 'top'
     });
-  } catch (e) {
+  } catch {
     $q.notify({
       type: 'negative',
       message: 'Failed to initiate export.',
@@ -85,9 +86,9 @@ async function exportReport() {
 </script>
 
 <style scoped>
-.ops-card {
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+.elite-card {
+  border-radius: var(--sams-radius-lg);
+  border: 1px solid var(--sams-border);
+  background: var(--sams-obsidian);
 }
-.opacity-80 { opacity: 0.8; }
 </style>

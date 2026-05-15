@@ -2,10 +2,11 @@
   <q-page class="q-pa-lg">
     <div class="row items-center q-mb-xl">
       <div class="col">
-        <h4 class="text-weight-black no-margin text-secondary uppercase letter-spacing-1">
-          SESSION <span class="text-primary">REPORT</span>
+        <div class="text-mono text-min text-grey-5 letter-spacing-2 uppercase q-mb-sm">Performance Logs</div>
+        <h4 class="text-apex heading-md no-margin text-white">
+          SESSION <span class="text-energy-volt">REPORT</span>
         </h4>
-        <div class="text-grey-7 text-subtitle1">Document performance and training milestones</div>
+        <div class="text-grey-5 text-mono text-min uppercase q-mt-sm">Document performance and training milestones</div>
       </div>
     </div>
 
@@ -16,14 +17,14 @@
              <div class="text-h6 text-weight-bold">PERFORMANCE ANALYSIS</div>
              <div class="text-caption">Submit detailed insights for operations review</div>
           </div>
-          
+
           <q-card-section class="q-pa-xl q-gutter-y-lg">
             <q-input v-model="report.summary" type="textarea" label="Training Overview" outlined color="primary" bg-color="grey-1" class="custom-field" />
             <q-input v-model="report.achievements" type="textarea" label="Key Player Successes" outlined color="secondary" bg-color="grey-1" class="custom-field" />
             <q-input v-model="report.challenges" type="textarea" label="Technical Bottlenecks" outlined color="accent" bg-color="grey-1" class="custom-field" />
             <q-input v-model="report.next_steps" type="textarea" label="Next Session Strategy" outlined color="positive" bg-color="grey-1" class="custom-field" />
           </q-card-section>
-          
+
           <q-card-actions class="q-pa-lg bg-grey-1 border-top">
             <q-btn flat color="grey-6" label="SAVE DRAFT" class="q-px-lg" />
             <q-space />

@@ -2,28 +2,27 @@
   <q-page class="q-pa-lg">
     <div class="row items-center q-mb-xl">
       <div class="col">
-        <h4 class="text-weight-black no-margin text-dark uppercase letter-spacing-1">
-          PLAYER <span class="text-info">MANAGEMENT</span>
+        <div class="text-mono text-min text-grey-5 letter-spacing-2 uppercase q-mb-sm">Roster Control</div>
+        <h4 class="text-apex heading-md no-margin text-white">
+          PLAYER <span class="text-pro-blue">MANAGEMENT</span>
         </h4>
-        <div class="text-grey-7 text-subtitle1">Manage athlete profiles and roster assignments</div>
+        <div class="text-grey-5 text-subtitle1 text-mono text-min uppercase q-mt-sm">Manage athlete profiles and roster assignments</div>
       </div>
     </div>
 
-    <q-card flat bordered class="ops-card bg-white">
+    <q-card flat class="elite-card">
       <q-card-section class="row items-center justify-between">
-         <q-input v-model="search" dense outlined placeholder="Search players..." style="width: 300px">
-           <template v-slot:append>
-             <q-icon name="search" />
-           </template>
-         </q-input>
-         <q-btn color="info" label="Add Player" icon="add" />
+         <q-input v-model="search" dense outlined placeholder="Search players..." style="width: 300px" dark color="white" />
+         <q-btn unelevated class="btn-victory text-mono" label="Add Player" icon="add" />
       </q-card-section>
       <q-table
         :rows="players"
         :columns="columns"
         row-key="id"
         flat
+        dark
         :loading="loading"
+        class="sams-table"
       />
     </q-card>
   </q-page>
@@ -33,7 +32,7 @@
 import { ref, onMounted } from 'vue';
 import api from '../../api';
 
-const players = ref<any[]>([]);
+const players = ref<Record<string, unknown>[]>([]);
 const search = ref('');
 const loading = ref(false);
 
@@ -59,8 +58,24 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.ops-card {
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+.elite-card {
+  border-radius: var(--sams-radius-lg);
+  border: 1px solid var(--sams-border);
+  background: var(--sams-obsidian);
+}
+
+.sams-table :deep(.q-table) {
+  background: transparent;
+  color: #f8fafc;
+}
+.sams-table :deep(.q-table thead th) {
+  color: #94a3b8;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.sams-table :deep(.q-table tbody td) {
+  color: #cbd5e1;
 }
 </style>

@@ -2,43 +2,44 @@
   <q-page class="q-pa-lg">
     <div class="row items-center q-mb-xl">
       <div class="col">
-        <h4 class="text-weight-black no-margin text-primary uppercase letter-spacing-1">
-          MARK <span class="text-secondary">ATTENDANCE</span>
+        <div class="text-mono text-min text-grey-5 letter-spacing-2 uppercase q-mb-sm">Session Tracking</div>
+        <h4 class="text-apex heading-md no-margin text-white">
+          MARK <span class="text-energy-volt">ATTENDANCE</span>
         </h4>
-        <div class="text-grey-7 text-subtitle1">Verify player presence for the active session</div>
+        <div class="text-grey-5 text-mono text-min uppercase q-mt-sm">Verify player presence for the active session</div>
       </div>
     </div>
 
-    <q-card flat bordered class="sport-card overflow-hidden bg-white">
-      <div class="bg-secondary text-white q-pa-lg">
+    <q-card flat class="elite-card overflow-hidden">
+      <div class="bg-sams-obsidian q-pa-lg" style="border-bottom: 1px solid var(--sams-border);">
         <div class="row items-center justify-between">
           <div>
-            <div class="text-h5 text-weight-black uppercase">Elite Juniors</div>
-            <div class="text-subtitle2 opacity-80">May 13, 2026 • 10:00 AM</div>
+            <div class="text-h5 text-weight-black text-white text-apex uppercase">Elite Juniors</div>
+            <div class="text-mono text-min text-grey-5 uppercase">May 13, 2026 • 10:00 AM</div>
           </div>
-          <q-btn unelevated color="white" text-color="secondary" label="SELECT ALL" class="text-weight-bold" />
+          <q-btn unelevated class="btn-victory text-mono" label="SELECT ALL" />
         </div>
       </div>
-      
-      <q-list separator>
+
+      <q-list dark separator>
         <q-item v-for="player in players" :key="player.id" class="q-py-md">
           <q-item-section avatar>
             <q-avatar size="48px">
               <img :src="`https://i.pravatar.cc/150?u=${player.id}`">
             </q-avatar>
           </q-item-section>
-          
+
           <q-item-section>
-            <q-item-label class="text-weight-bold text-h6">{{ player.name }}</q-item-label>
-            <q-item-label caption>Standard Membership</q-item-label>
+            <q-item-label class="text-weight-bold text-white">{{ player.name }}</q-item-label>
+            <q-item-label caption class="text-grey-5">Standard Membership</q-item-label>
           </q-item-section>
-          
+
           <q-item-section side>
             <q-btn-toggle
               v-model="player.status"
               toggle-color="primary"
-              color="grey-2"
-              text-color="grey-7"
+              color="grey-8"
+              text-color="white"
               unelevated
               rounded
               class="attendance-toggle"
@@ -51,11 +52,11 @@
           </q-item-section>
         </q-item>
       </q-list>
-      
-      <q-card-actions class="q-pa-lg bg-grey-1">
+
+      <q-card-actions class="q-pa-lg" style="background: rgba(0,0,0,0.2);">
         <q-space />
-        <q-btn flat color="grey-6" label="Discard" class="q-mr-md" />
-        <q-btn color="primary" label="Finalize Roster" size="lg" class="q-px-xl text-weight-bold shadow-5" />
+        <q-btn flat class="text-grey-5" label="Discard" />
+        <q-btn unelevated class="btn-victory text-mono" label="Finalize Roster" size="lg" />
       </q-card-actions>
     </q-card>
   </q-page>
@@ -73,16 +74,16 @@ const players = ref([
 </script>
 
 <style lang="scss" scoped>
-.letter-spacing-1 { letter-spacing: 1px; }
+.letter-spacing-2 { letter-spacing: 2px; }
 
-.sport-card {
-  border-radius: 30px;
+.elite-card {
+  border-radius: var(--sams-radius-lg);
+  border: 1px solid var(--sams-border);
+  background: var(--sams-obsidian);
 }
 
 .attendance-toggle {
   border-radius: 50px;
   overflow: hidden;
 }
-
-.opacity-80 { opacity: 0.8; }
 </style>

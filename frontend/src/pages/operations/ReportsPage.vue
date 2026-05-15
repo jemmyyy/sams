@@ -1,142 +1,84 @@
 <template>
-  <q-page class="q-pa-lg">
-    <div class="row items-center q-mb-xl">
-      <div class="col">
-        <h1 class="text-h4 text-weight-bold q-my-none">Reports & Exports</h1>
-        <p class="text-grey-7 q-mt-sm">Generate and manage data exports</p>
+  <q-page class="q-pa-xl animate-up">
+    <div class="row items-center justify-between q-mb-xl">
+      <div class="column">
+        <h1 class="text-heading heading-lg no-margin">Intelligence Exports</h1>
+        <div class="text-subtitle1 text-grey-6">Generate and manage academy data reports.</div>
       </div>
-      <div class="col-auto">
-        <q-btn color="dark" icon="add" label="New Report" @click="showDialog = true" rounded />
-      </div>
+      <q-btn unelevated class="sams-btn sams-btn-action" label="Request Report" icon="add" />
     </div>
 
     <div class="row q-col-gutter-lg">
       <div class="col-12 col-md-8">
-        <q-card flat bordered class="report-list-card">
-          <q-table
-            flat
-            :rows="reports"
-            :columns="columns"
-            row-key="id"
-            class="bg-transparent"
-          >
-            <template v-slot:body-cell-status="props">
-              <q-td :props="props">
-                <q-badge :color="statusColor(props.value)" rounded class="q-px-sm q-py-xs">
-                  {{ props.value.toUpperCase() }}
-                </q-badge>
-              </q-td>
-            </template>
-            <template v-slot:body-cell-actions="props">
-              <q-td :props="props" class="q-gutter-sm">
-                <q-btn flat round dense icon="download" color="primary" v-if="props.row.status === 'completed'" />
-                <q-btn flat round dense icon="refresh" color="grey" v-if="props.row.status === 'failed'" />
-                <q-btn flat round dense icon="delete" color="negative" />
-              </q-td>
-            </template>
-          </q-table>
+        <q-card flat bordered class="sams-card">
+           <div class="q-pa-lg border-bottom bg-slate-50">
+              <div class="text-heading text-subtitle1">Recent Generations</div>
+           </div>
+           <q-table
+             flat
+             :rows="reports"
+             :columns="reportColumns"
+             row-key="id"
+             class="sams-table"
+           >
+             <template v-slot:body-cell-status="props">
+               <q-td :props="props">
+                 <q-badge rounded :color="props.value === 'Ready' ? 'green-1' : 'blue-1'" :text-color="props.value === 'Ready' ? 'green-9' : 'blue-9'" class="q-px-md">
+                   {{ props.value }}
+                 </q-badge>
+               </q-td>
+             </template>
+             <template v-slot:body-cell-actions="props">
+               <q-td :props="props">
+                 <q-btn flat round dense icon="download" color="primary" />
+                 <q-btn flat round dense icon="delete_outline" color="grey-4" />
+               </q-td>
+             </template>
+           </q-table>
         </q-card>
       </div>
 
       <div class="col-12 col-md-4">
-        <q-card flat bordered class="schedule-card bg-dark text-white">
-          <q-card-section>
-            <div class="text-h6 text-weight-bold">Scheduled Reports</div>
-            <div class="text-caption text-grey-5 q-mb-md">Automated periodic exports</div>
-            
-            <q-list dark separator>
-              <q-item v-for="sched in schedules" :key="sched.id" class="q-px-none">
-                <q-item-section>
-                  <q-item-label class="text-weight-bold">{{ sched.name }}</q-item-label>
-                  <q-item-label caption class="text-grey-4">{{ sched.frequency }} • {{ sched.format.toUpperCase() }}</q-item-label>
-                </q-item-section>
-                <q-item-section side>
-                  <q-toggle v-model="sched.active" color="info" />
-                </q-item-section>
+        <q-card flat bordered class="sams-card q-pa-lg bg-navy text-white">
+           <div class="text-heading text-h6 q-mb-md">Automated Schedules</div>
+           <div class="text-caption text-grey-4 q-mb-xl">Recurring intelligence delivery</div>
+           
+           <q-list dark separator class="q-px-none">
+              <q-item v-for="s in [1, 2]" :key="s" class="q-px-none q-py-md">
+                 <q-item-section>
+                    <q-item-label class="text-weight-bold">Weekly Financial Pulse</q-item-label>
+                    <q-item-label caption class="text-grey-5">Every Monday // PDF</q-item-label>
+                 </q-item-section>
+                 <q-item-section side>
+                    <q-toggle v-model="toggle" color="primary" />
+                 </q-item-section>
               </q-item>
-            </q-list>
-          </q-card-section>
+           </q-list>
         </q-card>
       </div>
     </div>
-
-    <!-- Request Dialog -->
-    <q-dialog v-model="showDialog">
-      <q-card style="min-width: 400px; border-radius: 16px">
-        <q-card-section class="row items-center q-pb-none">
-          <div class="text-h6 text-weight-bold">Request Report</div>
-          <q-space />
-          <q-btn icon="close" flat round dense v-close-popup />
-        </q-card-section>
-
-        <q-card-section class="q-gutter-md">
-          <q-select v-model="form.type" :options="reportTypes" label="Report Type" filled />
-          <q-select v-model="form.format" :options="['PDF', 'Excel', 'CSV']" label="Format" filled />
-          <div class="row q-col-gutter-sm">
-            <div class="col-6">
-              <q-input v-model="form.start" label="Start Date" filled type="date" stack-label />
-            </div>
-            <div class="col-6">
-              <q-input v-model="form.end" label="End Date" filled type="date" stack-label />
-            </div>
-          </div>
-        </q-card-section>
-
-        <q-card-actions align="right" class="q-pa-md">
-          <q-btn flat label="Cancel" v-close-popup />
-          <q-btn color="dark" label="Generate" rounded class="q-px-lg" @click="requestReport" />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
   </q-page>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+const toggle = ref(true);
 
-const showDialog = ref(false);
-const form = ref({ type: 'Financial Report', format: 'PDF', start: '', end: '' });
-
-const reportTypes = ['Financial Report', 'Attendance Report', 'Utilization Report', 'Coach Performance'];
-
-const statusColor = (status: string) => {
-  switch (status) {
-    case 'completed': return 'positive';
-    case 'processing': return 'info';
-    case 'failed': return 'negative';
-    default: return 'grey';
-  }
-};
-
-const columns = [
-  { name: 'date', label: 'DATE', field: 'date', align: 'left', sortable: true },
-  { name: 'type', label: 'REPORT TYPE', field: 'type', align: 'left' },
-  { name: 'format', label: 'FORMAT', field: 'format', align: 'center' },
-  { name: 'status', label: 'STATUS', field: 'status', align: 'center' },
-  { name: 'actions', label: '', field: 'actions', align: 'right' },
+const reportColumns = [
+  { name: 'date', label: 'DATE', field: 'date', align: 'left' as const },
+  { name: 'type', label: 'TYPE', field: 'type', align: 'left' as const },
+  { name: 'status', label: 'STATUS', field: 'status', align: 'center' as const },
+  { name: 'actions', label: '', field: 'actions', align: 'right' as const },
 ];
 
-const reports = ref([
-  { id: 1, date: '2026-05-15 09:30', type: 'Financial Report', format: 'pdf', status: 'completed' },
-  { id: 2, date: '2026-05-14 18:20', type: 'Attendance Report', format: 'csv', status: 'completed' },
-  { id: 3, date: '2026-05-15 10:45', type: 'Utilization Report', format: 'xlsx', status: 'processing' },
-  { id: 4, date: '2026-05-10 14:00', type: 'Performance Report', format: 'pdf', status: 'failed' },
-]);
-
-const schedules = ref([
-  { id: 1, name: 'Weekly Financial Summary', frequency: 'Weekly', format: 'pdf', active: true },
-  { id: 2, name: 'Daily Attendance Log', frequency: 'Daily', format: 'csv', active: true },
-  { id: 3, name: 'Monthly Performance Audit', frequency: 'Monthly', format: 'xlsx', active: false },
-]);
-
-function requestReport() {
-  showDialog.value = false;
-  // logic to call API
-}
+const reports = [
+  { id: 1, date: 'May 15, 09:30', type: 'Financial Summary', status: 'Ready' },
+  { id: 2, date: 'May 14, 18:00', type: 'Attendance Audit', status: 'Ready' },
+  { id: 3, date: 'May 15, 11:00', type: 'Retention Matrix', status: 'Processing' },
+];
 </script>
 
 <style lang="scss" scoped>
-.report-list-card, .schedule-card {
-  border-radius: 20px;
-}
+.bg-navy { background-color: var(--sams-navy); }
+.border-bottom { border-bottom: 1px solid var(--sams-border); }
 </style>

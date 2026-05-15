@@ -10,10 +10,9 @@
 // Basic layout for auth pages to maintain full-screen focus
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .auth-bg {
-  background: #0d123d; // Solid fallback
-  background: linear-gradient(135deg, #0d123d 0%, #1a237e 100%);
+  background: var(--sams-deep-bg);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

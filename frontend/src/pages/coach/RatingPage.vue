@@ -2,10 +2,11 @@
   <q-page class="q-pa-lg">
     <div class="row items-center q-mb-xl">
       <div class="col">
-        <h4 class="text-weight-black no-margin text-primary uppercase letter-spacing-1">
-          CHAMPION <span class="text-secondary">RATINGS</span>
+        <div class="text-mono text-min text-grey-5 letter-spacing-2 uppercase q-mb-sm">Performance Metrics</div>
+        <h4 class="text-apex heading-md no-margin text-white">
+          CHAMPION <span class="text-energy-volt">RATINGS</span>
         </h4>
-        <div class="text-grey-7 text-subtitle1">Evaluate and refine player performance data</div>
+        <div class="text-grey-5 text-mono text-min uppercase q-mt-sm">Evaluate and refine player performance data</div>
       </div>
     </div>
 
@@ -26,9 +27,9 @@
                <q-btn flat round color="secondary" icon="star_half" />
             </q-item-section>
           </q-item>
-          
+
           <q-separator class="q-my-md opacity-20" />
-          
+
           <div class="row items-center justify-between">
             <div class="text-caption text-weight-bold uppercase text-grey-6">Last Performance</div>
             <div class="text-h6 text-secondary text-weight-black">{{ player.lastRating }} <q-icon name="trending_up" color="positive" size="xs" /></div>
@@ -63,7 +64,7 @@
                <q-rating v-model="currentRating.teamwork" size="2.5em" color="secondary" icon="psychology" />
              </div>
           </div>
-          
+
           <q-input v-model="currentRating.notes" type="textarea" label="Professional Observations" outlined bg-color="grey-1" class="q-mt-md" rounded-borders />
         </q-card-section>
 

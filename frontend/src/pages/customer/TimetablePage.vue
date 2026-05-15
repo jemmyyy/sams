@@ -1,86 +1,86 @@
 <template>
-  <q-page class="q-pa-xl">
+  <q-page class="q-pa-xl animate-up">
     <!-- Welcome Header -->
     <div class="row items-center justify-between q-mb-xl">
       <div class="column">
-        <h1 class="text-apex heading-lg text-navy no-margin">Welcome Back, {{ authStore.user?.first_name || 'Champion' }}</h1>
-        <div class="text-subtitle1 text-grey-6">Track your journey and upcoming training sessions.</div>
+        <h1 class="text-heading heading-lg no-margin">Welcome Back, {{ authStore.user?.first_name || 'Champion' }}</h1>
+        <div class="text-subtitle1 text-grey-6">Track your academy journey and upcoming training sessions.</div>
       </div>
-      <q-btn unelevated color="blue-6" class="apex-btn-primary" label="Academy Calendar" icon="event" />
+      <q-btn unelevated color="primary" class="sams-btn" label="Academy Calendar" icon="event" />
     </div>
 
     <div class="row q-col-gutter-lg">
-      <!-- Athlete Profile Overview -->
+      <!-- Athlete Profile Card -->
       <div class="col-12 col-md-4">
-        <div class="apex-card q-pa-xl column items-center text-center">
-           <q-avatar size="100px" class="apex-avatar q-mb-lg" border="3px solid #3b82f6">
+        <q-card flat bordered class="sams-card q-pa-xl column items-center text-center">
+           <q-avatar size="110px" class="q-mb-lg shadow-sm" border="4px solid #eff6ff">
               <img src="https://cdn.quasar.dev/img/avatar.png">
            </q-avatar>
-           <div class="text-apex text-h5 text-navy">Junior Academy</div>
-           <div class="text-caption text-grey-5 q-mb-xl uppercase letter-spacing-1">Rank: Elite Prospect</div>
+           <div class="text-heading text-h5 text-navy">Elite Junior</div>
+           <div class="text-caption text-grey-5 q-mb-xl uppercase letter-spacing-1">Rank: Academy Prospect</div>
 
            <div class="row full-width q-col-gutter-md q-mb-xl">
               <div class="col-6">
-                 <div class="text-apex text-h4 text-blue-6">8.4</div>
-                 <div class="text-min text-grey-6 uppercase font-weight-bold">Skill Index</div>
+                 <div class="text-heading text-h4 text-primary">8.4</div>
+                 <div class="text-caption text-grey-6 uppercase text-weight-bold">Skill Index</div>
               </div>
               <div class="col-6 border-left">
-                 <div class="text-apex text-h4 text-navy">#04</div>
-                 <div class="text-min text-grey-6 uppercase font-weight-bold">Academy Rank</div>
+                 <div class="text-heading text-h4">#04</div>
+                 <div class="text-caption text-grey-6 uppercase text-weight-bold">Academy Rank</div>
               </div>
            </div>
 
            <div class="column full-width q-gutter-y-md">
-              <q-btn unelevated color="blue-1" text-color="blue-9" class="full-width text-weight-bold" label="Profile Intel" icon="person" no-caps />
+              <q-btn unelevated color="blue-1" text-color="primary" class="full-width text-weight-bold sams-btn" label="Profile Settings" icon="person" no-caps />
               <q-btn flat color="grey-7" class="full-width text-weight-bold" label="Billing History" icon="receipt_long" no-caps />
            </div>
-        </div>
+        </q-card>
       </div>
 
-      <!-- Training Schedule -->
+      <!-- Schedule & Performance -->
       <div class="col-12 col-md-8">
-        <div class="apex-card">
-           <div class="q-pa-lg border-bottom row items-center justify-between">
-              <div class="text-apex text-h6 text-navy">Upcoming Engagements</div>
-              <q-badge color="blue-1" text-color="blue-9" class="q-px-md q-py-xs text-weight-bold">Next: Tomorrow</q-badge>
+        <q-card flat bordered class="sams-card">
+           <div class="q-pa-lg border-bottom row items-center justify-between bg-slate-50">
+              <div class="text-heading text-subtitle1">Your Training Timeline</div>
+              <q-badge color="blue-1" text-color="primary" class="q-px-md q-py-xs text-weight-bold">Active Enrollment</q-badge>
            </div>
            
            <div class="q-pa-xl">
-              <q-timeline color="blue-6">
+              <q-timeline color="primary">
                 <q-timeline-entry
-                  title="Technical Drill: Ball Control"
-                  subtitle="Tuesday, May 16 // 16:00 - 18:00"
+                  title="Technical Drill: Precision"
+                  subtitle="Tuesday, May 16 // 16:00"
                   icon="sports_soccer"
                 >
-                  <div class="row items-center q-gutter-md q-mt-sm">
-                     <div class="schedule-tag">PITCH_01</div>
-                     <div class="schedule-tag tag-blue">COACH_AHMED</div>
+                  <div class="row items-center q-gutter-sm q-mt-sm">
+                     <q-badge outline color="grey-6" label="Pitch 01" />
+                     <q-badge outline color="grey-6" label="Coach Ahmed" />
                   </div>
                 </q-timeline-entry>
 
                 <q-timeline-entry
-                  title="Stamina & Conditioning"
-                  subtitle="Thursday, May 18 // 17:00 - 19:00"
+                  title="Stamina & Power"
+                  subtitle="Thursday, May 18 // 17:30"
                   icon="fitness_center"
                 >
-                  <div class="row items-center q-gutter-md q-mt-sm">
-                     <div class="schedule-tag">INDOOR_HALL</div>
-                     <div class="schedule-tag tag-blue">COACH_OMAR</div>
+                  <div class="row items-center q-gutter-sm q-mt-sm">
+                     <q-badge outline color="grey-6" label="Indoor Hall" />
+                     <q-badge outline color="grey-6" label="Coach Omar" />
                   </div>
                 </q-timeline-entry>
               </q-timeline>
            </div>
-        </div>
+        </q-card>
 
         <div class="row q-col-gutter-lg q-mt-md">
            <div class="col-6" v-for="stat in athleteSummary" :key="stat.label">
-              <div class="apex-card q-pa-lg">
-                 <div class="row items-center justify-between q-mb-md">
-                    <span class="text-caption text-grey-6 uppercase font-weight-bold letter-spacing-1">{{ stat.label }}</span>
+              <q-card flat bordered class="sams-card q-pa-lg">
+                 <div class="row items-center justify-between q-mb-sm">
+                    <span class="text-caption text-grey-6 uppercase text-weight-bold">{{ stat.label }}</span>
                     <q-icon :name="stat.icon" size="20px" :color="stat.color" />
                  </div>
-                 <div class="text-apex text-h4" :style="{ color: stat.valColor }">{{ stat.value }}</div>
-              </div>
+                 <div class="text-heading text-h4" :style="{ color: stat.valColor }">{{ stat.value }}</div>
+              </q-card>
            </div>
         </div>
       </div>
@@ -93,31 +93,12 @@ import { useAuthStore } from '../../stores/auth';
 const authStore = useAuthStore();
 
 const athleteSummary = [
-  { label: 'Recent Rating', value: 'A+', icon: 'military_tech', color: 'blue-6', valColor: '#2563eb' },
-  { label: 'Account Balance', value: '500 EGP', icon: 'warning', color: 'red-6', valColor: '#e11d48' },
+  { label: 'Latest Rating', value: 'A+', icon: 'military_tech', color: 'primary', valColor: '#2563eb' },
+  { label: 'Outstanding Balance', value: '500 EGP', icon: 'error_outline', color: 'red', valColor: '#e11d48' },
 ];
 </script>
 
 <style lang="scss" scoped>
-.text-navy { color: var(--sams-navy); }
+.bg-slate-50 { background-color: #f8fafc; }
 .border-bottom { border-bottom: 1px solid var(--sams-border); }
-.text-min { font-size: 11px; }
-
-.apex-avatar {
-  background: white;
-  padding: 4px;
-}
-
-.schedule-tag {
-  background: #f1f5f9;
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 700;
-  color: #64748b;
-  &.tag-blue { background: #eff6ff; color: #2563eb; }
-}
-
-.opacity-10 { opacity: 0.1; }
 </style>
