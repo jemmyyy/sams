@@ -1,151 +1,130 @@
 <template>
-  <q-page class="q-pa-lg">
+  <q-page class="customer-portal q-pa-lg">
     <div class="row items-center q-mb-xl">
       <div class="col">
-        <h4 class="text-weight-black no-margin text-primary uppercase letter-spacing-1">
-          TRAINING <span class="text-secondary">TIMETABLE</span>
-        </h4>
-        <div class="text-grey-7 text-subtitle1">Track your upcoming championship sessions</div>
-      </div>
-      <div class="col-auto">
-        <q-btn-toggle
-          v-model="viewMode"
-          no-caps
-          rounded
-          unelevated
-          toggle-color="primary"
-          color="white"
-          text-color="primary"
-          class="shadow-1"
-          :options="[
-            {label: 'WEEK', value: 'week'},
-            {label: 'MONTH', value: 'month'}
-          ]"
-        />
+        <div class="text-overline text-secondary text-weight-bolder letter-spacing-2">ATHLETE ARENA</div>
+        <h1 class="text-h3 text-white text-weight-black q-my-none">Welcome, {{ authStore.user?.first_name || 'Champion' }}</h1>
+        <p class="text-grey-4 q-mt-sm">Manage training, view ratings, and track progress</p>
       </div>
     </div>
 
     <div class="row q-col-gutter-lg">
-      <div class="col-12 col-md-8">
-        <q-card flat bordered class="sport-card bg-white">
-          <q-card-section class="q-pa-none">
-            <!-- Dynamic Calendar Header -->
-            <div class="row items-center q-pa-md bg-grey-1">
-              <q-btn flat round icon="chevron_left" />
-              <q-space />
-              <div class="text-h6 text-weight-bold">MAY 13 - 19, 2026</div>
-              <q-space />
-              <q-btn flat round icon="chevron_right" />
-            </div>
+      <!-- Athlete Profile Overview -->
+      <div class="col-12 col-md-4">
+        <q-card flat class="profile-card glass-card text-white">
+          <q-card-section class="column items-center q-py-xl">
+            <q-avatar size="100px" class="q-mb-md shadow-10 border-accent">
+              <img src="https://cdn.quasar.dev/img/avatar.png">
+            </q-avatar>
+            <div class="text-h5 text-weight-bold">Junior Academy</div>
+            <div class="text-caption text-grey-4">Registration: #ELITE-2026-042</div>
             
-            <!-- Styled Grid Placeholder -->
-            <div class="calendar-grid q-pa-md">
-              <div class="row no-wrap q-gutter-x-sm overflow-auto">
-                <div v-for="day in ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']" :key="day" class="col-grow">
-                   <q-card flat bordered class="day-col text-center q-py-sm">
-                      <div class="text-caption text-grey-6">{{ day }}</div>
-                      <div class="text-h6 text-weight-black">13</div>
-                      
-                      <!-- Session Card -->
-                      <div v-if="day === 'MON'" class="session-pill q-mt-md q-mx-xs q-pa-xs bg-primary-10 text-primary cursor-pointer">
-                        <div class="text-bold">TENNIS</div>
-                        <div style="font-size: 10px">10:00 AM</div>
-                      </div>
-                   </q-card>
-                </div>
+            <div class="row q-mt-lg q-gutter-x-md">
+              <div class="text-center">
+                <div class="text-h6 text-weight-bold">B1</div>
+                <div class="text-caption text-grey-5 uppercase">Level</div>
+              </div>
+              <q-separator vertical dark class="opacity-10" />
+              <div class="text-center">
+                <div class="text-h6 text-weight-bold">85%</div>
+                <div class="text-caption text-grey-5 uppercase">Skill</div>
               </div>
             </div>
           </q-card-section>
-        </q-card>
-      </div>
-
-      <div class="col-12 col-md-4">
-        <q-card flat bordered class="sport-card bg-white overflow-hidden">
-          <div class="bg-secondary text-white q-pa-md text-weight-bold uppercase letter-spacing-1">
-            Upcoming Action
-          </div>
-          <q-list separator>
-            <q-item v-for="session in sessions" :key="session.id" class="q-py-md">
-              <q-item-section avatar>
-                <div class="date-badge bg-primary text-white text-center q-pa-xs">
-                  <div class="text-caption">{{ new Date(session.start_datetime).toLocaleDateString('en-US', { month: 'short' }).toUpperCase() }}</div>
-                  <div class="text-h6 text-weight-black">{{ new Date(session.start_datetime).getDate() }}</div>
-                </div>
-              </q-item-section>
-              <q-item-section>
-                <q-item-label class="text-weight-bold text-primary">{{ session.title }}</q-item-label>
-                <q-item-label caption>
-                  <q-icon name="schedule" /> {{ new Date(session.start_datetime).toLocaleTimeString() }} • <q-icon name="place" /> {{ session.venue_name }}
-                </q-item-label>
-              </q-item-section>
-              <q-item-section side>
-                 <q-chip size="sm" color="positive" text-color="white" class="text-weight-bold">LIVE</q-chip>
-              </q-item-section>
+          
+          <q-list dark padding class="q-pb-md">
+            <q-item clickable v-ripple>
+              <q-item-section avatar><q-icon name="person" color="secondary" /></q-item-section>
+              <q-item-section>Profile Settings</q-item-section>
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section avatar><q-icon name="account_balance_wallet" color="secondary" /></q-item-section>
+              <q-item-section>Payment History</q-item-section>
             </q-item>
           </q-list>
         </q-card>
+      </div>
+
+      <!-- Schedule & Timeline -->
+      <div class="col-12 col-md-8">
+        <q-card flat class="schedule-card glass-card text-white">
+          <q-card-section class="row items-center q-pb-none">
+            <div class="text-h6 text-weight-bold">Upcoming Sessions</div>
+            <q-space />
+            <q-btn flat color="secondary" label="Full Calendar" no-caps />
+          </q-card-section>
+          
+          <q-card-section>
+            <q-timeline color="secondary" dark>
+              <q-timeline-entry
+                title="Football Tactical Training"
+                subtitle="Tomorrow, 16:00 - 18:00"
+                icon="sports_soccer"
+              >
+                <div>Venue: Main Field • Coach: Ahmed Salah</div>
+              </q-timeline-entry>
+
+              <q-timeline-entry
+                title="Physical Conditioning"
+                subtitle="Wednesday, 17:00 - 19:00"
+                icon="fitness_center"
+              >
+                <div>Venue: Indoor Hall • Coach: Omar Hassan</div>
+              </q-timeline-entry>
+            </q-timeline>
+          </q-card-section>
+        </q-card>
+
+        <div class="row q-col-gutter-md q-mt-md">
+          <div class="col-6">
+            <q-card flat class="stat-box glass-card text-white text-center q-pa-md">
+              <q-icon name="trending_up" size="32px" color="secondary" class="q-mb-sm" />
+              <div class="text-h4 text-weight-bold">A+</div>
+              <div class="text-caption text-grey-4">RECENT RATING</div>
+            </q-card>
+          </div>
+          <div class="col-6">
+            <q-card flat class="stat-box glass-card text-white text-center q-pa-md">
+              <q-icon name="payments" size="32px" color="negative" class="q-mb-sm" />
+              <div class="text-h4 text-weight-bold">500</div>
+              <div class="text-caption text-grey-4">DUE AMOUNT (EGP)</div>
+            </q-card>
+          </div>
+        </div>
       </div>
     </div>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import api from '../../api';
-
-interface Session {
-  id: number;
-  start_datetime: string;
-  end_datetime: string;
-  status: string;
-  title: string;
-  venue_name: string;
-}
-
-const viewMode = ref('week');
-const sessions = ref<Session[]>([]);
-
-onMounted(async () => {
-  try {
-    const response = await api.get('sessions/occurrences/');
-    // Standardized response format: response.data.data
-    sessions.value = response.data.data.results || response.data.data;
-  } catch (error) {
-    console.error('Failed to fetch sessions:', error);
-  }
-});
+import { useAuthStore } from '../../stores/auth';
+const authStore = useAuthStore();
 </script>
 
 <style lang="scss" scoped>
-.letter-spacing-1 { letter-spacing: 1px; }
-
-.sport-card {
-  border-radius: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-  border: 1px solid rgba(0,0,0,0.05);
+.customer-portal {
+  background: #020617;
+  min-height: 100vh;
 }
 
-.day-col {
-  border-radius: 12px;
-  min-width: 80px;
-}
+.letter-spacing-2 { letter-spacing: 2px; }
 
-.date-badge {
-  border-radius: 10px;
-  width: 50px;
-}
-
-.bg-primary-10 {
-  background: rgba($primary, 0.08);
-}
-
-.session-pill {
-  border-radius: 8px;
-  border-left: 4px solid $primary;
-  transition: all 0.2s ease;
+.glass-card {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 28px;
+  transition: all 0.3s ease;
+  
   &:hover {
-    background: rgba($primary, 0.15);
-    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
+
+.border-accent {
+  border: 3px solid $secondary;
+}
+
+.opacity-10 { opacity: 0.1; }
 </style>

@@ -13,6 +13,8 @@ router.register(r'attendance', AttendanceAnalyticsViewSet, basename='attendance-
 router.register(r'enrollment', EnrollmentAnalyticsViewSet, basename='enrollment-analytics')
 router.register(r'coach-performance', CoachPerformanceViewSet, basename='coach-performance-analytics')
 
+app_name = "analytics"
+
 urlpatterns = [
     path('', include(router.urls)),
 ]

@@ -5,10 +5,15 @@ User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
+    roles = serializers.SerializerMethodField()
+
     class Meta:
         model = User
-        fields = ("id", "username", "email", "first_name", "last_name", "phone_number")
+        fields = ("id", "username", "email", "first_name", "last_name", "phone_number", "roles")
         read_only_fields = ("id",)
+
+    def get_roles(self, obj):
+        return list(obj.user_roles.values_list('role__name', flat=True).distinct())
 
 
 class RegisterSerializer(serializers.ModelSerializer):

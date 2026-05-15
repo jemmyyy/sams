@@ -4,13 +4,13 @@
       <!-- Logo/Brand -->
       <div class="text-center q-mb-xl">
         <h1 class="text-h2 text-white text-weight-black no-margin">SAMS<span class="text-secondary">.</span></h1>
-        <div class="text-overline text-grey-4 letter-spacing-3">ATHLETE COMMAND</div>
+        <div class="text-overline text-grey-4 letter-spacing-3">{{ roleLabel }} ARENA</div>
       </div>
 
       <q-card class="auth-card glass-card full-width q-pa-lg shadow-24 text-white">
         <q-card-section class="text-center q-pb-none">
           <div class="text-h5 text-weight-bold uppercase letter-spacing-1">SIGN IN</div>
-          <div class="text-body2 text-grey-4 q-mt-sm">Access your training dashboard</div>
+          <div class="text-body2 text-grey-4 q-mt-sm">Access your {{ targetRole }} dashboard</div>
         </q-card-section>
 
         <q-card-section class="q-gutter-y-lg q-mt-md">
@@ -45,7 +45,7 @@
 
         <q-card-section class="q-pt-none">
           <q-btn
-            color="secondary"
+            :color="roleColor"
             class="full-width q-py-md text-weight-black"
             size="lg"
             label="LOGIN TO ARENA"
@@ -54,7 +54,7 @@
           />
         </q-card-section>
 
-        <q-card-section class="text-center text-grey-4">
+        <q-card-section class="text-center text-grey-4" v-if="targetRole === 'customer'">
           Don't have an account? 
           <q-btn flat color="secondary" label="Register Now" :to="{ name: 'register' }" dense no-caps class="text-weight-bold" />
         </q-card-section>
@@ -66,13 +66,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, reactive, computed } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '../stores/auth';
 import { useQuasar } from 'quasar';
 
 const $q = useQuasar();
 const router = useRouter();
+const route = useRoute();
 const authStore = useAuthStore();
 
 const loading = ref(false);
@@ -81,29 +82,65 @@ const loginData = reactive({
   password: ''
 });
 
+const targetRole = computed(() => (route.query.role as string) || 'customer');
+
+const roleLabel = computed(() => {
+  switch (targetRole.value) {
+    case 'coach': return 'COACH';
+    case 'operations': return 'OPERATIONS';
+    default: return 'ATHLETE';
+  }
+});
+
+const roleColor = computed(() => {
+  switch (targetRole.value) {
+    case 'coach': return 'accent';
+    case 'operations': return 'info';
+    default: return 'secondary';
+  }
+});
+
 async function handleLogin() {
   if (!loginData.username || !loginData.password) return;
   
   loading.value = true;
   try {
     await authStore.login(loginData);
+    
+    // Check if user has the required role
+    const userRoles = authStore.user?.roles || [];
+    const hasRole = userRoles.includes(targetRole.value) || 
+                    userRoles.includes('admin') || 
+                    userRoles.includes('super_admin');
+
+    if (!hasRole) {
+      authStore.logout();
+      $q.notify({
+        type: 'negative',
+        message: `This account does not have ${targetRole.value} access.`,
+        position: 'top'
+      });
+      return;
+    }
+
     $q.notify({
       type: 'positive',
       message: 'Login Successful! Welcome back champion.',
       position: 'top'
     });
-    if (loginData.username === 'admin' || loginData.username === 'ops') {
+
+    // Redirect based on role
+    if (targetRole.value === 'operations') {
       router.push({ name: 'ops-dashboard' });
-    } else if (loginData.username === 'coach') {
+    } else if (targetRole.value === 'coach') {
       router.push({ name: 'coach-timetable' });
     } else {
       router.push({ name: 'customer-timetable' });
     }
-  } catch (error: unknown) {
-    const err = error as { response?: { data?: { detail?: string } } };
+  } catch (error: any) {
     $q.notify({
       type: 'negative',
-      message: err.response?.data?.detail || 'Authentication failed.',
+      message: error.response?.data?.detail || 'Authentication failed.',
       position: 'top'
     });
   } finally {
@@ -113,6 +150,11 @@ async function handleLogin() {
 </script>
 
 <style lang="scss" scoped>
+.auth-bg {
+  background: linear-gradient(135deg, #0d123d 0%, #1a237e 100%);
+  min-height: 100vh;
+}
+
 .auth-card {
   border-radius: 32px;
 }

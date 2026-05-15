@@ -7,6 +7,8 @@ router.register(r'session-reports', SessionReportViewSet, basename='session-repo
 router.register(r'exports', GeneratedReportViewSet, basename='report-exports')
 router.register(r'schedules', ScheduledReportViewSet, basename='report-schedules')
 
+app_name = "reports"
+
 urlpatterns = [
     path('', include(router.urls)),
 ]

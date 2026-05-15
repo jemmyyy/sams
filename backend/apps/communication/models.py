@@ -15,6 +15,9 @@ class Announcement(TenantAwareModel):
 
 
 class NotificationLog(TenantAwareModel):
+    academy = models.ForeignKey(
+        "academies.Academy", on_delete=models.CASCADE, related_name="communication_logs"
+    )
     announcement = models.ForeignKey(
         Announcement, on_delete=models.CASCADE, related_name="delivery_logs"
     )
