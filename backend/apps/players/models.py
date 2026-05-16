@@ -31,5 +31,8 @@ class Player(TenantAwareModel):
         related_name="children",
     )
 
+    class Meta:
+        unique_together = ("academy", "registration_number")
+
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

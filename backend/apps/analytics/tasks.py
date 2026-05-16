@@ -9,10 +9,11 @@ from apps.attendance.models import Attendance
 from apps.sessions.models import SessionOccurrence, SessionCoach, Enrollment
 from apps.reports.models import SessionReport
 from .models import (
-    DailyRevenueSnapshot, 
-    DailyAttendanceSnapshot, 
+    DailyRevenueSnapshot,
+    DailyAttendanceSnapshot,
     CoachPerformanceSnapshot,
-    MonthlyEnrollmentSnapshot
+    MonthlyEnrollmentSnapshot,
+    SessionUtilizationSnapshot,
 )
 
 logger = logging.getLogger(__name__)
@@ -59,7 +60,11 @@ def refresh_monthly_enrollment(year=None, month=None):
         ).values_list('player_id', flat=True))
         
         churned = len(active_last_month - active_this_month)
-        
+        retention = (
+            ((total_active - new_enrolls) / max(len(active_last_month), 1)) * 100
+            if active_last_month else 0
+        )
+
         MonthlyEnrollmentSnapshot.objects.update_or_create(
             academy=academy,
             year=year,
@@ -67,7 +72,8 @@ def refresh_monthly_enrollment(year=None, month=None):
             defaults={
                 'total_active_players': total_active,
                 'new_enrollments': new_enrolls,
-                'churned_players': churned
+                'churned_players': churned,
+                'retention_rate': round(retention, 2),
             }
         )
 
@@ -197,3 +203,38 @@ def refresh_coach_performance(period_start_str=None, period_end_str=None):
                     'reports_submitted': reports_count
                 }
             )
+
+
+@shared_task(name="apps.analytics.tasks.refresh_session_utilization")
+def refresh_session_utilization(date_str=None):
+    if date_str:
+        date = timezone.datetime.strptime(date_str, "%Y-%m-%d").date()
+    else:
+        date = timezone.now().date() - timedelta(days=1)
+
+    for academy in Academy.objects.filter(is_active=True):
+        occurrences = SessionOccurrence.objects.filter(
+            academy=academy,
+            start_datetime__date=date,
+        )
+        total = occurrences.count()
+        completed = occurrences.filter(status='completed').count()
+        cancelled = occurrences.filter(status='cancelled').count()
+        total_capacity = sum(o.max_capacity for o in occurrences)
+        total_enrolled = Enrollment.objects.filter(
+            session__in=occurrences
+        ).count()
+        rate = (total_enrolled / total_capacity * 100) if total_capacity > 0 else 0
+
+        SessionUtilizationSnapshot.objects.update_or_create(
+            academy=academy,
+            date=date,
+            defaults={
+                'total_occurrences': total,
+                'completed': completed,
+                'cancelled': cancelled,
+                'total_enrollment_capacity': total_capacity,
+                'total_enrolled': total_enrolled,
+                'utilization_rate': round(rate, 2),
+            }
+        )

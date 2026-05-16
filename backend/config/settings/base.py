@@ -238,6 +238,10 @@ CELERY_BEAT_SCHEDULE = {
         "task": "apps.notifications.tasks.dispatch_scheduled_notifications",
         "schedule": crontab(minute="*/5"),
     },
+    "refresh-session-utilization": {
+        "task": "apps.analytics.tasks.refresh_session_utilization",
+        "schedule": crontab(hour=2, minute=30),
+    },
 }
 
 # Logging

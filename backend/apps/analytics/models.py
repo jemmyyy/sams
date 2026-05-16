@@ -30,10 +30,25 @@ class MonthlyEnrollmentSnapshot(TenantAwareModel):
     total_active_players = models.PositiveIntegerField(default=0)
     new_enrollments = models.PositiveIntegerField(default=0)
     churned_players = models.PositiveIntegerField(default=0)
+    retention_rate = models.FloatField(default=0)
 
     class Meta:
         unique_together = ("academy", "year", "month")
         ordering = ["-year", "-month"]
+
+
+class SessionUtilizationSnapshot(TenantAwareModel):
+    date = models.DateField()
+    total_occurrences = models.PositiveIntegerField(default=0)
+    completed = models.PositiveIntegerField(default=0)
+    cancelled = models.PositiveIntegerField(default=0)
+    total_enrollment_capacity = models.PositiveIntegerField(default=0)
+    total_enrolled = models.PositiveIntegerField(default=0)
+    utilization_rate = models.FloatField(default=0)
+
+    class Meta:
+        unique_together = ("academy", "date")
+        ordering = ["-date"]
 
 class CoachPerformanceSnapshot(TenantAwareModel):
     coach = models.ForeignKey("accounts.User", on_delete=models.CASCADE)

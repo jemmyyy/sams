@@ -1,15 +1,17 @@
 from rest_framework import viewsets, permissions
 from .models import (
-    DailyRevenueSnapshot, 
-    DailyAttendanceSnapshot, 
-    MonthlyEnrollmentSnapshot, 
-    CoachPerformanceSnapshot
+    CoachPerformanceSnapshot,
+    DailyAttendanceSnapshot,
+    DailyRevenueSnapshot,
+    MonthlyEnrollmentSnapshot,
+    SessionUtilizationSnapshot,
 )
 from .serializers import (
-    DailyRevenueSnapshotSerializer, 
-    DailyAttendanceSnapshotSerializer, 
-    MonthlyEnrollmentSnapshotSerializer, 
-    CoachPerformanceSnapshotSerializer
+    CoachPerformanceSnapshotSerializer,
+    DailyAttendanceSnapshotSerializer,
+    DailyRevenueSnapshotSerializer,
+    MonthlyEnrollmentSnapshotSerializer,
+    SessionUtilizationSnapshotSerializer,
 )
 from apps.permissions.permissions import IsOperations
 
@@ -36,3 +38,10 @@ class CoachPerformanceViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CoachPerformanceSnapshotSerializer
     permission_classes = [IsOperations]
     filterset_fields = ["coach", "period_start", "period_end"]
+
+
+class SessionUtilizationViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = SessionUtilizationSnapshot.objects.all()
+    serializer_class = SessionUtilizationSnapshotSerializer
+    permission_classes = [IsOperations]
+    filterset_fields = {"date": ["gte", "lte"]}

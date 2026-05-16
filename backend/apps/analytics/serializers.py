@@ -1,9 +1,10 @@
 from rest_framework import serializers
 from .models import (
-    DailyRevenueSnapshot, 
-    DailyAttendanceSnapshot, 
-    MonthlyEnrollmentSnapshot, 
-    CoachPerformanceSnapshot
+    CoachPerformanceSnapshot,
+    DailyAttendanceSnapshot,
+    DailyRevenueSnapshot,
+    MonthlyEnrollmentSnapshot,
+    SessionUtilizationSnapshot,
 )
 
 class DailyRevenueSnapshotSerializer(serializers.ModelSerializer):
@@ -19,7 +20,13 @@ class DailyAttendanceSnapshotSerializer(serializers.ModelSerializer):
 class MonthlyEnrollmentSnapshotSerializer(serializers.ModelSerializer):
     class Meta:
         model = MonthlyEnrollmentSnapshot
-        fields = ["year", "month", "total_active_players", "new_enrollments", "churned_players"]
+        fields = ["year", "month", "total_active_players", "new_enrollments", "churned_players", "retention_rate"]
+
+
+class SessionUtilizationSnapshotSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SessionUtilizationSnapshot
+        fields = ["date", "total_occurrences", "completed", "cancelled", "total_enrollment_capacity", "total_enrolled", "utilization_rate"]
 
 class CoachPerformanceSnapshotSerializer(serializers.ModelSerializer):
     coach_name = serializers.CharField(source="coach.get_full_name", read_only=True)
