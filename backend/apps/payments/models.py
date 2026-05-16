@@ -110,6 +110,15 @@ class Payment(TenantAwareModel):
         related_name="approved_payments",
     )
 
+    reconciled = models.BooleanField(default=False)
+    reconciled_at = models.DateTimeField(null=True, blank=True)
+    reconciled_by = models.ForeignKey(
+        "accounts.User",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="reconciled_payments",
+    )
     notes = models.TextField(blank=True)
 
     def save(self, *args, **kwargs):

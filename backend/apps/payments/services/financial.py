@@ -3,6 +3,8 @@ from decimal import Decimal
 from django.db import transaction
 from django.db.models import Count, Q, Sum
 
+from django.utils import timezone
+
 from ..models import FinancialAdjustment, Invoice, Payment, Refund
 
 
@@ -144,6 +146,24 @@ class FinancialService:
             "reference": payment.reference_number,
             "invoice_id": payment.invoice.id,
             "remaining_balance": str(payment.invoice.balance_due),
+        }
+
+    @staticmethod
+    @transaction.atomic
+    def reconcile_payment(payment, reconciled_by):
+        payment.reconciled = True
+        payment.reconciled_at = timezone.now()
+        payment.reconciled_by = reconciled_by
+        payment.save(update_fields=["reconciled", "reconciled_at", "reconciled_by"])
+
+    @staticmethod
+    def get_reconciliation_report(academy):
+        unreconciled = Payment.objects.filter(
+            academy=academy, reconciled=False, is_approved=True
+        )
+        return {
+            "unreconciled_count": unreconciled.count(),
+            "unreconciled_total": unreconciled.aggregate(total=Sum("amount"))["total"] or 0,
         }
 
     @staticmethod

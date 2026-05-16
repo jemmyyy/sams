@@ -96,6 +96,16 @@ class PaymentViewSet(viewsets.ReadOnlyModelViewSet):
         payment.reject(reason=reason, rejected_by=request.user)
         return Response(PaymentSerializer(payment).data)
 
+    @action(detail=True, methods=["post"], url_path="reconcile")
+    def reconcile_payment(self, request, pk=None):
+        payment = self.get_object()
+        if not payment.is_approved:
+            return Response({"detail": "Cannot reconcile an unapproved payment."}, status=status.HTTP_400_BAD_REQUEST)
+        if payment.reconciled:
+            return Response({"detail": "Payment already reconciled."}, status=status.HTTP_400_BAD_REQUEST)
+        FinancialService.reconcile_payment(payment, request.user)
+        return Response(PaymentSerializer(payment).data)
+
 
 class RefundViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Refund.objects.all()
@@ -131,6 +141,8 @@ class FinancialDashboardView(views.APIView):
         if not academy:
             return Response({"error": "Academy context required"}, status=status.HTTP_400_BAD_REQUEST)
         report = FinancialService.get_receivables_report(academy)
+        reconciliation = FinancialService.get_reconciliation_report(academy)
+        report.update(reconciliation)
         return Response({"success": True, "data": report})
 
     def post(self, request):
