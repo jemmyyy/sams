@@ -3,7 +3,7 @@ from rest_framework import status, views, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from ..models import Invoice, Payment
+from ..models import Invoice, Payment, Refund
 from ..serializers.financial import (
     FinancialAdjustmentSerializer,
     InvoiceSerializer,
@@ -78,6 +78,45 @@ class PaymentViewSet(viewsets.ReadOnlyModelViewSet):
         payment = self.get_object()
         receipt_data = FinancialService.generate_receipt(payment)
         return Response(receipt_data, status=status.HTTP_200_OK)
+
+    @action(detail=True, methods=["post"], url_path="approve")
+    def approve_payment(self, request, pk=None):
+        payment = self.get_object()
+        if payment.is_approved:
+            return Response({"detail": "Payment already approved."}, status=status.HTTP_400_BAD_REQUEST)
+        payment.approve(approved_by=request.user)
+        return Response(PaymentSerializer(payment).data)
+
+    @action(detail=True, methods=["post"], url_path="reject")
+    def reject_payment(self, request, pk=None):
+        payment = self.get_object()
+        if payment.is_approved:
+            return Response({"detail": "Cannot reject an approved payment."}, status=status.HTTP_400_BAD_REQUEST)
+        reason = request.data.get("reason", "")
+        payment.reject(reason=reason, rejected_by=request.user)
+        return Response(PaymentSerializer(payment).data)
+
+
+class RefundViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Refund.objects.all()
+    serializer_class = RefundSerializer
+    permission_classes = [IsOperations]
+
+    @action(detail=True, methods=["post"], url_path="approve")
+    def approve_refund(self, request, pk=None):
+        refund = self.get_object()
+        if refund.status != "pending":
+            return Response({"detail": "Only pending refunds can be approved."}, status=status.HTTP_400_BAD_REQUEST)
+        refund.approve(approved_by=request.user)
+        return Response(RefundSerializer(refund).data)
+
+    @action(detail=True, methods=["post"], url_path="reject")
+    def reject_refund(self, request, pk=None):
+        refund = self.get_object()
+        if refund.status != "pending":
+            return Response({"detail": "Only pending refunds can be rejected."}, status=status.HTTP_400_BAD_REQUEST)
+        refund.reject(rejected_by=request.user)
+        return Response(RefundSerializer(refund).data)
 
 
 class FinancialDashboardView(views.APIView):

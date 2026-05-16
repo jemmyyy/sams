@@ -100,8 +100,8 @@ class Payment(TenantAwareModel):
 
     # Approval workflow
     is_approved = models.BooleanField(
-        default=True
-    )  # Usually True for cash, might be False for Bank Transfers until verified
+        default=False
+    )
     approved_by = models.ForeignKey(
         "accounts.User",
         on_delete=models.SET_NULL,
@@ -111,6 +111,24 @@ class Payment(TenantAwareModel):
     )
 
     notes = models.TextField(blank=True)
+
+    def save(self, *args, **kwargs):
+        if self.method == "cash" and self._state.adding:
+            self.is_approved = True
+        super().save(*args, **kwargs)
+
+    def approve(self, approved_by):
+        if self.is_approved:
+            return
+        self.is_approved = True
+        self.approved_by = approved_by
+        self.save(update_fields=["is_approved", "approved_by"])
+
+    def reject(self, reason, rejected_by):
+        if self.is_approved:
+            return
+        self.notes = f"{self.notes}\nRejected by {rejected_by}: {reason}".strip()
+        self.save(update_fields=["notes"])
 
     def __str__(self):
         return f"Payment {self.id} - {self.amount} via {self.method}"
@@ -137,6 +155,20 @@ class Refund(TenantAwareModel):
         blank=True,
         related_name="approved_refunds",
     )
+
+    def approve(self, approved_by):
+        if self.status != "pending":
+            return
+        self.status = "approved"
+        self.approved_by = approved_by
+        self.save(update_fields=["status", "approved_by"])
+
+    def reject(self, rejected_by):
+        if self.status != "pending":
+            return
+        self.status = "rejected"
+        self.approved_by = rejected_by
+        self.save(update_fields=["status", "approved_by"])
 
 
 class LateFee(TenantAwareModel):
