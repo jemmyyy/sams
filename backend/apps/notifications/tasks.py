@@ -28,7 +28,7 @@ def send_notification_task(self, log_id):
     Celery task to send a notification using the appropriate adapter.
     """
     try:
-        log = NotificationLog.objects.select_related('user', 'template').get(id=log_id)
+        log = NotificationLog.all_objects.select_related('user', 'template').get(id=log_id)
     except NotificationLog.DoesNotExist:
         logger.error(f"NotificationLog {log_id} not found")
         return
@@ -62,3 +62,13 @@ def send_notification_task(self, log_id):
         # Celery handles the retry logic itself
 
     log.save()
+
+
+@shared_task(name="apps.notifications.tasks.dispatch_scheduled_notifications")
+def dispatch_scheduled_notifications():
+    ready = NotificationLog.all_objects.filter(
+        status=NotificationStatus.PENDING,
+        scheduled_at__lte=timezone.now(),
+    )
+    for log_entry in ready:
+        send_notification_task.apply(args=[str(log_entry.id)])

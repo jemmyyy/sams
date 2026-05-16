@@ -234,6 +234,10 @@ CELERY_BEAT_SCHEDULE = {
         "task": "apps.payments.tasks.check_overdue_invoices",
         "schedule": crontab(hour=6, minute=0),
     },
+    "dispatch-scheduled-notifications": {
+        "task": "apps.notifications.tasks.dispatch_scheduled_notifications",
+        "schedule": crontab(minute="*/5"),
+    },
 }
 
 # Logging

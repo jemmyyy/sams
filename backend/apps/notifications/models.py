@@ -55,6 +55,7 @@ class NotificationLog(TenantAwareModel):
     error_message = models.TextField(null=True, blank=True)
     metadata = models.JSONField(default=dict, blank=True)
     
+    scheduled_at = models.DateTimeField(null=True, blank=True)
     sent_at = models.DateTimeField(null=True, blank=True)
     delivered_at = models.DateTimeField(null=True, blank=True)
     read_at = models.DateTimeField(null=True, blank=True)
