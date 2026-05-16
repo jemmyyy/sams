@@ -8,6 +8,8 @@ class User(AbstractUser, UUIDModel, TimeStampedModel):
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=20, blank=True)
     preferred_language = models.CharField(max_length=5, default="en", choices=[("en", "English"), ("ar", "Arabic")])
+    mfa_enabled = models.BooleanField(default=False)
+    email_verified = models.BooleanField(default=False)
 
     # A user can belong to multiple academies
     academies = models.ManyToManyField("academies.Academy", related_name="users")

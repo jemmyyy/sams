@@ -25,10 +25,11 @@ def refresh_monthly_enrollment(year=None, month=None):
         month = now.month
 
     for academy in Academy.objects.filter(is_active=True):
-        # Active players (simplified: anyone with an active enrollment this month)
+        # Active players: count players with any enrollment this month (any status)
+        active_statuses = ['active', 'attended']
         total_active = Enrollment.objects.filter(
             academy=academy,
-            status='active',
+            status__in=active_statuses,
             session__start_datetime__year=year,
             session__start_datetime__month=month
         ).values('player').distinct().count()

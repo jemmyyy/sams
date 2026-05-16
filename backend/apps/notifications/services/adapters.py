@@ -29,23 +29,30 @@ class EmailAdapter(BaseChannelAdapter):
             return False, str(e)
 
 
+class SMSAdapter(BaseChannelAdapter):
+    def send(self, recipient, subject, content, metadata=None):
+        """Sends SMS via a configured provider (Twilio, etc.). Currently a stub awaiting provider integration."""
+        phone = getattr(recipient, 'phone_number', None)
+        if not phone:
+            logger.warning(f"No phone number for user {recipient.id}")
+            return False, "No phone number"
+        logger.info(f"SMS to {phone}: {content[:70]}... [STUB - configure provider]")
+        return True, None
+
+
 class WhatsAppAdapter(BaseChannelAdapter):
     def send(self, recipient, subject, content, metadata=None):
-        # MOCK Implementation
-        logger.info(f"MOCK WhatsApp sent to {recipient.phone_number}: {content[:50]}...")
+        logger.info(f"WhatsApp to {recipient.phone_number}: {content[:50]}... [STUB]")
         return True, None
 
 
 class PushAdapter(BaseChannelAdapter):
     def send(self, recipient, subject, content, metadata=None):
-        # MOCK Implementation
-        logger.info(f"MOCK Push sent to {recipient.id}: {subject}")
+        logger.info(f"Push to {recipient.id}: {subject} [STUB]")
         return True, None
 
 
 class InAppAdapter(BaseChannelAdapter):
     def send(self, recipient, subject, content, metadata=None):
-        # In-app notifications are usually just DB records which we already create in the service
-        # but this adapter could be used for real-time delivery via WebSockets/Centrifugo
-        logger.info(f"MOCK In-App delivery for {recipient.id}")
+        logger.info(f"In-App delivery for {recipient.id}")
         return True, None

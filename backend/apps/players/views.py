@@ -1,3 +1,4 @@
+from apps.common.thread_local import get_current_academy_id
 from apps.permissions.permissions import IsOperations
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
@@ -21,7 +22,12 @@ class PlayerViewSet(viewsets.ModelViewSet):
         if not csv_file:
             return Response({"error": "No file uploaded"}, status=status.HTTP_400_BAD_REQUEST)
 
-        count = PlayerService.bulk_import_from_csv(request.user.academy, csv_file)
+        academy_id = get_current_academy_id()
+        if not academy_id:
+            return Response(
+                {"error": "Academy context required"}, status=status.HTTP_400_BAD_REQUEST
+            )
+        count = PlayerService.bulk_import_from_csv(academy_id, csv_file)
         return Response(
             {"message": f"Successfully imported {count} players"}, status=status.HTTP_201_CREATED
         )

@@ -61,8 +61,8 @@
               <q-card v-else v-for="session in sessionsStore.sessions" :key="session.id" flat bordered class="sams-card q-pa-md row items-center">
                  <div class="text-h6 text-weight-bold q-mr-xl text-white">{{ session.start_time || '16:00' }}</div>
                  <div class="column">
-                    <span class="text-weight-bold uppercase text-white">{{ typeof session.series === 'object' ? session.series.title : session.series || 'Training Session' }}</span>
-                    <span class="text-caption text-grey-5">{{ typeof session.venue === 'object' ? session.venue.name : session.venue || 'TBD' }}</span>
+                    <span class="text-weight-bold uppercase text-white">{{ session.series?.title || 'Training Session' }}</span>
+                    <span class="text-caption text-grey-5">{{ session.venue?.name || 'TBD' }}</span>
                  </div>
                  <q-space />
                  <q-btn flat round icon="chevron_right" color="grey-5" />

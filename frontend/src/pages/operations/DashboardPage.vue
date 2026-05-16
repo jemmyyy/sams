@@ -47,9 +47,15 @@
             class="sams-table"
             dark
           >
+            <template v-slot:body-cell-series="props">
+              <q-td :props="props">{{ props.row.series?.title || 'N/A' }}</q-td>
+            </template>
+            <template v-slot:body-cell-venue="props">
+              <q-td :props="props">{{ props.row.venue?.name || 'N/A' }}</q-td>
+            </template>
             <template v-slot:body-cell-status="props">
               <q-td :props="props">
-                <q-badge rounded :color="props.value === 'Live' ? 'victory-red' : 'success'" class="q-px-md q-py-xs">
+                <q-badge rounded :color="props.value === 'live' ? 'victory-red' : 'success'" class="q-px-md q-py-xs">
                   {{ props.value }}
                 </q-badge>
               </q-td>

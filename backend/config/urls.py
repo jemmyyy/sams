@@ -18,10 +18,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from apps.common.views import HealthCheckView
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/v1/health/", HealthCheckView.as_view(), name="health_check"),
     path("api/v1/accounts/", include("apps.accounts.urls", namespace="accounts")),
     path("api/v1/sessions/", include("apps.sessions.urls", namespace="sessions")),
+    path("api/v1/coaches/", include("apps.coaches.urls", namespace="coaches")),
     path("api/v1/players/", include("apps.players.urls", namespace="players")),
     path("api/v1/groups/", include("apps.groups.urls", namespace="groups")),
     path("api/v1/attendance/", include("apps.attendance.urls", namespace="attendance")),

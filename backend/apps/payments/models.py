@@ -17,6 +17,22 @@ class Coupon(TenantAwareModel):
         return self.code
 
 
+class Discount(TenantAwareModel):
+    DISCOUNT_TYPES = [
+        ("percentage", "Percentage"),
+        ("fixed", "Fixed Amount"),
+    ]
+    name = models.CharField(max_length=255)
+    discount_type = models.CharField(max_length=20, choices=DISCOUNT_TYPES)
+    value = models.DecimalField(max_digits=10, decimal_places=2)
+    is_active = models.BooleanField(default=True)
+    valid_from = models.DateTimeField(null=True, blank=True)
+    valid_to = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.discount_type}: {self.value})"
+
+
 class Invoice(TenantAwareModel):
     STATUS_CHOICES = [
         ("draft", "Draft"),
@@ -28,6 +44,8 @@ class Invoice(TenantAwareModel):
     ]
 
     player = models.ForeignKey("players.Player", on_delete=models.PROTECT, related_name="invoices")
+    discount = models.ForeignKey(Discount, on_delete=models.SET_NULL, null=True, blank=True, related_name="invoices")
+    coupon = models.ForeignKey(Coupon, on_delete=models.SET_NULL, null=True, blank=True, related_name="invoices")
     description = models.TextField()
     total_amount = models.DecimalField(
         max_digits=12, decimal_places=2, validators=[MinValueValidator(Decimal("0.00"))]

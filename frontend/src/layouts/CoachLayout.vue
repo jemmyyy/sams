@@ -19,6 +19,8 @@
             <q-route-tab to="/coach/attendance" label="Attendance" icon="fact_check" />
             <q-route-tab to="/coach/reports" label="Reports" icon="history_edu" />
             <q-route-tab to="/coach/ratings" label="Ratings" icon="stars" />
+            <q-route-tab to="/coach/cancellations" label="Cancellations" icon="cancel" />
+            <q-route-tab to="/coach/notifications" label="Messages" icon="notifications" />
           </q-tabs>
         </div>
 
@@ -61,10 +63,9 @@
         class="text-grey-5"
         align="justify"
       >
-        <q-route-tab to="/coach/timetable" icon="calendar_today" label="Schedule" />
-        <q-route-tab to="/coach/attendance" icon="fact_check" label="Attendance" />
-        <q-route-tab to="/coach/reports" icon="history_edu" label="Reports" />
-        <q-route-tab to="/coach/ratings" icon="stars" label="Ratings" />
+        <q-route-tab to="/coach/timetable" icon="calendar_today" label="Sched" />
+        <q-route-tab to="/coach/attendance" icon="fact_check" label="Att" />
+        <q-route-tab to="/coach/notifications" icon="notifications" label="Inbox" />
       </q-tabs>
     </q-footer>
 

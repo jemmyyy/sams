@@ -84,15 +84,22 @@ class FinancialDashboardView(views.APIView):
     permission_classes = [IsAdmin]
 
     def get(self, request):
-        academy = (
-            request.user.academies.first()
-        )  # In real RBAC, we get this from thread_local or active tenant
+        from apps.common.thread_local import get_current_academy_id
+        from apps.academies.models import Academy
+
+        academy_id = get_current_academy_id()
+        academy = Academy.objects.get(pk=academy_id) if academy_id else None
+        if not academy:
+            return Response({"error": "Academy context required"}, status=status.HTTP_400_BAD_REQUEST)
         report = FinancialService.get_receivables_report(academy)
         return Response({"success": True, "data": report})
 
-    @action(detail=False, methods=["post"], url_path="export-report")
     def post(self, request):
-        academy_id = request.user.academies.first().id
+        from apps.common.thread_local import get_current_academy_id
+
+        academy_id = get_current_academy_id()
+        if not academy_id:
+            return Response({"error": "Academy context required"}, status=status.HTTP_400_BAD_REQUEST)
         export_financial_report.delay(academy_id, request.user.email)
         return Response(
             {"status": "Export task initiated. You will receive an email shortly."},

@@ -51,7 +51,7 @@ class TenantManager(SoftDeleteManager):
         academy_id = get_current_academy_id()
         if academy_id:
             return qs.filter(academy_id=academy_id)
-        return qs
+        return qs.none()
 
 
 class TenantAwareModel(UUIDModel, TimeStampedModel, SoftDeleteModel):

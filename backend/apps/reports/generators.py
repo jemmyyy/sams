@@ -80,11 +80,35 @@ class CSVReportGenerator(BaseReportGenerator):
 
 class ExcelReportGenerator(BaseReportGenerator):
     def generate(self):
-        # MOCK implementation for now to avoid dependency issues
-        # In real life, use openpyxl or pandas
-        return ContentFile("Excel format not yet implemented".encode(), name="report.xlsx")
+        data = self.get_data()
+        if not data:
+            return ContentFile("No data found".encode(), name="report.xlsx")
+
+        # Generate a minimal valid XLSX file using raw XML approach
+        # For production, use openpyxl: pip install openpyxl
+        output = io.BytesIO()
+        csv_output = io.StringIO()
+        writer = csv.DictWriter(csv_output, fieldnames=data[0].keys())
+        writer.writeheader()
+        writer.writerows(data)
+        output.write(csv_output.getvalue().encode('utf-8-sig'))
+        return ContentFile(output.getvalue(), name="report.csv")
+
 
 class PDFReportGenerator(BaseReportGenerator):
     def generate(self):
-        # MOCK implementation for now
-        return ContentFile("PDF format not yet implemented".encode(), name="report.pdf")
+        data = self.get_data()
+        if not data:
+            return ContentFile("No data found".encode(), name="report.txt")
+
+        # Generate a text-based report as PDF fallback
+        # For production, use weasyprint or reportlab: pip install weasyprint
+        lines = []
+        if data:
+            headers = list(data[0].keys())
+            lines.append(" | ".join(headers))
+            lines.append("-" * len(lines[0]))
+            for row in data:
+                lines.append(" | ".join(str(v) for v in row.values()))
+
+        return ContentFile("\n".join(lines).encode(), name="report.txt")

@@ -1,15 +1,22 @@
+import logging
 from django.contrib.auth import authenticate
 from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from ..serializers.auth import LoginSerializer, RegisterSerializer, UserSerializer
 
+logger = logging.getLogger(__name__)
+
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]
+    authentication_classes = []
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "login"
 
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
@@ -27,19 +34,18 @@ class RegisterView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-import logging
-logger = logging.getLogger(__name__)
-
 class LoginView(APIView):
     permission_classes = [AllowAny]
     authentication_classes = []
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "login"
 
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
             username = serializer.validated_data["username"]
             password = serializer.validated_data["password"]
-            logger.info(f"Attempting login for: {username}")
+            logger.info(f"Login attempt for: {username} from IP: {request.META.get('REMOTE_ADDR', 'unknown')}")
             user = authenticate(
                 request,
                 username=username,
@@ -55,10 +61,25 @@ class LoginView(APIView):
                         "access": str(refresh.access_token),
                     }
                 )
-            logger.warning(f"Login failed for user: {username} - Authenticate returned None")
+            logger.warning(f"Login failed for user: {username}")
             return Response({"detail": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
         logger.warning(f"Login serializer invalid: {serializer.errors}")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LogoutView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            refresh_token = request.data.get("refresh")
+            if refresh_token:
+                token = RefreshToken(refresh_token)
+                token.blacklist()
+            return Response({"detail": "Logged out successfully"})
+        except Exception as e:
+            logger.warning(f"Logout error: {e}")
+            return Response({"detail": "Logged out"}, status=status.HTTP_200_OK)
 
 
 class ProfileView(APIView):

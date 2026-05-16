@@ -78,7 +78,6 @@ class FinancialService:
             invoice.balance_due -= amount
         else:
             invoice.balance_due += amount
-            invoice.total_amount += amount
 
         # Recalculate status
         if invoice.balance_due <= 0:
@@ -100,6 +99,9 @@ class FinancialService:
         Processes a refund for a specific payment.
         Requires approval if approved_by is None.
         """
+        if amount > payment.amount:
+            raise ValueError("Refund amount cannot exceed the original payment amount.")
+
         status = "approved" if approved_by else "pending"
 
         refund = Refund.objects.create(

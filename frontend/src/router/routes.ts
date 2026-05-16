@@ -38,6 +38,8 @@ const routes: RouteRecordRaw[] = [
       { path: 'attendance', component: () => import('../pages/coach/AttendancePage.vue'), name: 'coach-attendance' },
       { path: 'reports', component: () => import('../pages/coach/SessionReportPage.vue'), name: 'coach-reports' },
       { path: 'ratings', component: () => import('../pages/coach/RatingPage.vue'), name: 'coach-ratings' },
+      { path: 'cancellations', component: () => import('../pages/coach/CancellationsPage.vue'), name: 'coach-cancellations' },
+      { path: 'notifications', component: () => import('../pages/coach/NotificationsPage.vue'), name: 'coach-notifications' },
     ],
   },
   {
@@ -49,8 +51,12 @@ const routes: RouteRecordRaw[] = [
       { path: 'analytics', component: () => import('../pages/operations/AnalyticsPage.vue'), name: 'ops-analytics' },
       { path: 'reports', component: () => import('../pages/operations/ReportsPage.vue'), name: 'ops-reports' },
       { path: 'players', component: () => import('../pages/operations/PlayerManagementPage.vue'), name: 'ops-players' },
+      { path: 'coaches', component: () => import('../pages/operations/CoachManagementPage.vue'), name: 'ops-coaches' },
+      { path: 'groups', component: () => import('../pages/operations/GroupManagementPage.vue'), name: 'ops-groups' },
+      { path: 'scheduling', component: () => import('../pages/operations/SessionSchedulingPage.vue'), name: 'ops-scheduling' },
+      { path: 'attendance', component: () => import('../pages/operations/AttendanceTrackingPage.vue'), name: 'ops-attendance' },
       { path: 'finances', component: () => import('../pages/operations/FinancesPage.vue'), name: 'ops-finances' },
-      { path: 'notifications', component: () => import('../pages/common/NotificationsPage.vue'), name: 'ops-notifications' },
+      { path: 'communications', component: () => import('../pages/operations/CommunicationsPage.vue'), name: 'ops-communications' },
     ],
   },
   {

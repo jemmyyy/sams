@@ -3,13 +3,14 @@ from celery import shared_task
 from django.utils import timezone
 from apps.notifications.models import NotificationLog, NotificationStatus, ChannelChoices
 from apps.notifications.services.adapters import (
-    EmailAdapter, WhatsAppAdapter, PushAdapter, InAppAdapter
+    EmailAdapter, SMSAdapter, WhatsAppAdapter, PushAdapter, InAppAdapter
 )
 
 logger = logging.getLogger(__name__)
 
 ADAPTER_MAP = {
     ChannelChoices.EMAIL: EmailAdapter,
+    ChannelChoices.SMS: SMSAdapter,
     ChannelChoices.WHATSAPP: WhatsAppAdapter,
     ChannelChoices.PUSH: PushAdapter,
     ChannelChoices.IN_APP: InAppAdapter,

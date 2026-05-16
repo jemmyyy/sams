@@ -4,7 +4,20 @@ from .models import SessionReport, GeneratedReport, ScheduledReport
 class SessionReportSerializer(serializers.ModelSerializer):
     class Meta:
         model = SessionReport
-        fields = "__all__"
+        fields = [
+            "id",
+            "occurrence",
+            "coach",
+            "summary",
+            "achievements",
+            "challenges",
+            "next_steps",
+            "submitted_at",
+            "academy",
+            "created_at",
+            "updated_at",
+        ]
+        read_only_fields = ("id", "academy", "coach", "submitted_at", "created_at", "updated_at")
 
 class GeneratedReportSerializer(serializers.ModelSerializer):
     class Meta:

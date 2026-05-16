@@ -1,15 +1,21 @@
-from rest_framework import viewsets, permissions, status
+from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .models import SessionReport, GeneratedReport, ScheduledReport
-from .serializers import SessionReportSerializer, GeneratedReportSerializer, ScheduledReportSerializer
+
+from apps.permissions.permissions import IsCoach, IsOperations
+
+from .models import GeneratedReport, ScheduledReport, SessionReport
+from .serializers import (
+    GeneratedReportSerializer,
+    ScheduledReportSerializer,
+    SessionReportSerializer,
+)
 from .tasks import generate_report_task
-from apps.permissions.permissions import IsOperations
 
 class SessionReportViewSet(viewsets.ModelViewSet):
     queryset = SessionReport.objects.all()
     serializer_class = SessionReportSerializer
-    permission_classes = [permissions.IsAuthenticated] # Coaches can create reports
+    permission_classes = [IsCoach]
 
 class GeneratedReportViewSet(viewsets.ModelViewSet):
     queryset = GeneratedReport.objects.all()

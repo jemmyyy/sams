@@ -52,13 +52,13 @@
                   v-else
                   v-for="session in sessionsStore.sessions"
                   :key="session.id"
-                  :title="session.series || 'Training Session'"
+                  :title="session.series?.title || 'Training Session'"
                   :subtitle="session.start_time"
                   icon="sports_soccer"
                   class="text-white"
                 >
                   <div class="row items-center q-gutter-sm q-mt-sm">
-                     <q-badge outline color="grey-5" :label="session.venue || 'TBA'" />
+                     <q-badge outline color="grey-5" :label="session.venue?.name || 'TBA'" />
                   </div>
                 </q-timeline-entry>
               </q-timeline>

@@ -3,13 +3,14 @@ import api from '../api';
 
 export interface SessionOccurrence {
   id: string;
-  series: string;
+  series: { id: string; title: string } | string;
   date: string;
   start_time: string;
-  end_time: string;
+  start_datetime: string;
+  end_datetime: string;
   status: 'scheduled' | 'live' | 'completed' | 'cancelled';
-  venue?: string;
-  coach?: string;
+  venue?: { id: string; name: string } | string;
+  max_capacity: number;
 }
 
 export const useSessionsStore = defineStore('sessions', {

@@ -7,4 +7,4 @@ class CancellationRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = CancellationRequest
         fields = "__all__"
-        read_only_fields = ("academy", "player", "status", "request_date")
+        read_only_fields = ("academy", "status", "request_date", "reviewed_by", "review_notes")

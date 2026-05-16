@@ -4,7 +4,7 @@
     flat
     dark
     class="sams-data-table"
-    :card-class="'bg-surface-1 border-b'"
+    :table-class="'bg-surface-1 border-b'"
   >
     <!-- Forward all slots -->
     <template v-for="(_, name) in $slots" #[name]="slotData">

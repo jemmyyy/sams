@@ -19,7 +19,12 @@
             <q-route-tab to="/operations/analytics" label="Insights" icon="analytics" />
             <q-route-tab to="/operations/reports" label="Reports" icon="assessment" />
             <q-route-tab to="/operations/players" label="Athletes" icon="people_alt" />
+            <q-route-tab to="/operations/coaches" label="Coaches" icon="badge" />
+            <q-route-tab to="/operations/groups" label="Groups" icon="groups" />
+            <q-route-tab to="/operations/scheduling" label="Scheduling" icon="calendar_month" />
+            <q-route-tab to="/operations/attendance" label="Attendance" icon="fact_check" />
             <q-route-tab to="/operations/finances" label="Financials" icon="payments" />
+            <q-route-tab to="/operations/communications" label="Messages" icon="campaign" />
           </q-tabs>
         </div>
 
@@ -77,8 +82,8 @@
         align="justify"
       >
         <q-route-tab to="/operations/dashboard" icon="dashboard" label="Dash" />
-        <q-route-tab to="/operations/analytics" icon="analytics" label="Stats" />
-        <q-route-tab to="/operations/reports" icon="assessment" label="Docs" />
+        <q-route-tab to="/operations/scheduling" icon="calendar_month" label="Sched" />
+        <q-route-tab to="/operations/attendance" icon="fact_check" label="Att" />
         <q-route-tab to="/operations/players" icon="people_alt" label="Athletes" />
         <q-route-tab to="/operations/finances" icon="payments" label="Cash" />
       </q-tabs>

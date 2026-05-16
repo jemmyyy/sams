@@ -1,0 +1,13 @@
+htmlcov/
+node_modules/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+frontend/.quasar/
+*.pptx
+*.docx
+*.png
+*.svg
+*.ico
+.coverage

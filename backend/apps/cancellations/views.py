@@ -19,9 +19,5 @@ class CancellationRequestViewSet(viewsets.ModelViewSet):
         request_status = "pending"
         if timezone.now() < deadline:
             request_status = "approved"
-            # Here we would also update the enrollment status
 
-        serializer.save(
-            player=self.request.user.players.first(),  # Simplified for demo
-            status=request_status,
-        )
+        serializer.save(status=request_status)

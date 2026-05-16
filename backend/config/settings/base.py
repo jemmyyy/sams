@@ -47,7 +47,7 @@ LOCAL_APPS = [
     "apps.payments",
     "apps.notifications",
     "apps.analytics",
-    "apps.audit",
+    "apps.audit.apps.AuditConfig",
     "apps.communication",
 ]
 
@@ -118,6 +118,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Custom User Model
 AUTH_USER_MODEL = "accounts.User"
 
+# Email
+DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="noreply@sams.local")
+
+# Security
+SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", default=False)
+SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", default=True)
+CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", default=True)
+SESSION_COOKIE_HTTPONLY = True
+SECURE_HSTS_SECONDS = env.int("SECURE_HSTS_SECONDS", default=0)  # Set > 0 in production
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
 # DRF Settings
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -129,14 +140,26 @@ REST_FRAMEWORK = {
         "rest_framework.renderers.BrowsableAPIRenderer",
     ),
     "EXCEPTION_HANDLER": "apps.common.exceptions.standardized_exception_handler",
-    "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
+    "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.URLPathVersioning",
+    "DEFAULT_VERSION": "v1",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 20,
+    "PAGE_SIZE_QUERY_PARAM": "page_size",
+    "MAX_PAGE_SIZE": 100,
     "DEFAULT_FILTER_BACKENDS": (
         "django_filters.rest_framework.DjangoFilterBackend",
         "rest_framework.filters.SearchFilter",
         "rest_framework.filters.OrderingFilter",
     ),
+    "DEFAULT_THROTTLE_CLASSES": (
+        "rest_framework.throttling.AnonRateThrottle",
+        "rest_framework.throttling.UserRateThrottle",
+    ),
+    "DEFAULT_THROTTLE_RATES": {
+        "anon": "100/hour",
+        "user": "1000/hour",
+        "login": "5/minute",
+    },
 }
 
 # JWT Settings
@@ -180,19 +203,27 @@ from celery.schedules import crontab
 CELERY_BEAT_SCHEDULE = {
     "refresh-daily-revenue": {
         "task": "apps.analytics.tasks.refresh_daily_revenue",
-        "schedule": crontab(hour=1, minute=0), # Daily at 1 AM
+        "schedule": crontab(hour=1, minute=0),
     },
     "refresh-daily-attendance": {
         "task": "apps.analytics.tasks.refresh_daily_attendance",
-        "schedule": crontab(hour=1, minute=30), # Daily at 1:30 AM
+        "schedule": crontab(hour=1, minute=30),
     },
     "refresh-monthly-enrollment": {
         "task": "apps.analytics.tasks.refresh_monthly_enrollment",
-        "schedule": crontab(hour=2, minute=0, day_of_month=1), # Monthly on the 1st
+        "schedule": crontab(hour=2, minute=0, day_of_month=1),
     },
     "process-scheduled-reports": {
         "task": "apps.reports.tasks.process_scheduled_reports",
-        "schedule": crontab(minute=0), # Hourly
+        "schedule": crontab(minute=0),
+    },
+    "refresh-coach-performance": {
+        "task": "apps.analytics.tasks.refresh_coach_performance",
+        "schedule": crontab(hour=4, minute=0, day_of_week=1),
+    },
+    "process-overdue-invoices": {
+        "task": "apps.payments.tasks.check_overdue_invoices",
+        "schedule": crontab(hour=6, minute=0),
     },
 }
 
