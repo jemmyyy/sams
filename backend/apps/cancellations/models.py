@@ -1,5 +1,37 @@
 from apps.common.models import TenantAwareModel
 from django.db import models
+from django.utils import timezone
+
+
+class CancellationPolicy(TenantAwareModel):
+    minimum_notice_hours = models.PositiveIntegerField(default=24)
+    auto_approve_enabled = models.BooleanField(default=True)
+    auto_approve_max_hours = models.PositiveIntegerField(default=48)
+    refund_percentage = models.PositiveSmallIntegerField(default=0)
+    allow_coach_override = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name_plural = "Cancellation policies"
+
+    def __str__(self):
+        return f"Cancellation Policy — {self.academy.name}"
+
+    def evaluate_auto_approval(self, cancellation_request):
+        if not self.auto_approve_enabled:
+            return False, "Auto-approval is disabled."
+
+        hours_until_session = (
+            cancellation_request.occurrence.start_datetime - timezone.now()
+        ).total_seconds() / 3600
+
+        if hours_until_session < self.minimum_notice_hours:
+            return False, "Request is below minimum notice hours."
+
+        if hours_until_session > self.auto_approve_max_hours:
+            return False, "Request is outside auto-approve window."
+
+        return True, "Auto-approved."
 
 
 class CancellationRequest(TenantAwareModel):
