@@ -7,14 +7,14 @@ import { watch } from 'vue';
 import { useAppStore } from './stores/app';
 import { useI18n } from 'vue-i18n';
 import { Quasar } from 'quasar';
+import langEn from 'quasar/lang/en-US'
+import langAr from 'quasar/lang/ar'
 
 const appStore = useAppStore();
 const { locale } = useI18n();
 
-// Synchronize global states on startup and changes
 watch(() => appStore.locale, (newLocale) => {
   locale.value = newLocale;
-  // Dynamic Quasar Lang packs (simplified)
-  Quasar.lang.set(newLocale === 'ar-EG' ? 'ar' : 'en-US');
+  Quasar.lang.set(newLocale === 'ar-EG' ? langAr : langEn);
 }, { immediate: true });
 </script>
