@@ -54,6 +54,26 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesSto
 CACHES["default"]["OPTIONS"]["CLIENT_CLASS"] = "django_redis.client.DefaultClient"
 CACHES["default"]["TIMEOUT"] = 300
 
+# --- Object Storage (MinIO / S3) ---
+AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID", default="")
+AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY", default="")
+AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME", default="sams-media")
+AWS_S3_ENDPOINT_URL = env("AWS_S3_ENDPOINT_URL", default="")
+AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME", default="us-east-1")
+AWS_DEFAULT_ACL = "private"
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+AWS_QUERYSTRING_EXPIRE = 3600
+
+if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+        },
+    }
+
 # --- Logging ---
 LOGGING["root"]["level"] = "WARNING"
 LOGGING["handlers"]["file"]["level"] = "WARNING"
