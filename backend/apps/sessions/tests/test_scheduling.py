@@ -2,6 +2,7 @@ from datetime import date, time
 
 import pytest
 from apps.academies.models import Academy
+from apps.common.thread_local import set_current_academy_id
 from apps.sessions.models import SessionOccurrence, SessionSeries, Venue
 from apps.sessions.services.scheduling import SchedulingService
 
@@ -14,6 +15,13 @@ def academy(db):
 @pytest.fixture
 def venue(academy):
     return Venue.objects.create(name="Court 1", capacity=10, academy=academy)
+
+
+@pytest.fixture(autouse=True)
+def _set_academy(academy):
+    set_current_academy_id(str(academy.id))
+    yield
+    set_current_academy_id(None)
 
 
 @pytest.mark.django_db

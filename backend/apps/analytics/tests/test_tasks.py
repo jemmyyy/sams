@@ -1,16 +1,27 @@
 import pytest
 from datetime import date, timedelta
+from decimal import Decimal
+
 from django.utils import timezone
+
 from apps.academies.models import Academy
-from apps.payments.models import Invoice, Payment
-from apps.players.models import Player
 from apps.analytics.models import DailyRevenueSnapshot
 from apps.analytics.tasks import refresh_daily_revenue
-from decimal import Decimal
+from apps.common.thread_local import set_current_academy_id
+from apps.payments.models import Invoice, Payment
+from apps.players.models import Player
+
 
 @pytest.fixture
 def academy(db):
     return Academy.objects.create(name="Analytics Academy", slug="analytics-academy")
+
+
+@pytest.fixture(autouse=True)
+def _set_academy(academy):
+    set_current_academy_id(str(academy.id))
+    yield
+    set_current_academy_id(None)
 
 @pytest.fixture
 def player(academy):
