@@ -74,18 +74,24 @@ import { useQuasar } from 'quasar';
 
 const $q = useQuasar();
 const attendanceStore = useAttendanceStore();
-const activeSessionId = ref('demo-session-id'); // Hardcoded for demo
+const activeSessionId = ref('');
 
 // Local state to manage toggles before saving
 const attendanceRecords = ref<Partial<AttendanceRecord>[]>([]);
+const sessions = ref<any[]>([]);
 
 async function loadSession() {
-  // Use empty without activeSessionId so it fetches from API normally
-  await attendanceStore.fetchAttendance();
+  await attendanceStore.fetchAttendance({ session: activeSessionId.value || undefined });
   attendanceRecords.value = [...attendanceStore.records];
 }
 
-onMounted(() => {
+onMounted(async () => {
+  try {
+    const { useApi } = await import('../../composables/useApi')
+    const { get } = useApi()
+    const data = await get<any[]>('sessions/occurrences/')
+    sessions.value = Array.isArray(data) ? data : data?.results || []
+  } catch {}
   loadSession();
 });
 

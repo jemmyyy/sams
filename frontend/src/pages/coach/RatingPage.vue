@@ -82,11 +82,13 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { useAuthStore } from '../../stores/auth';
 import { useRatingsStore } from '../../stores/ratings';
 import { usePlayersStore } from '../../stores/players';
 import { useQuasar } from 'quasar';
 
 const $q = useQuasar();
+const authStore = useAuthStore();
 const ratingsStore = useRatingsStore();
 const playersStore = usePlayersStore();
 
@@ -116,7 +118,7 @@ async function submitRating() {
   try {
     await ratingsStore.submitRating({
       player: selectedPlayer.value.id,
-      coach: 'current-coach-id', // Handled by backend JWT usually
+      coach: authStore.user?.id,
       ...currentRating.value
     });
     $q.notify({ type: 'positive', message: 'Rating submitted successfully' });

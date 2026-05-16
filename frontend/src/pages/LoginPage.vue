@@ -36,7 +36,11 @@
           </SamsInput>
         </div>
 
-        <div class="q-mt-xl">
+        <div class="text-right q-mb-sm">
+          <q-btn flat dense color="grey-5" label="Forgot password?" no-caps class="text-caption" to="/auth/forgot-password" />
+        </div>
+
+        <div class="q-mt-sm">
           <q-btn
             unelevated
             class="full-width q-py-md sams-btn-primary"

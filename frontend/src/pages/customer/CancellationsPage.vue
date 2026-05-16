@@ -75,6 +75,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, reactive } from 'vue';
+import { useAuthStore } from '../../stores/auth';
 import { useCancellationsStore } from '../../stores/cancellations';
 import SamsDataTable from '../../components/common/SamsDataTable.vue';
 import SamsDialog from '../../components/common/SamsDialog.vue';
@@ -82,6 +83,7 @@ import SamsInput from '../../components/common/SamsInput.vue';
 import { useQuasar } from 'quasar';
 
 const $q = useQuasar();
+const authStore = useAuthStore();
 const cancellationsStore = useCancellationsStore();
 const showRequestDialog = ref(false);
 const submitting = ref(false);
@@ -91,11 +93,22 @@ const newRequest = reactive({
   reason: ''
 });
 
-// Mock upcoming sessions for the select dropdown
-const upcomingSessions = [
-  { label: 'Technical Drill - May 16', value: 'session-1' },
-  { label: 'Stamina & Power - May 18', value: 'session-2' }
-];
+const upcomingSessions = ref<{ label: string; value: string }[]>([]);
+
+async function loadUpcomingSessions() {
+  try {
+    const { useApi } = await import('../../composables/useApi')
+    const { get } = useApi()
+    const data = await get<any[]>('sessions/occurrences/')
+    const list = Array.isArray(data) ? data : data?.results || []
+    upcomingSessions.value = list
+      .filter((s: any) => s.status === 'scheduled')
+      .map((s: any) => ({
+        label: `${s.series?.title || 'Session'} — ${new Date(s.start_datetime).toLocaleDateString()}`,
+        value: s.id,
+      }))
+  } catch {}
+}
 
 const columns = [
   { name: 'session', label: 'Session', field: 'session', align: 'left' as const, sortable: true },
@@ -106,6 +119,7 @@ const columns = [
 
 onMounted(() => {
   cancellationsStore.fetchCancellations();
+  loadUpcomingSessions();
 });
 
 async function submitRequest() {
@@ -119,7 +133,7 @@ async function submitRequest() {
     await cancellationsStore.requestCancellation({
       session: newRequest.session,
       reason: newRequest.reason,
-      player: 'current-user-id', // Handled by backend usually
+      player: authStore.user?.id,
       status: 'Pending'
     });
     showRequestDialog.value = false;

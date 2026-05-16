@@ -40,6 +40,24 @@ export const usePlayersStore = defineStore('players', {
       } catch (err: any) {
         throw err;
       }
+    },
+    async updatePlayer(id: string, playerData: Partial<Player>) {
+      try {
+        const response = await api.patch(`players/${id}/`, playerData);
+        const idx = this.players.findIndex((p) => p.id === id);
+        if (idx !== -1) this.players[idx] = response.data;
+        return response.data;
+      } catch (err: any) {
+        throw err;
+      }
+    },
+    async deletePlayer(id: string) {
+      try {
+        await api.delete(`players/${id}/`);
+        this.players = this.players.filter((p) => p.id !== id);
+      } catch (err: any) {
+        throw err;
+      }
     }
   }
 });

@@ -58,7 +58,8 @@
       <template #body-cell-actions="props">
         <q-td :props="props">
           <q-btn flat round dense icon="visibility" color="primary" @click="viewPlayer(props.row)" />
-          <q-btn flat round dense icon="edit" color="grey-5" />
+          <q-btn flat round dense icon="edit" color="grey-5" @click="openEditDialog(props.row)" />
+          <q-btn flat round dense icon="delete" color="negative" @click="confirmDelete(props.row)" />
         </q-td>
       </template>
     </SamsDataTable>
@@ -94,6 +95,38 @@
       <template #actions>
         <q-btn flat label="Cancel" color="grey-6" v-close-popup class="q-px-lg" />
         <q-btn unelevated label="Confirm Registration" color="primary" @click="savePlayer" class="q-px-xl text-weight-bold" />
+      </template>
+    </SamsDialog>
+
+    <!-- Edit Player Dialog -->
+    <SamsDialog
+      v-model="showEditDialog"
+      title="Edit Athlete"
+      subtitle="Update player profile details."
+    >
+      <div class="q-gutter-y-md">
+        <div class="row q-col-gutter-md">
+          <div class="col-12 col-sm-6">
+            <SamsInput v-model="editingPlayer.first_name" label="First Name" />
+          </div>
+          <div class="col-12 col-sm-6">
+            <SamsInput v-model="editingPlayer.last_name" label="Last Name" />
+          </div>
+        </div>
+        <SamsInput v-model="editingPlayer.birth_date" label="Date of Birth" type="date" stack-label />
+        <q-select
+          v-model="editingPlayer.gender"
+          :options="['Male', 'Female']"
+          label="Gender"
+          outlined dark
+          bg-color="surface-2"
+          class="sams-input"
+        />
+        <SamsInput v-model="editingPlayer.medical_conditions" label="Medical Conditions" type="textarea" autogrow />
+      </div>
+      <template #actions>
+        <q-btn flat label="Cancel" color="grey-6" v-close-popup class="q-px-lg" />
+        <q-btn unelevated label="Save Changes" color="primary" @click="saveEdit" class="q-px-xl text-weight-bold" />
       </template>
     </SamsDialog>
   </q-page>
@@ -151,9 +184,58 @@ async function savePlayer() {
   }
 }
 
+const showEditDialog = ref(false);
+const editingPlayer = reactive({
+  id: '', first_name: '', last_name: '', birth_date: '', gender: '', medical_conditions: '',
+});
+
 function viewPlayer(player: any) {
-  // Navigation to detailed profile
   console.log('Viewing player:', player);
+}
+
+function openEditDialog(player: any) {
+  Object.assign(editingPlayer, {
+    id: player.id,
+    first_name: player.first_name,
+    last_name: player.last_name,
+    birth_date: player.birth_date,
+    gender: player.gender || 'Male',
+    medical_conditions: player.medical_conditions || '',
+  });
+  showEditDialog.value = true;
+}
+
+async function saveEdit() {
+  try {
+    await playersStore.updatePlayer(editingPlayer.id, {
+      first_name: editingPlayer.first_name,
+      last_name: editingPlayer.last_name,
+      birth_date: editingPlayer.birth_date,
+      gender: editingPlayer.gender,
+      medical_conditions: editingPlayer.medical_conditions,
+    });
+    showEditDialog.value = false;
+    $q.notify({ type: 'positive', message: 'Player updated' });
+  } catch {
+    $q.notify({ type: 'negative', message: 'Failed to update player' });
+  }
+}
+
+async function confirmDelete(player: any) {
+  $q.dialog({
+    title: 'Delete Player',
+    message: `Remove ${player.first_name} ${player.last_name}?`,
+    dark: true,
+    cancel: true,
+    ok: { color: 'negative', label: 'Delete' },
+  }).onOk(async () => {
+    try {
+      await playersStore.deletePlayer(player.id);
+      $q.notify({ type: 'positive', message: 'Player deleted' });
+    } catch {
+      $q.notify({ type: 'negative', message: 'Failed to delete player' });
+    }
+  });
 }
 </script>
 
