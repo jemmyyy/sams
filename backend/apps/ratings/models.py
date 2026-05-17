@@ -5,7 +5,7 @@ from django.db import models
 
 class PlayerRating(TenantAwareModel):
     occurrence = models.ForeignKey(
-        "training_sessions.SessionOccurrence",
+        "academy_sessions.SessionOccurrence",
         on_delete=models.CASCADE,
         related_name="player_ratings",
     )

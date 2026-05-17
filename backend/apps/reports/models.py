@@ -4,7 +4,7 @@ from django.db import models
 
 class SessionReport(TenantAwareModel):
     occurrence = models.OneToOneField(
-        "training_sessions.SessionOccurrence", on_delete=models.CASCADE, related_name="report"
+        "academy_sessions.SessionOccurrence", on_delete=models.CASCADE, related_name="report"
     )
     coach = models.ForeignKey(
         "accounts.User", on_delete=models.CASCADE, related_name="session_reports"

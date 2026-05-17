@@ -11,7 +11,7 @@ class Group(TenantAwareModel):
 
     # Groups can be assigned to session series or individual occurrences
     sessions = models.ManyToManyField(
-        "training_sessions.SessionSeries", related_name="groups", blank=True
+        "academy_sessions.SessionSeries", related_name="groups", blank=True
     )
 
     def __str__(self):

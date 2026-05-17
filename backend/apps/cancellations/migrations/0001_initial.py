@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('academies', '0001_initial'),
-        ('training_sessions', '__first__'),
+        ('academy_sessions', '__first__'),
     ]
 
     operations = [
@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 ('request_date', models.DateTimeField(auto_now_add=True)),
                 ('review_notes', models.TextField(blank=True)),
                 ('academy', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='%(class)ss', to='academies.academy')),
-                ('occurrence', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='cancellation_requests', to='training_sessions.sessionoccurrence')),
+                ('occurrence', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='cancellation_requests', to='academy_sessions.sessionoccurrence')),
             ],
             options={
                 'abstract': False,

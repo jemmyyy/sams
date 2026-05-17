@@ -21,7 +21,7 @@ export default route(function (/* { store, ssrContext } */) {
   });
 
   // Strict SAMS Security Protocol
-  Router.beforeEach(async (to, from, next) => {
+  Router.beforeEach(async (to, from) => {
     const authStore = useAuthStore();
     
     // 1. Session Bootstrap: Fetch user profile if token exists but state is empty
@@ -38,36 +38,36 @@ export default route(function (/* { store, ssrContext } */) {
     if (isLoggedIn && isAuthRoute) {
       const portal = authStore.primaryPortal;
       if (to.name !== portal) {
-        return next({ name: portal });
+        return { name: portal };
       }
     }
 
     // 3. Handle Guest access to protected routes
     if (requiresAuth && !isLoggedIn) {
       // Preserve the intended destination and requested role
-      return next({ 
-        name: 'login', 
-        query: { 
-          redirect: to.fullPath, 
-          role: requiredRole || 'customer' 
-        } 
-      });
+      return {
+        name: 'login',
+        query: {
+          redirect: to.fullPath,
+          role: requiredRole || 'customer'
+        }
+      };
     }
 
     // 4. Role Enforcement
     if (isLoggedIn && requiredRole) {
       const accessGranted = authStore.hasRole(requiredRole);
-      
+
       if (!accessGranted) {
         console.error(`SECURITY_VIOLATION: ${authStore.user?.username} attempted access to ${to.path} without role ${requiredRole}`);
         const portal = authStore.primaryPortal;
         if (to.name !== portal) {
-          return next({ name: portal });
+          return { name: portal };
         }
       }
     }
 
-    next();
+    // Allow navigation — no return value needed
   });
 
   return Router;

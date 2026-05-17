@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('academies', '0001_initial'),
-        ('training_sessions', '__first__'),
+        ('academy_sessions', '__first__'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ('notes', models.TextField(blank=True)),
                 ('academy', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='%(class)ss', to='academies.academy')),
                 ('marked_by', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='marked_attendance', to=settings.AUTH_USER_MODEL)),
-                ('occurrence', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='attendance_records', to='training_sessions.sessionoccurrence')),
+                ('occurrence', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='attendance_records', to='academy_sessions.sessionoccurrence')),
             ],
         ),
     ]

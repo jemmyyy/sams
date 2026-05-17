@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         ('academies', '0001_initial'),
         ('groups', '0001_initial'),
         ('players', '0001_initial'),
-        ('training_sessions', '__first__'),
+        ('academy_sessions', '__first__'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='group',
             name='sessions',
-            field=models.ManyToManyField(blank=True, related_name='groups', to='training_sessions.sessionseries'),
+            field=models.ManyToManyField(blank=True, related_name='groups', to='academy_sessions.sessionseries'),
         ),
         migrations.AddField(
             model_name='groupcoach',

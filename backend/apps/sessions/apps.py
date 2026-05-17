@@ -5,4 +5,4 @@ class SessionsConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "apps.sessions"
     verbose_name = "Training Sessions"
-    label = "training_sessions"
+    label = "academy_sessions"

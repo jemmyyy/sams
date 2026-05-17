@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField()),
                 ('resolved', models.BooleanField(default=False)),
                 ('academy', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='%(class)ss', to='academies.academy')),
-                ('occurrence', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='conflicts', to='training_sessions.sessionoccurrence')),
+                ('occurrence', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='conflicts', to='academy_sessions.sessionoccurrence')),
             ],
             options={
                 'abstract': False,
@@ -77,7 +77,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='sessionoccurrence',
             name='series',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='occurrences', to='training_sessions.sessionseries'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='occurrences', to='academy_sessions.sessionseries'),
         ),
         migrations.CreateModel(
             name='Venue',
@@ -100,12 +100,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='sessionseries',
             name='venue',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='session_series', to='training_sessions.venue'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='session_series', to='academy_sessions.venue'),
         ),
         migrations.AddField(
             model_name='sessionoccurrence',
             name='venue',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='occurrences', to='training_sessions.venue'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='occurrences', to='academy_sessions.venue'),
         ),
         migrations.CreateModel(
             name='SessionCoach',
@@ -118,7 +118,7 @@ class Migration(migrations.Migration):
                 ('is_lead', models.BooleanField(default=False)),
                 ('academy', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='%(class)ss', to='academies.academy')),
                 ('coach', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='coaching_sessions', to=settings.AUTH_USER_MODEL)),
-                ('session', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='coaches', to='training_sessions.sessionoccurrence')),
+                ('session', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='coaches', to='academy_sessions.sessionoccurrence')),
             ],
             options={
                 'unique_together': {('session', 'coach')},
@@ -136,7 +136,7 @@ class Migration(migrations.Migration):
                 ('status', models.CharField(choices=[('active', 'Active'), ('cancelled', 'Cancelled'), ('attended', 'Attended'), ('missed', 'Missed')], default='active', max_length=20)),
                 ('academy', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='%(class)ss', to='academies.academy')),
                 ('player', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='enrollments', to='players.player')),
-                ('session', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='enrollments', to='training_sessions.sessionoccurrence')),
+                ('session', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='enrollments', to='academy_sessions.sessionoccurrence')),
             ],
             options={
                 'unique_together': {('session', 'player')},

@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('academies', '0001_initial'),
-        ('training_sessions', '__first__'),
+        ('academy_sessions', '__first__'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                 ('is_approved', models.BooleanField(default=False)),
                 ('academy', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='%(class)ss', to='academies.academy')),
                 ('coach', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='session_reports', to=settings.AUTH_USER_MODEL)),
-                ('occurrence', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='report', to='training_sessions.sessionoccurrence')),
+                ('occurrence', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='report', to='academy_sessions.sessionoccurrence')),
             ],
             options={
                 'abstract': False,

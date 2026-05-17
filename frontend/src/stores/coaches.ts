@@ -15,7 +15,7 @@ export const useCoachStore = defineStore('coaches', {
       this.loading = true
       try {
         const response = await api.get<PaginatedResponse<Coach>>('coaches/profiles/', { params })
-        this.coaches = response.data.results
+        this.coaches = response.data.results || response.data || []
       } catch (err: any) {
         this.error = err.message || 'Failed to fetch coaches'
       } finally {

@@ -18,8 +18,8 @@ export const useNotificationStore = defineStore('notifications', {
     async fetchNotifications(params?: Record<string, unknown>) {
       this.loading = true
       try {
-        const response = await api.get<PaginatedResponse<Notification>>('notifications/', { params })
-        this.notifications = response.data.results
+        const response = await api.get<PaginatedResponse<Notification>>('notifications/my-notifications/', { params })
+        this.notifications = response.data.results || []
         this.unreadCount = this.notifications.filter((n) => !n.is_read).length
       } catch (err: any) {
         this.error = err.message || 'Failed to fetch notifications'
@@ -30,7 +30,7 @@ export const useNotificationStore = defineStore('notifications', {
 
     async markRead(id: string) {
       try {
-        await api.post(`notifications/${id}/mark-read/`)
+        await api.post(`notifications/my-notifications/${id}/mark-read/`)
         const n = this.notifications.find((n) => n.id === id)
         if (n) {
           n.is_read = true
@@ -44,7 +44,7 @@ export const useNotificationStore = defineStore('notifications', {
 
     async markAllRead() {
       try {
-        await api.post('notifications/mark-all-read/')
+        await api.post('notifications/my-notifications/mark-all-read/')
         this.notifications.forEach((n) => {
           n.is_read = true
           n.read_at = new Date().toISOString()

@@ -26,10 +26,16 @@ api.interceptors.request.use((config) => {
   const token = localStorage.getItem('access_token');
   const academyId = localStorage.getItem('academy_id');
 
+  // Skip tenant header for auth endpoints — no academy scoping needed
+  const isAuthEndpoint = config.url?.includes('accounts/login/')
+    || config.url?.includes('accounts/register/')
+    || config.url?.includes('token/refresh/')
+    || config.url?.includes('token/verify/');
+
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-  if (academyId) {
+  if (academyId && !isAuthEndpoint) {
     config.headers['X-Academy-ID'] = academyId;
   }
   return config;
@@ -51,8 +57,8 @@ api.interceptors.response.use(
     const originalRequest = error.config;
 
     if (error.response?.status === 401 && !originalRequest._retry) {
-      const isLoginRequest = originalRequest?.url?.includes('/login/');
-      const isRefreshRequest = originalRequest?.url?.includes('/token/refresh/');
+      const isLoginRequest = originalRequest?.url?.includes('login/');
+      const isRefreshRequest = originalRequest?.url?.includes('token/refresh/');
 
       if (isLoginRequest || isRefreshRequest) {
         return Promise.reject(error);

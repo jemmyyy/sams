@@ -1,5 +1,5 @@
-import { useAuthStore } from '@/stores/auth'
-import { api } from '@/api'
+import { useAuthStore } from '../stores/auth'
+import api from '../api'
 
 export function useApi() {
   const auth = useAuthStore()

@@ -15,7 +15,7 @@ export const useGroupStore = defineStore('groups', {
       this.loading = true
       try {
         const response = await api.get<PaginatedResponse<Group>>('groups/', { params })
-        this.groups = response.data.results
+        this.groups = response.data.results || response.data || []
       } catch (err: any) {
         this.error = err.message || 'Failed to fetch groups'
       } finally {
