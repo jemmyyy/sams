@@ -1,0 +1,1132 @@
+{
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\fix_app_labels.ps1": {
+    "mtime": 1778711030.6531103,
+    "ast_hash": "be5c183fd67e532ebe4b3d7cc19b190d",
+    "semantic_hash": "be5c183fd67e532ebe4b3d7cc19b190d"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\fix_imports.ps1": {
+    "mtime": 1778710510.4410882,
+    "ast_hash": "8417e6fdb6e2567412c7d263863f8e3b",
+    "semantic_hash": "8417e6fdb6e2567412c7d263863f8e3b"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\fix_imports2.ps1": {
+    "mtime": 1778710769.9311326,
+    "ast_hash": "b344d848d11db7a00498189af57010bb",
+    "semantic_hash": "b344d848d11db7a00498189af57010bb"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\fix_imports3.ps1": {
+    "mtime": 1778710830.8421361,
+    "ast_hash": "6d5e38a009c241b8f92c015b3c48a8f2",
+    "semantic_hash": "6d5e38a009c241b8f92c015b3c48a8f2"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\fix_lineendings.ps1": {
+    "mtime": 1778705733.4040754,
+    "ast_hash": "9ca5f7310a67e94c8211591b1eb23984",
+    "semantic_hash": "9ca5f7310a67e94c8211591b1eb23984"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\.claude\\settings.local.json": {
+    "mtime": 1778874292.4546852,
+    "ast_hash": "16d64bd4665742bc13ff99768227a792",
+    "semantic_hash": "16d64bd4665742bc13ff99768227a792"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\manage.py": {
+    "mtime": 1778715686.4827504,
+    "ast_hash": "5e414e448c6099fc8937bb97a2d1b1da",
+    "semantic_hash": "5e414e448c6099fc8937bb97a2d1b1da"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\academies\\middleware.py": {
+    "mtime": 1778715707.729395,
+    "ast_hash": "06c714ebbe406c304efeddba314c1921",
+    "semantic_hash": "06c714ebbe406c304efeddba314c1921"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\academies\\models.py": {
+    "mtime": 1778715707.7025032,
+    "ast_hash": "1fff643e4f3a732bfeaaf57233d6315c",
+    "semantic_hash": "1fff643e4f3a732bfeaaf57233d6315c"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\academies\\__init__.py": {
+    "mtime": 1778712318.101519,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\academies\\migrations\\0001_initial.py": {
+    "mtime": 1778711601.5015814,
+    "ast_hash": "7a8cdcc414603821806f2639b867c472",
+    "semantic_hash": "7a8cdcc414603821806f2639b867c472"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\academies\\migrations\\__init__.py": {
+    "mtime": 1778711352.827637,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\accounts\\models.py": {
+    "mtime": 1778801572.4965496,
+    "ast_hash": "c1a1e4e4842ea683a791bbd284470070",
+    "semantic_hash": "c1a1e4e4842ea683a791bbd284470070"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\accounts\\urls.py": {
+    "mtime": 1778715707.757433,
+    "ast_hash": "dd2ad7d5bc7df98f0e4404b6b786ceb3",
+    "semantic_hash": "dd2ad7d5bc7df98f0e4404b6b786ceb3"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\accounts\\__init__.py": {
+    "mtime": 1778712318.1109202,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\accounts\\management\\__init__.py": {
+    "mtime": 1778801914.134683,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\accounts\\management\\commands\\seed.py": {
+    "mtime": 1778856951.1998942,
+    "ast_hash": "c22c5935159b3f36fd2f5a57cbe8fda8",
+    "semantic_hash": "c22c5935159b3f36fd2f5a57cbe8fda8"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\accounts\\management\\commands\\setup_test_users.py": {
+    "mtime": 1778801923.4247723,
+    "ast_hash": "bdf44e0df648f6de787e481e37e52715",
+    "semantic_hash": "bdf44e0df648f6de787e481e37e52715"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\accounts\\management\\commands\\__init__.py": {
+    "mtime": 1778801916.959145,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\accounts\\migrations\\0001_initial.py": {
+    "mtime": 1778711601.54263,
+    "ast_hash": "a3c88689dd9557493b1b5d3d44438998",
+    "semantic_hash": "a3c88689dd9557493b1b5d3d44438998"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\accounts\\migrations\\0002_user_preferred_language.py": {
+    "mtime": 1778803256.2513337,
+    "ast_hash": "c699355132b807fd8067d0ff45f949ad",
+    "semantic_hash": "c699355132b807fd8067d0ff45f949ad"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\accounts\\migrations\\__init__.py": {
+    "mtime": 1778711330.811081,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\accounts\\serializers\\auth.py": {
+    "mtime": 1778855873.4715595,
+    "ast_hash": "d99b66a894ed3e17b0dcbbbb360dd813",
+    "semantic_hash": "d99b66a894ed3e17b0dcbbbb360dd813"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\accounts\\services\\password_policy.py": {
+    "mtime": 1778715707.735461,
+    "ast_hash": "7267231050a82cd71565b727b101c7ff",
+    "semantic_hash": "7267231050a82cd71565b727b101c7ff"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\accounts\\views\\auth.py": {
+    "mtime": 1778724722.8935437,
+    "ast_hash": "df4e0f09b4d7a350b588b060cbd3e8b5",
+    "semantic_hash": "df4e0f09b4d7a350b588b060cbd3e8b5"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\analytics\\models.py": {
+    "mtime": 1778802102.2999752,
+    "ast_hash": "86a4d202d775278cdd0ba429d76f1669",
+    "semantic_hash": "86a4d202d775278cdd0ba429d76f1669"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\analytics\\serializers.py": {
+    "mtime": 1778802136.5014539,
+    "ast_hash": "f2944464571020152597a84d228d3ce3",
+    "semantic_hash": "f2944464571020152597a84d228d3ce3"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\analytics\\tasks.py": {
+    "mtime": 1778802130.8719206,
+    "ast_hash": "f4dbfb24ffca02730b2125ab5c479a91",
+    "semantic_hash": "f4dbfb24ffca02730b2125ab5c479a91"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\analytics\\urls.py": {
+    "mtime": 1778803162.877316,
+    "ast_hash": "66bc250f9b7ca66f7c6f8b6bfb149918",
+    "semantic_hash": "66bc250f9b7ca66f7c6f8b6bfb149918"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\analytics\\views.py": {
+    "mtime": 1778802141.8694046,
+    "ast_hash": "6ca83938be43cb445035fda0066002e7",
+    "semantic_hash": "6ca83938be43cb445035fda0066002e7"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\analytics\\__init__.py": {
+    "mtime": 1778712318.0667963,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\analytics\\management\\__init__.py": {
+    "mtime": 1778802257.3532524,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\analytics\\management\\commands\\build_historical_analytics.py": {
+    "mtime": 1778802276.5118022,
+    "ast_hash": "787e8661c94c8b612627826cd53572ff",
+    "semantic_hash": "787e8661c94c8b612627826cd53572ff"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\analytics\\management\\commands\\__init__.py": {
+    "mtime": 1778802263.8476954,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\analytics\\migrations\\0001_initial.py": {
+    "mtime": 1778803256.3343277,
+    "ast_hash": "68235b176213592e29a395a585c19312",
+    "semantic_hash": "68235b176213592e29a395a585c19312"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\analytics\\migrations\\__init__.py": {
+    "mtime": 1778803256.2827082,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\analytics\\tests\\test_tasks.py": {
+    "mtime": 1778802231.0358403,
+    "ast_hash": "1bbed4f61889ecc54cab2cd08f7c7d15",
+    "semantic_hash": "1bbed4f61889ecc54cab2cd08f7c7d15"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\attendance\\models.py": {
+    "mtime": 1778715707.7025032,
+    "ast_hash": "13727b8606322a875f7827aced59371e",
+    "semantic_hash": "13727b8606322a875f7827aced59371e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\attendance\\serializers.py": {
+    "mtime": 1778715707.704526,
+    "ast_hash": "2d3793b7073f6bbcc81ef4ecc48a6e92",
+    "semantic_hash": "2d3793b7073f6bbcc81ef4ecc48a6e92"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\attendance\\urls.py": {
+    "mtime": 1778715707.7415252,
+    "ast_hash": "c37191874c5f858c81243e119a5f12aa",
+    "semantic_hash": "c37191874c5f858c81243e119a5f12aa"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\attendance\\views.py": {
+    "mtime": 1778715707.792818,
+    "ast_hash": "ee172598307df0223bb8e8985cf6e800",
+    "semantic_hash": "ee172598307df0223bb8e8985cf6e800"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\attendance\\__init__.py": {
+    "mtime": 1778712318.1332853,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\attendance\\migrations\\0001_initial.py": {
+    "mtime": 1778711623.0098655,
+    "ast_hash": "123c6cf8c54b35f70182d1823da5ae71",
+    "semantic_hash": "123c6cf8c54b35f70182d1823da5ae71"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\attendance\\migrations\\0002_initial.py": {
+    "mtime": 1778711623.0296528,
+    "ast_hash": "b5d330263bcc17206ee445ca97ea8841",
+    "semantic_hash": "b5d330263bcc17206ee445ca97ea8841"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\attendance\\migrations\\__init__.py": {
+    "mtime": 1778711353.5638652,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\audit\\middleware.py": {
+    "mtime": 1778715707.7114675,
+    "ast_hash": "9940e4e0200f75f50083080dc0c9e769",
+    "semantic_hash": "9940e4e0200f75f50083080dc0c9e769"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\audit\\__init__.py": {
+    "mtime": 1778712318.0832229,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\cancellations\\models.py": {
+    "mtime": 1778715707.704526,
+    "ast_hash": "54996c866d3bd5f3044e23b033e4f91f",
+    "semantic_hash": "54996c866d3bd5f3044e23b033e4f91f"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\cancellations\\serializers.py": {
+    "mtime": 1778715707.704526,
+    "ast_hash": "3d345953e6589037d2f3bebdae522ef4",
+    "semantic_hash": "3d345953e6589037d2f3bebdae522ef4"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\cancellations\\urls.py": {
+    "mtime": 1778715707.7415252,
+    "ast_hash": "86e4997fdbc150a1936d9130739a9d5f",
+    "semantic_hash": "86e4997fdbc150a1936d9130739a9d5f"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\cancellations\\views.py": {
+    "mtime": 1778715707.739499,
+    "ast_hash": "eb22bbc3da25ac5ea086c6bf8f85d348",
+    "semantic_hash": "eb22bbc3da25ac5ea086c6bf8f85d348"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\cancellations\\__init__.py": {
+    "mtime": 1778712318.166502,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\cancellations\\migrations\\0001_initial.py": {
+    "mtime": 1778711623.0726843,
+    "ast_hash": "d2f5d31cbbb9f75017a5b7d313dc47bb",
+    "semantic_hash": "d2f5d31cbbb9f75017a5b7d313dc47bb"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\cancellations\\migrations\\0002_initial.py": {
+    "mtime": 1778711623.089887,
+    "ast_hash": "bc9da54f396dc5366b09aa2fe0f82cc5",
+    "semantic_hash": "bc9da54f396dc5366b09aa2fe0f82cc5"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\cancellations\\migrations\\__init__.py": {
+    "mtime": 1778711353.7933035,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\coaches\\__init__.py": {
+    "mtime": 1778712318.0667963,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\common\\cache.py": {
+    "mtime": 1778715707.7811506,
+    "ast_hash": "052eef48a7135e50105cef3bc891237a",
+    "semantic_hash": "052eef48a7135e50105cef3bc891237a"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\common\\exceptions.py": {
+    "mtime": 1778715707.798399,
+    "ast_hash": "530f0b7dc8f927b36a736afab7534caa",
+    "semantic_hash": "530f0b7dc8f927b36a736afab7534caa"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\common\\models.py": {
+    "mtime": 1778715707.792818,
+    "ast_hash": "6c7a850c311d762303ac4ee0ef47ee6e",
+    "semantic_hash": "6c7a850c311d762303ac4ee0ef47ee6e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\common\\renderers.py": {
+    "mtime": 1778715686.455473,
+    "ast_hash": "93bfe0cf245066740bdc10d934331bad",
+    "semantic_hash": "93bfe0cf245066740bdc10d934331bad"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\common\\thread_local.py": {
+    "mtime": 1778715686.4726653,
+    "ast_hash": "4bea84da6c8f1e668bab049b957bc56e",
+    "semantic_hash": "4bea84da6c8f1e668bab049b957bc56e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\common\\__init__.py": {
+    "mtime": 1778712318.0832229,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\common\\management\\__init__.py": {
+    "mtime": 1778802491.8386486,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\common\\management\\commands\\seed_system.py": {
+    "mtime": 1778802517.0170884,
+    "ast_hash": "f16c6d2a9bf40e28ceb4f710722792cc",
+    "semantic_hash": "f16c6d2a9bf40e28ceb4f710722792cc"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\common\\management\\commands\\__init__.py": {
+    "mtime": 1778802499.769471,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\common\\tests\\test_multi_tenancy.py": {
+    "mtime": 1778715707.862239,
+    "ast_hash": "53f32b36c18aeaba2079c2e758c04c8b",
+    "semantic_hash": "53f32b36c18aeaba2079c2e758c04c8b"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\communication\\models.py": {
+    "mtime": 1778803200.2868838,
+    "ast_hash": "9b510552fa9955996f180c8580daf612",
+    "semantic_hash": "9b510552fa9955996f180c8580daf612"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\communication\\serializers.py": {
+    "mtime": 1778715707.733441,
+    "ast_hash": "89a2f942bd7d8d252c2cae1d9e1bef0b",
+    "semantic_hash": "89a2f942bd7d8d252c2cae1d9e1bef0b"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\communication\\urls.py": {
+    "mtime": 1778715707.7652507,
+    "ast_hash": "b12aad2adb9c17527a6fdd07d9ed572a",
+    "semantic_hash": "b12aad2adb9c17527a6fdd07d9ed572a"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\communication\\views.py": {
+    "mtime": 1778715707.792818,
+    "ast_hash": "2b4d5c30b2d9d45e5c108ecba5a177b0",
+    "semantic_hash": "2b4d5c30b2d9d45e5c108ecba5a177b0"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\communication\\__init__.py": {
+    "mtime": 1778712318.1983926,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\communication\\migrations\\0001_initial.py": {
+    "mtime": 1778711623.1269386,
+    "ast_hash": "1ac29e9162a4abc6746d8e8a0dbf856b",
+    "semantic_hash": "1ac29e9162a4abc6746d8e8a0dbf856b"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\communication\\migrations\\0002_alter_notificationlog_academy.py": {
+    "mtime": 1778803256.377408,
+    "ast_hash": "408dfec5f16c669d4505a97d986ffe73",
+    "semantic_hash": "408dfec5f16c669d4505a97d986ffe73"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\communication\\migrations\\__init__.py": {
+    "mtime": 1778711352.9275527,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\groups\\models.py": {
+    "mtime": 1778715707.822634,
+    "ast_hash": "5cde658f661b0bbd231abe22a80b0d77",
+    "semantic_hash": "5cde658f661b0bbd231abe22a80b0d77"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\groups\\serializers.py": {
+    "mtime": 1778715707.8060038,
+    "ast_hash": "169f40ab464dfbbb1eeb7b1dfe716b7b",
+    "semantic_hash": "169f40ab464dfbbb1eeb7b1dfe716b7b"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\groups\\urls.py": {
+    "mtime": 1778715707.842463,
+    "ast_hash": "67ff29bcfd9c2034461fb07b484d40d7",
+    "semantic_hash": "67ff29bcfd9c2034461fb07b484d40d7"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\groups\\views.py": {
+    "mtime": 1778715707.844482,
+    "ast_hash": "d73f845fb04f93e84d7adaabd47ba7d7",
+    "semantic_hash": "d73f845fb04f93e84d7adaabd47ba7d7"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\groups\\__init__.py": {
+    "mtime": 1778712318.1332853,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\groups\\migrations\\0001_initial.py": {
+    "mtime": 1778711623.2370117,
+    "ast_hash": "7d72d5db8b1b4dff7e7dd4077ea1c499",
+    "semantic_hash": "7d72d5db8b1b4dff7e7dd4077ea1c499"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\groups\\migrations\\0002_initial.py": {
+    "mtime": 1778711623.2489936,
+    "ast_hash": "b16d47d72569e54c8171dc166bcad86a",
+    "semantic_hash": "b16d47d72569e54c8171dc166bcad86a"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\groups\\migrations\\__init__.py": {
+    "mtime": 1778711623.1673167,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\admin.py": {
+    "mtime": 1778801530.7870297,
+    "ast_hash": "88c0c1d76b21594066e028cd63da79a1",
+    "semantic_hash": "88c0c1d76b21594066e028cd63da79a1"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\apps.py": {
+    "mtime": 1778801517.7632408,
+    "ast_hash": "e0dcfede7062e4ef5a1d96928b193959",
+    "semantic_hash": "e0dcfede7062e4ef5a1d96928b193959"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\models.py": {
+    "mtime": 1778801525.1695454,
+    "ast_hash": "b3df67e932128222d5d006ce315f7479",
+    "semantic_hash": "b3df67e932128222d5d006ce315f7479"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\serializers.py": {
+    "mtime": 1778801588.662041,
+    "ast_hash": "cf6e8a937c0333f8e25da73bab21db86",
+    "semantic_hash": "cf6e8a937c0333f8e25da73bab21db86"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\tasks.py": {
+    "mtime": 1778801577.904358,
+    "ast_hash": "4231145ff9969a6a2793ef8fb456c5ac",
+    "semantic_hash": "4231145ff9969a6a2793ef8fb456c5ac"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\urls.py": {
+    "mtime": 1778803162.877316,
+    "ast_hash": "08371a2dc56dfc5392e74abe540a192b",
+    "semantic_hash": "08371a2dc56dfc5392e74abe540a192b"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\views.py": {
+    "mtime": 1778801594.2380805,
+    "ast_hash": "c3affd13c2afadf0ecc032a003af6978",
+    "semantic_hash": "c3affd13c2afadf0ecc032a003af6978"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\__init__.py": {
+    "mtime": 1778712318.183146,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\management\\__init__.py": {
+    "mtime": 1778801753.5113957,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\management\\commands\\init_notifications.py": {
+    "mtime": 1778801771.4406457,
+    "ast_hash": "f03e64fe6f0fe96e01240c93e14817e7",
+    "semantic_hash": "f03e64fe6f0fe96e01240c93e14817e7"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\management\\commands\\__init__.py": {
+    "mtime": 1778801762.2251005,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\migrations\\0001_initial.py": {
+    "mtime": 1778803256.4616446,
+    "ast_hash": "a9f40bccc1a180194b0dc1e3b771325d",
+    "semantic_hash": "a9f40bccc1a180194b0dc1e3b771325d"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\migrations\\__init__.py": {
+    "mtime": 1778803256.4124105,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\services\\adapters.py": {
+    "mtime": 1778801558.7305045,
+    "ast_hash": "8985291bcd26e4caca02415ff2ea6bc1",
+    "semantic_hash": "8985291bcd26e4caca02415ff2ea6bc1"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\services\\notification_service.py": {
+    "mtime": 1778801703.4542503,
+    "ast_hash": "9c6c37033f00f59a8d264f31bd82d155",
+    "semantic_hash": "9c6c37033f00f59a8d264f31bd82d155"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\tests\\test_notification_service.py": {
+    "mtime": 1778801618.4427638,
+    "ast_hash": "60399542c6b8b470fba3f080bc3158a4",
+    "semantic_hash": "60399542c6b8b470fba3f080bc3158a4"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\notifications\\tests\\test_tasks.py": {
+    "mtime": 1778801623.2976377,
+    "ast_hash": "0ae86f27e99c4d1e4472fa60514f3f5a",
+    "semantic_hash": "0ae86f27e99c4d1e4472fa60514f3f5a"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\payments\\models.py": {
+    "mtime": 1778715707.8525627,
+    "ast_hash": "fd4681e55ab94806ba3d0fd586617a21",
+    "semantic_hash": "fd4681e55ab94806ba3d0fd586617a21"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\payments\\tasks.py": {
+    "mtime": 1778715707.7963514,
+    "ast_hash": "b2d1bf1f9791526d244900b5ce2c1b03",
+    "semantic_hash": "b2d1bf1f9791526d244900b5ce2c1b03"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\payments\\urls.py": {
+    "mtime": 1778715707.8652735,
+    "ast_hash": "15143880e9728264300c1f69dc7b90a1",
+    "semantic_hash": "15143880e9728264300c1f69dc7b90a1"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\payments\\__init__.py": {
+    "mtime": 1778712318.182743,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\payments\\migrations\\0001_initial.py": {
+    "mtime": 1778711623.2853446,
+    "ast_hash": "d46d1e07b1db890644f6399da9ad7552",
+    "semantic_hash": "d46d1e07b1db890644f6399da9ad7552"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\payments\\migrations\\0002_initial.py": {
+    "mtime": 1778711623.3029864,
+    "ast_hash": "67f088d09a8ad93b3356b6bc2a98f00e",
+    "semantic_hash": "67f088d09a8ad93b3356b6bc2a98f00e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\payments\\migrations\\__init__.py": {
+    "mtime": 1778711353.2523537,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\payments\\serializers\\financial.py": {
+    "mtime": 1778715707.6829512,
+    "ast_hash": "b84083fc99c97f69dbb3470007e40877",
+    "semantic_hash": "b84083fc99c97f69dbb3470007e40877"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\payments\\services\\financial.py": {
+    "mtime": 1778715707.759447,
+    "ast_hash": "f42551509f79c4c9ba25d2f751b5fec5",
+    "semantic_hash": "f42551509f79c4c9ba25d2f751b5fec5"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\payments\\tests\\test_financial.py": {
+    "mtime": 1778715707.8537817,
+    "ast_hash": "dbfebdd6bd6f32ff74a1a4476f812c02",
+    "semantic_hash": "dbfebdd6bd6f32ff74a1a4476f812c02"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\payments\\views\\financial.py": {
+    "mtime": 1778715707.8363955,
+    "ast_hash": "ae9f985aeccbebe5a46df9bfe22f545f",
+    "semantic_hash": "ae9f985aeccbebe5a46df9bfe22f545f"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\permissions\\models.py": {
+    "mtime": 1778715707.8384287,
+    "ast_hash": "a3a2dde26534dba0fc3d19b01f9feb35",
+    "semantic_hash": "a3a2dde26534dba0fc3d19b01f9feb35"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\permissions\\permissions.py": {
+    "mtime": 1778715707.8505454,
+    "ast_hash": "c5cbcd87aec6c5fef8a7fe29ede4b05e",
+    "semantic_hash": "c5cbcd87aec6c5fef8a7fe29ede4b05e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\permissions\\__init__.py": {
+    "mtime": 1778712318.1164246,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\permissions\\migrations\\0001_initial.py": {
+    "mtime": 1778711623.34137,
+    "ast_hash": "29c4e8462e4116dd5e4b52e990a7c0fd",
+    "semantic_hash": "29c4e8462e4116dd5e4b52e990a7c0fd"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\permissions\\migrations\\__init__.py": {
+    "mtime": 1778711353.0214083,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\players\\models.py": {
+    "mtime": 1778715707.739499,
+    "ast_hash": "c1b3fa58ab5c5de8d3b82be7bbcb0224",
+    "semantic_hash": "c1b3fa58ab5c5de8d3b82be7bbcb0224"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\players\\serializers.py": {
+    "mtime": 1778715707.7493508,
+    "ast_hash": "d992c47e1c8657afa196c365232c5f7b",
+    "semantic_hash": "d992c47e1c8657afa196c365232c5f7b"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\players\\services.py": {
+    "mtime": 1778715707.7892394,
+    "ast_hash": "bc87991fc2020d88f467da3323ce62ce",
+    "semantic_hash": "bc87991fc2020d88f467da3323ce62ce"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\players\\urls.py": {
+    "mtime": 1778715707.8060038,
+    "ast_hash": "8aa3cb3f783b1bb1484f70b9ede1b9e4",
+    "semantic_hash": "8aa3cb3f783b1bb1484f70b9ede1b9e4"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\players\\views.py": {
+    "mtime": 1778715707.844482,
+    "ast_hash": "c3e7bbb307fe4ba2a5ec979fe13a25ae",
+    "semantic_hash": "c3e7bbb307fe4ba2a5ec979fe13a25ae"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\players\\__init__.py": {
+    "mtime": 1778712318.1300309,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\players\\migrations\\0001_initial.py": {
+    "mtime": 1778711623.3744235,
+    "ast_hash": "9b905cdc142655cb961cd98013ab813a",
+    "semantic_hash": "9b905cdc142655cb961cd98013ab813a"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\players\\migrations\\__init__.py": {
+    "mtime": 1778711353.104177,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\ratings\\models.py": {
+    "mtime": 1778715707.745305,
+    "ast_hash": "ab1f074be61bd1d5e61d6fdd4da8fc1a",
+    "semantic_hash": "ab1f074be61bd1d5e61d6fdd4da8fc1a"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\ratings\\serializers.py": {
+    "mtime": 1778715707.7692902,
+    "ast_hash": "26a8bf55a9ef96fdf6078ca61654f4ca",
+    "semantic_hash": "26a8bf55a9ef96fdf6078ca61654f4ca"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\ratings\\urls.py": {
+    "mtime": 1778715707.792818,
+    "ast_hash": "f4d58d7bbdd7b6814588f1a2b764c842",
+    "semantic_hash": "f4d58d7bbdd7b6814588f1a2b764c842"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\ratings\\views.py": {
+    "mtime": 1778715707.8024383,
+    "ast_hash": "09fc1b4f56f2586c8f9dea5028971356",
+    "semantic_hash": "09fc1b4f56f2586c8f9dea5028971356"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\ratings\\__init__.py": {
+    "mtime": 1778712318.166502,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\ratings\\migrations\\0001_initial.py": {
+    "mtime": 1778711623.4100277,
+    "ast_hash": "47607543648e1297ff63d40a416d9265",
+    "semantic_hash": "47607543648e1297ff63d40a416d9265"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\ratings\\migrations\\__init__.py": {
+    "mtime": 1778711353.9533513,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\reports\\generators.py": {
+    "mtime": 1778802175.7323232,
+    "ast_hash": "8ff6e781a0e6e34129b57a33f7ee3444",
+    "semantic_hash": "8ff6e781a0e6e34129b57a33f7ee3444"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\reports\\models.py": {
+    "mtime": 1778802161.6541667,
+    "ast_hash": "c94288dcf67f2bd8bdeb72ef1a976a89",
+    "semantic_hash": "c94288dcf67f2bd8bdeb72ef1a976a89"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\reports\\serializers.py": {
+    "mtime": 1778802188.332018,
+    "ast_hash": "d9e6bd376ba613e243aa86ffd0aa7465",
+    "semantic_hash": "d9e6bd376ba613e243aa86ffd0aa7465"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\reports\\tasks.py": {
+    "mtime": 1778802183.6110766,
+    "ast_hash": "9a1891211a06ed1357926ffc368031f3",
+    "semantic_hash": "9a1891211a06ed1357926ffc368031f3"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\reports\\urls.py": {
+    "mtime": 1778803162.877316,
+    "ast_hash": "220de3ef3924621371a125eef0ae843e",
+    "semantic_hash": "220de3ef3924621371a125eef0ae843e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\reports\\views.py": {
+    "mtime": 1778802194.1756623,
+    "ast_hash": "9d960d32d8173dfd790aa685c6dd74e6",
+    "semantic_hash": "9d960d32d8173dfd790aa685c6dd74e6"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\reports\\__init__.py": {
+    "mtime": 1778712318.1501126,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\reports\\migrations\\0001_initial.py": {
+    "mtime": 1778711623.4494374,
+    "ast_hash": "644720358d229349698940d92bbf095f",
+    "semantic_hash": "644720358d229349698940d92bbf095f"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\reports\\migrations\\0002_generatedreport_scheduledreport.py": {
+    "mtime": 1778803256.513063,
+    "ast_hash": "4a8811e5aa5abbf3b00091b027297795",
+    "semantic_hash": "4a8811e5aa5abbf3b00091b027297795"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\reports\\migrations\\__init__.py": {
+    "mtime": 1778711354.1182911,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\sessions\\apps.py": {
+    "mtime": 1778715686.4726653,
+    "ast_hash": "1d2c48215e4d88a9d3a12bc24daa3870",
+    "semantic_hash": "1d2c48215e4d88a9d3a12bc24daa3870"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\sessions\\models.py": {
+    "mtime": 1778715707.704526,
+    "ast_hash": "4725d3f220776c6348d2b1aeaeb1dd7a",
+    "semantic_hash": "4725d3f220776c6348d2b1aeaeb1dd7a"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\sessions\\urls.py": {
+    "mtime": 1778715707.8125052,
+    "ast_hash": "3e110b63429613ee6ed5bfa1da12b32e",
+    "semantic_hash": "3e110b63429613ee6ed5bfa1da12b32e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\sessions\\__init__.py": {
+    "mtime": 1778712318.0535715,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\sessions\\migrations\\0001_initial.py": {
+    "mtime": 1778712576.9779363,
+    "ast_hash": "b686663c2f3f0fdadb6b4488979aa8dd",
+    "semantic_hash": "b686663c2f3f0fdadb6b4488979aa8dd"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\sessions\\migrations\\__init__.py": {
+    "mtime": 1778712576.9096801,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\sessions\\serializers\\session.py": {
+    "mtime": 1778863035.6962678,
+    "ast_hash": "9cccb685cb8be0be15cf759e1efb7c1c",
+    "semantic_hash": "9cccb685cb8be0be15cf759e1efb7c1c"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\sessions\\services\\scheduling.py": {
+    "mtime": 1778715707.7910624,
+    "ast_hash": "6a0551f4a44cf6328f962858cbdb7667",
+    "semantic_hash": "6a0551f4a44cf6328f962858cbdb7667"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\sessions\\tests\\test_scheduling.py": {
+    "mtime": 1778715707.8363955,
+    "ast_hash": "983a2e7ca42cd5e3196820b4286c76f8",
+    "semantic_hash": "983a2e7ca42cd5e3196820b4286c76f8"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\sessions\\views\\session.py": {
+    "mtime": 1778715707.733441,
+    "ast_hash": "0abbdc640af270c5a4b864271b00f963",
+    "semantic_hash": "0abbdc640af270c5a4b864271b00f963"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\config\\asgi.py": {
+    "mtime": 1778715686.4496808,
+    "ast_hash": "5e3b75329cd7b11351226f6bcc3aeeda",
+    "semantic_hash": "5e3b75329cd7b11351226f6bcc3aeeda"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\config\\celery_app.py": {
+    "mtime": 1778715707.757433,
+    "ast_hash": "5c05262e56a5fb054367a25f0132bb82",
+    "semantic_hash": "5c05262e56a5fb054367a25f0132bb82"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\config\\urls.py": {
+    "mtime": 1778802150.5675237,
+    "ast_hash": "ffc5d06a29d5acb6e9735a230aaa5f1c",
+    "semantic_hash": "ffc5d06a29d5acb6e9735a230aaa5f1c"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\config\\wsgi.py": {
+    "mtime": 1778715686.4767044,
+    "ast_hash": "a28a86b9909945d62481cc9da2cfed46",
+    "semantic_hash": "a28a86b9909945d62481cc9da2cfed46"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\config\\__init__.py": {
+    "mtime": 1778677100.3162012,
+    "ast_hash": "c0d8d339efaffb79162f76da22c82cd0",
+    "semantic_hash": "c0d8d339efaffb79162f76da22c82cd0"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\config\\settings\\base.py": {
+    "mtime": 1778802296.5661516,
+    "ast_hash": "1cc5829aaebff9085a4141accc9053c8",
+    "semantic_hash": "1cc5829aaebff9085a4141accc9053c8"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\config\\settings\\local.py": {
+    "mtime": 1778677077.3290334,
+    "ast_hash": "d9c1d54d22e41d7c56101b1c1357df8f",
+    "semantic_hash": "d9c1d54d22e41d7c56101b1c1357df8f"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\config\\settings\\production.py": {
+    "mtime": 1778677077.3290334,
+    "ast_hash": "4576e84eb250b6f0c1a6958ae8e44e7e",
+    "semantic_hash": "4576e84eb250b6f0c1a6958ae8e44e7e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\config\\settings\\__init__.py": {
+    "mtime": 1778677090.6909583,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\docker\\backend\\entrypoint.sh": {
+    "mtime": 1778705746.2895255,
+    "ast_hash": "1b20fc0d7b2d7df9124fefa06ed5c06b",
+    "semantic_hash": "1b20fc0d7b2d7df9124fefa06ed5c06b"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\.prettierrc.json": {
+    "mtime": 1778678179.7572367,
+    "ast_hash": "e67ec0157998f00e154d370409f35625",
+    "semantic_hash": "e67ec0157998f00e154d370409f35625"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\eslint.config.js": {
+    "mtime": 1778722052.8115516,
+    "ast_hash": "0ac0303311927b35304a1d17efe45a79",
+    "semantic_hash": "0ac0303311927b35304a1d17efe45a79"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\package.json": {
+    "mtime": 1778853727.2908618,
+    "ast_hash": "d5c49ab42d0d0d3af190dcf4dd141146",
+    "semantic_hash": "d5c49ab42d0d0d3af190dcf4dd141146"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\postcss.config.js": {
+    "mtime": 1778678180.4603753,
+    "ast_hash": "3067fa4511f69ff64f1cd36b44c9c396",
+    "semantic_hash": "3067fa4511f69ff64f1cd36b44c9c396"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\quasar.config.ts": {
+    "mtime": 1778860430.2348518,
+    "ast_hash": "80fcd50f4374d4e9727bfee96369c379",
+    "semantic_hash": "80fcd50f4374d4e9727bfee96369c379"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\quasar.config.ts.temporary.compiled.1778701371029.mjs": {
+    "mtime": 1778701373.4226243,
+    "ast_hash": "52735f7d923f4d6570fda1942db0799a",
+    "semantic_hash": "52735f7d923f4d6570fda1942db0799a"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\tsconfig.json": {
+    "mtime": 1778678183.550452,
+    "ast_hash": "b7a37ce49acdcef5b4abb29553fb5d06",
+    "semantic_hash": "b7a37ce49acdcef5b4abb29553fb5d06"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\.vscode\\extensions.json": {
+    "mtime": 1778678179.7846646,
+    "ast_hash": "dbad84a2ae2ba869221fa5ddcea8c2a7",
+    "semantic_hash": "dbad84a2ae2ba869221fa5ddcea8c2a7"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\.vscode\\settings.json": {
+    "mtime": 1778678179.799222,
+    "ast_hash": "bd831d8ce5a8e486fc3b83d2eb45506a",
+    "semantic_hash": "bd831d8ce5a8e486fc3b83d2eb45506a"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\App.vue": {
+    "mtime": 1778854024.939591,
+    "ast_hash": "0d031366420fea2ab1527fb468d6f840",
+    "semantic_hash": "0d031366420fea2ab1527fb468d6f840"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\env.d.ts": {
+    "mtime": 1778678051.2564206,
+    "ast_hash": "38e4bfbf28fadeb48dcbda668bbf7850",
+    "semantic_hash": "38e4bfbf28fadeb48dcbda668bbf7850"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\api\\index.ts": {
+    "mtime": 1778860390.8719716,
+    "ast_hash": "96dc217f51aaa6e32e05f030983341b1",
+    "semantic_hash": "96dc217f51aaa6e32e05f030983341b1"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\boot\\i18n.ts": {
+    "mtime": 1778853829.9465995,
+    "ast_hash": "133020ded5a772d8abc0308ec3e17c30",
+    "semantic_hash": "133020ded5a772d8abc0308ec3e17c30"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\components\\EssentialLink.vue": {
+    "mtime": 1778678182.4652054,
+    "ast_hash": "9c5c71db6c656065129fdaa2cb8bdf47",
+    "semantic_hash": "9c5c71db6c656065129fdaa2cb8bdf47"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\components\\ExampleComponent.vue": {
+    "mtime": 1778678182.528002,
+    "ast_hash": "d620fa1726535a6e721cef2ee0698472",
+    "semantic_hash": "d620fa1726535a6e721cef2ee0698472"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\components\\models.ts": {
+    "mtime": 1778678051.23044,
+    "ast_hash": "87159312d1c8b864d79532b5dc453be5",
+    "semantic_hash": "87159312d1c8b864d79532b5dc453be5"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\components\\common\\SamsDataTable.vue": {
+    "mtime": 1778853869.1126199,
+    "ast_hash": "896a1c0793da7dcbacd50b77cc73c64d",
+    "semantic_hash": "896a1c0793da7dcbacd50b77cc73c64d"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\components\\common\\SamsDialog.vue": {
+    "mtime": 1778853875.4228249,
+    "ast_hash": "0c0875303bcad2de3314830e38f2b744",
+    "semantic_hash": "0c0875303bcad2de3314830e38f2b744"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\components\\common\\SamsInput.vue": {
+    "mtime": 1778853862.6535296,
+    "ast_hash": "3e8f1dbd27befdd32e15514240d71220",
+    "semantic_hash": "3e8f1dbd27befdd32e15514240d71220"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\i18n\\index.ts": {
+    "mtime": 1778853824.04064,
+    "ast_hash": "267502ceb14b88ef9b179cbd49cbd7ee",
+    "semantic_hash": "267502ceb14b88ef9b179cbd49cbd7ee"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\i18n\\ar-EG\\index.ts": {
+    "mtime": 1778853824.04064,
+    "ast_hash": "e5db0f429652068c61f21d193e09413e",
+    "semantic_hash": "e5db0f429652068c61f21d193e09413e"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\i18n\\en-US\\index.ts": {
+    "mtime": 1778853824.04064,
+    "ast_hash": "a708ea21382b92b62608a1487e63435f",
+    "semantic_hash": "a708ea21382b92b62608a1487e63435f"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\layouts\\AuthLayout.vue": {
+    "mtime": 1778842029.5194085,
+    "ast_hash": "eac180529d2dc9b25b64396df7bba359",
+    "semantic_hash": "eac180529d2dc9b25b64396df7bba359"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\layouts\\CoachLayout.vue": {
+    "mtime": 1778852575.3833623,
+    "ast_hash": "84f51387ce2a635a96c0d81ca107c420",
+    "semantic_hash": "84f51387ce2a635a96c0d81ca107c420"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\layouts\\CustomerLayout.vue": {
+    "mtime": 1778852592.1552086,
+    "ast_hash": "593b6b1e264316cc890e82acc9b730e7",
+    "semantic_hash": "593b6b1e264316cc890e82acc9b730e7"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\layouts\\MainLayout.vue": {
+    "mtime": 1778804506.9332354,
+    "ast_hash": "4ad6530fdf698d4f814620133aa7d973",
+    "semantic_hash": "4ad6530fdf698d4f814620133aa7d973"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\layouts\\OperationsLayout.vue": {
+    "mtime": 1778853938.198528,
+    "ast_hash": "d3d732a64e895e00c3004de43726e060",
+    "semantic_hash": "d3d732a64e895e00c3004de43726e060"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\ErrorNotFound.vue": {
+    "mtime": 1778678183.461951,
+    "ast_hash": "4fe7b01c94e199a076bd00b4e2a469aa",
+    "semantic_hash": "4fe7b01c94e199a076bd00b4e2a469aa"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\IndexPage.vue": {
+    "mtime": 1778855922.6179588,
+    "ast_hash": "2ef913c2a59e6880202e4d29a28aab4f",
+    "semantic_hash": "2ef913c2a59e6880202e4d29a28aab4f"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\LoginPage.vue": {
+    "mtime": 1778860519.8272724,
+    "ast_hash": "e1e35e1c27fc1df5f4c588206095153c",
+    "semantic_hash": "e1e35e1c27fc1df5f4c588206095153c"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\RegisterPage.vue": {
+    "mtime": 1778849781.5266628,
+    "ast_hash": "f7cadd4d4f813d470d7ac3793c561d92",
+    "semantic_hash": "f7cadd4d4f813d470d7ac3793c561d92"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\coach\\AttendancePage.vue": {
+    "mtime": 1778862245.460593,
+    "ast_hash": "49b1e4e3b604182af28a3e3e50505f54",
+    "semantic_hash": "49b1e4e3b604182af28a3e3e50505f54"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\coach\\RatingPage.vue": {
+    "mtime": 1778854605.4343312,
+    "ast_hash": "e8c8bb1cecde14e1b4cd6f50ed8ddeff",
+    "semantic_hash": "e8c8bb1cecde14e1b4cd6f50ed8ddeff"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\coach\\SessionReportPage.vue": {
+    "mtime": 1778852669.8820658,
+    "ast_hash": "0c5ee11f945b92c1f14ca8f276d8f93a",
+    "semantic_hash": "0c5ee11f945b92c1f14ca8f276d8f93a"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\coach\\TimetablePage.vue": {
+    "mtime": 1778863685.7529151,
+    "ast_hash": "84e85432428b6566682b6b052fdcd318",
+    "semantic_hash": "84e85432428b6566682b6b052fdcd318"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\common\\NotificationsPage.vue": {
+    "mtime": 1778844258.2674935,
+    "ast_hash": "ecaf2b880bf9041ba267641077f59f52",
+    "semantic_hash": "ecaf2b880bf9041ba267641077f59f52"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\customer\\CancellationsPage.vue": {
+    "mtime": 1778854645.725579,
+    "ast_hash": "102c050229b01637b87f4ec816ae028f",
+    "semantic_hash": "102c050229b01637b87f4ec816ae028f"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\customer\\ProfilePage.vue": {
+    "mtime": 1778853354.4168434,
+    "ast_hash": "6ae7a2f4b0637b8cc9c5085c0dc9a1f6",
+    "semantic_hash": "6ae7a2f4b0637b8cc9c5085c0dc9a1f6"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\customer\\TimetablePage.vue": {
+    "mtime": 1778863698.9550674,
+    "ast_hash": "1dd064689fb47db570d6db3e1fdefb4b",
+    "semantic_hash": "1dd064689fb47db570d6db3e1fdefb4b"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\operations\\AnalyticsPage.vue": {
+    "mtime": 1778857248.1717875,
+    "ast_hash": "432bc40541fdf5b295c19831fbe6e4de",
+    "semantic_hash": "432bc40541fdf5b295c19831fbe6e4de"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\operations\\DashboardPage.vue": {
+    "mtime": 1778863143.075796,
+    "ast_hash": "53f8808ec16abb324150f7ed586e4f7b",
+    "semantic_hash": "53f8808ec16abb324150f7ed586e4f7b"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\operations\\FinancesPage.vue": {
+    "mtime": 1778853988.0766356,
+    "ast_hash": "7d80c27af03d27879e2fd91a12037224",
+    "semantic_hash": "7d80c27af03d27879e2fd91a12037224"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\operations\\PlayerManagementPage.vue": {
+    "mtime": 1778853903.4037578,
+    "ast_hash": "471ee216d24c530f235e9da073d3d46d",
+    "semantic_hash": "471ee216d24c530f235e9da073d3d46d"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\pages\\operations\\ReportsPage.vue": {
+    "mtime": 1778857165.2749994,
+    "ast_hash": "8174e4a2b84fb78838a58109f3151ad5",
+    "semantic_hash": "8174e4a2b84fb78838a58109f3151ad5"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\router\\index.ts": {
+    "mtime": 1778808587.6854124,
+    "ast_hash": "0d96f92cb9d0c181511245fdbeb29af7",
+    "semantic_hash": "0d96f92cb9d0c181511245fdbeb29af7"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\router\\routes.ts": {
+    "mtime": 1778854658.990769,
+    "ast_hash": "ec7c4148cf71cfc425de7012d1f7ec92",
+    "semantic_hash": "ec7c4148cf71cfc425de7012d1f7ec92"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\stores\\app.ts": {
+    "mtime": 1778853844.7033458,
+    "ast_hash": "444cae1833bace90a5f65d8711ba38d2",
+    "semantic_hash": "444cae1833bace90a5f65d8711ba38d2"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\stores\\attendance.ts": {
+    "mtime": 1778854482.886741,
+    "ast_hash": "08a03a65bfa5b08979ea3bb977e33e95",
+    "semantic_hash": "08a03a65bfa5b08979ea3bb977e33e95"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\stores\\auth.ts": {
+    "mtime": 1778855904.1977847,
+    "ast_hash": "af82ce5ca98e5ba1984b1b205821d1c4",
+    "semantic_hash": "af82ce5ca98e5ba1984b1b205821d1c4"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\stores\\cancellations.ts": {
+    "mtime": 1778854627.7967818,
+    "ast_hash": "7c618af4a527aa4cc7140b0a665ad347",
+    "semantic_hash": "7c618af4a527aa4cc7140b0a665ad347"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\stores\\finances.ts": {
+    "mtime": 1778853953.46864,
+    "ast_hash": "393e198a255759397292af6ca718d95c",
+    "semantic_hash": "393e198a255759397292af6ca718d95c"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\stores\\index.ts": {
+    "mtime": 1778723458.3458676,
+    "ast_hash": "c15c58aa0979667617f9f8db5eea7e3a",
+    "semantic_hash": "c15c58aa0979667617f9f8db5eea7e3a"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\stores\\players.ts": {
+    "mtime": 1778853887.406595,
+    "ast_hash": "d0c06e432e9d5fa45df5b10c4b85179b",
+    "semantic_hash": "d0c06e432e9d5fa45df5b10c4b85179b"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\stores\\ratings.ts": {
+    "mtime": 1778854482.8873322,
+    "ast_hash": "dec2c7f5e8e92cbe6f35d87fdd3390d9",
+    "semantic_hash": "dec2c7f5e8e92cbe6f35d87fdd3390d9"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\src\\stores\\sessions.ts": {
+    "mtime": 1778854494.5540576,
+    "ast_hash": "51a0de7c2f12a6e443c8e8f2ff4b4824",
+    "semantic_hash": "51a0de7c2f12a6e443c8e8f2ff4b4824"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\.pre-commit-config.yaml": {
+    "mtime": 1778677146.486989,
+    "ast_hash": "7ffd09deb8d1d55b12fa92411a482dee",
+    "semantic_hash": "7ffd09deb8d1d55b12fa92411a482dee"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\CLAUDE.md": {
+    "mtime": 1778868856.0786927,
+    "ast_hash": "ad9a2d39c804184c4782412abfca80b6",
+    "semantic_hash": "ad9a2d39c804184c4782412abfca80b6"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\docker-compose.yml": {
+    "mtime": 1778716303.001371,
+    "ast_hash": "939789eef47b35dfe800ba27309f2219",
+    "semantic_hash": "939789eef47b35dfe800ba27309f2219"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\GEMINI.md": {
+    "mtime": 1778676520.9308064,
+    "ast_hash": "acc297cba9a7ca903081f35955bb2769",
+    "semantic_hash": "acc297cba9a7ca903081f35955bb2769"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\README.md": {
+    "mtime": 1778677146.4905515,
+    "ast_hash": "5ed2789068191cb0a9ddaf8b670df1dd",
+    "semantic_hash": "5ed2789068191cb0a9ddaf8b670df1dd"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\requirements.txt": {
+    "mtime": 1778677156.510789,
+    "ast_hash": "24880f9cc842595812021d9c37181305",
+    "semantic_hash": "24880f9cc842595812021d9c37181305"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\backend\\apps\\payments\\README.md": {
+    "mtime": 1778698451.9096205,
+    "ast_hash": "44236c5db6373cce72e7e431e11304b2",
+    "semantic_hash": "44236c5db6373cce72e7e431e11304b2"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\index.html": {
+    "mtime": 1778678180.1400325,
+    "ast_hash": "a14a5d21baeba4f99431a07a6ea0cb23",
+    "semantic_hash": "a14a5d21baeba4f99431a07a6ea0cb23"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\pnpm-workspace.yaml": {
+    "mtime": 1778677975.111846,
+    "ast_hash": "a7a3a8b8d67d53965661149e92a2e179",
+    "semantic_hash": "a7a3a8b8d67d53965661149e92a2e179"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\frontend\\README.md": {
+    "mtime": 1778678182.393321,
+    "ast_hash": "8dcdcfe4bd0505da8fc294ac46143647",
+    "semantic_hash": "8dcdcfe4bd0505da8fc294ac46143647"
+  },
+  "C:\\Users\\amgam\\OneDrive\\Desktop\\SAMS\\skills\\vue-best-practices\\SKILL.md": {
+    "mtime": 1778847401.1732793,
+    "ast_hash": "150f83f03ffb8b56ca3b52ebd67881d9",
+    "semantic_hash": "150f83f03ffb8b56ca3b52ebd67881d9"
+  }
+}

@@ -2,7 +2,7 @@
 
 **Project**: Sports Academy Management System — Django 5 + DRF + PostgreSQL + Redis + Celery | Vue 3 + Quasar + TypeScript + Pinia
 
-**State**: ~95% complete. All 40 tests pass. 15 commits from 3 audit passes.
+**State**: ~97% complete. All 59 tests pass. 15 commits + pending changes from audit pass #4.
 
 ---
 
@@ -139,24 +139,29 @@ docker-compose up --build
 
 ---
 
-## Remaining (~10 items)
+## Remaining (~3 items)
 
-### Backend (4)
-- [ ] Notification broadcast batching — iterates users in Python, should use bulk_create
-- [ ] Reports: `get_data()` handle all report types (utilization, performance)
-- [ ] Reports: scheduled email delivery (TODO in `process_scheduled_reports`)
-- [ ] Field-level encryption for medical notes (currently plain text)
+### Backend (0)
+- [x] Notification broadcast batching — bulk_create for NotificationLog (2026-05-16)
+- [x] Reports: `get_data()` handles all report types (utilization, performance) (2026-05-16)
+- [x] Reports: scheduled email delivery via `_email_report_to_recipients` (2026-05-16)
+- [x] Field-level encryption for medical notes — `EncryptedTextField` with Fernet (2026-05-16)
 
-### Frontend (6)
-- [ ] Virtual scrolling for large lists (Quasar supports natively — needs `q-virtual-scroll` usage)
-- [ ] WCAG 2.1 AA polish (Quasar handles most — audit focus indicators, color contrast)
-- [ ] DashboardPage: `quickStats` still hardcoded — needs API integration
-- [ ] AnalyticsPage: no chart usage — wire up Chart.js with analytics API data
-- [ ] ReportsPage: "Request Report" button needs handler to POST to reports API
-- [ ] Customer ProfilePage: hardcoded mock data — needs API integration
+### Frontend (0)
+- [x] Virtual scrolling for large lists — `SamsDataTable` prop, enabled on PlayerManagement + Dashboard (2026-05-16)
+- [x] WCAG 2.1 AA polish — focus indicators, skip link, contrast boost, aria-labels on core components (2026-05-16)
+- [x] DashboardPage: `quickStats` wired to analytics/players/coaches stores (2026-05-16)
+- [x] AnalyticsPage: Chart.js Line + Bar charts for revenue, enrollment, coach performance (2026-05-16)
+- [x] ReportsPage: "Request Report" button opens dialog, POSTs to reports API (2026-05-16)
+- [x] Customer ProfilePage: wired to player API, ratings, attendance data (2026-05-16)
 
-### Testing (3)
-- [ ] Backend coverage to 80% — current at ~40 tests, need more for accounts, coaches, groups, attendance, reports
+### Testing (2)
+- [x] Backend: 19 new tests added — accounts (3), coaches (5), attendance (3), reports (8). Total: 59 tests. (2026-05-16)
+- [ ] Frontend component tests — zero currently
+- [ ] Playwright E2E — not set up
+
+### Testing (2)
+- [x] Backend: 19 new tests — accounts, coaches, attendance, reports. 59 total, all pass. (2026-05-16)
 - [ ] Frontend component tests — zero currently
 - [ ] Playwright E2E — not set up
 

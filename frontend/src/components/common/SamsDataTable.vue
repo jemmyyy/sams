@@ -5,6 +5,7 @@
     dark
     class="sams-data-table"
     :table-class="'bg-surface-1 border-b'"
+    :virtual-scroll="virtualScroll"
   >
     <!-- Forward all slots -->
     <template v-for="(_, name) in $slots" #[name]="slotData">
@@ -29,7 +30,11 @@
 </template>
 
 <script setup lang="ts">
-// Highly reusable data table wrapper for SAMS
+withDefaults(defineProps<{
+  virtualScroll?: boolean;
+}>(), {
+  virtualScroll: false,
+});
 </script>
 
 <style lang="scss" scoped>

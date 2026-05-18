@@ -6,7 +6,7 @@
           <div class="text-h6 text-weight-bold text-white">{{ title }}</div>
           <div v-if="subtitle" class="text-caption text-grey-5">{{ subtitle }}</div>
         </div>
-        <q-btn flat round dense icon="close" color="grey-5" v-close-popup />
+        <q-btn flat round dense icon="close" color="grey-5" v-close-popup aria-label="Close dialog" />
       </q-card-section>
 
       <q-card-section class="q-pa-xl bg-surface-1">

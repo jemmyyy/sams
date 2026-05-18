@@ -40,6 +40,7 @@
       :columns="columns"
       :loading="playersStore.loading"
       row-key="id"
+      :virtual-scroll="filteredPlayers.length > 50"
     >
       <template #body-cell-name="props">
         <q-td :props="props">

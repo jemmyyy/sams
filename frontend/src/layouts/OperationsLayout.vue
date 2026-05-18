@@ -32,7 +32,7 @@
 
         <div class="row items-center q-gutter-md">
           <!-- Language Switcher -->
-          <q-btn flat round icon="language" color="grey-5">
+          <q-btn flat round icon="language" color="grey-5" aria-label="Toggle language">
             <q-menu class="bg-surface-2 text-white border-b">
               <q-list style="min-width: 120px">
                 <q-item clickable v-ripple @click="appStore.setLocale('en-US')" :active="appStore.locale === 'en-US'">
@@ -45,7 +45,7 @@
             </q-menu>
           </q-btn>
 
-          <q-btn flat round icon="notifications_none" color="grey-5">
+          <q-btn flat round icon="notifications_none" color="grey-5" aria-label="Notifications">
             <q-badge floating color="victory-red" rounded />
           </q-btn>
           

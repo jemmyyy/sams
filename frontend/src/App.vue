@@ -1,5 +1,8 @@
 <template>
-  <router-view :dir="appStore.isRtl ? 'rtl' : 'ltr'" />
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <div id="main-content">
+    <router-view :dir="appStore.isRtl ? 'rtl' : 'ltr'" />
+  </div>
 </template>
 
 <script setup lang="ts">

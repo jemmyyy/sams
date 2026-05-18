@@ -46,6 +46,7 @@
             row-key="id"
             class="sams-table"
             dark
+            :virtual-scroll="sessionsStore.sessions.length > 50"
           >
             <template v-slot:body-cell-series="props">
               <q-td :props="props">{{ props.row.series?.title || 'N/A' }}</q-td>
@@ -90,21 +91,57 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useSessionsStore } from '../../stores/sessions';
+import { usePlayersStore } from '../../stores/players';
+import { useCoachStore } from '../../stores/coaches';
+import { useAnalyticsStore } from '../../stores/analytics';
+import { useNotificationStore } from '../../stores/notifications';
 
 const sessionsStore = useSessionsStore();
+const playersStore = usePlayersStore();
+const coachStore = useCoachStore();
+const analyticsStore = useAnalyticsStore();
+const notificationStore = useNotificationStore();
 
-onMounted(() => {
-  sessionsStore.fetchSessions();
+onMounted(async () => {
+  await Promise.all([
+    sessionsStore.fetchSessions(),
+    playersStore.fetchPlayers(),
+    coachStore.fetchCoaches(),
+    analyticsStore.fetchAttendance(),
+    analyticsStore.fetchRevenue(),
+    notificationStore.fetchNotifications(),
+  ]);
 });
 
-const quickStats = [
-  { label: 'Revenue (MTD)', value: '0', icon: 'payments', color: 'primary', trend: 0 },
-  { label: 'Active Roster', value: '0', icon: 'people', color: 'success', trend: 0 },
-  { label: 'Avg Attendance', value: '0%', icon: 'fact_check', color: 'warning', trend: 0 },
-  { label: 'Coach Units', value: '0', icon: 'badge', color: 'victory-red', trend: 0 },
-];
+const revenueMTD = computed(() => {
+  return analyticsStore.dailyRevenue
+    .reduce((sum, d) => sum + (d.total || 0), 0)
+    .toLocaleString();
+});
+
+const activeRoster = computed(() => {
+  return playersStore.players.filter((p: any) => p.status === 'active').length;
+});
+
+const avgAttendance = computed(() => {
+  const data = analyticsStore.dailyAttendance;
+  if (!data.length) return '0%';
+  const avg = data.reduce((sum, d) => sum + (d.attendance_rate || 0), 0) / data.length;
+  return `${Math.round(avg)}%`;
+});
+
+const coachCount = computed(() => {
+  return coachStore.coaches.filter((c: any) => c.is_active).length;
+});
+
+const quickStats = computed(() => [
+  { label: 'Revenue (MTD)', value: revenueMTD.value, icon: 'payments', color: 'primary', trend: 0 },
+  { label: 'Active Roster', value: String(activeRoster.value), icon: 'people', color: 'success', trend: 0 },
+  { label: 'Avg Attendance', value: avgAttendance.value, icon: 'fact_check', color: 'warning', trend: 0 },
+  { label: 'Coach Units', value: String(coachCount.value), icon: 'badge', color: 'victory-red', trend: 0 },
+]);
 
 const sessionColumns = [
   { name: 'series', label: 'GROUP', field: (row: any) => row.series?.title || 'N/A', align: 'left' as const, sortable: true },
@@ -113,7 +150,17 @@ const sessionColumns = [
   { name: 'status', label: 'STATUS', field: 'status', align: 'center' as const },
 ];
 
-const alerts = ref<any[]>([]); // Fetch from API
+const alerts = computed(() => {
+  return notificationStore.notifications
+    .filter((n: any) => !n.is_read)
+    .slice(0, 5)
+    .map((n: any) => ({
+      id: n.id,
+      title: n.subject || n.template_display || 'Notification',
+      time: n.created_at ? new Date(n.created_at).toLocaleDateString() : '',
+      type: 'info',
+    }));
+});
 </script>
 
 <script lang="ts">

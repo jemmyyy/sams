@@ -1,5 +1,5 @@
 from apps.common.thread_local import get_current_academy_id
-from apps.permissions.permissions import IsOperations
+from apps.permissions.permissions import IsCustomer
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -12,8 +12,8 @@ from .services import PlayerService
 class PlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
-    permission_classes = [IsOperations]
-    filterset_fields = ["first_name", "last_name", "registration_number"]
+    permission_classes = [IsCustomer]
+    filterset_fields = ["first_name", "last_name", "registration_number", "parent"]
     search_fields = ["first_name", "last_name", "registration_number"]
 
     @action(detail=False, methods=["post"], url_path="bulk-import")

@@ -95,11 +95,49 @@ class NotificationService:
     @staticmethod
     def broadcast_notification(users_queryset, template_code, context_data=None, academy_id=None):
         """
-        Sends a notification to a queryset of users.
-        Useful for announcements or bulk alerts.
+        Sends a notification to a queryset of users using bulk_create.
         """
-        success_count = 0
+        context_data = context_data or {}
+        academy_id = academy_id or get_current_academy_id()
+
+        try:
+            template = NotificationTemplate.objects.get(code=template_code, is_active=True)
+        except NotificationTemplate.DoesNotExist:
+            logger.error(f"Notification template not found or inactive: {template_code}")
+            return 0
+
+        channels = template.channels
+
+        lang = "en"
+        subject = Template(getattr(template, f"subject_{lang}", template.subject_en)).render(Context(context_data))
+        content = Template(getattr(template, f"content_{lang}", template.content_en)).render(Context(context_data))
+
+        from apps.notifications.tasks import send_notification_task
+
+        logs = []
         for user in users_queryset:
-            if NotificationService.send_notification(user, template_code, context_data, academy_id):
-                success_count += 1
-        return success_count
+            if NotificationService._check_throttle(user, template_code, rate_limit_seconds=60):
+                continue
+
+            user_prefs = UserNotificationPreference.objects.filter(user=user).values_list("channel", "is_enabled")
+            prefs_dict = {c: enabled for c, enabled in user_prefs}
+
+            for channel in channels:
+                if not prefs_dict.get(channel, True):
+                    continue
+                logs.append(NotificationLog(
+                    user=user,
+                    template=template,
+                    channel=channel,
+                    status=NotificationStatus.PENDING,
+                    subject=subject,
+                    content=content,
+                    academy_id=academy_id,
+                ))
+
+        if logs:
+            created_logs = NotificationLog.objects.bulk_create(logs)
+            for log in created_logs:
+                send_notification_task.delay(str(log.id))
+
+        return len(logs)

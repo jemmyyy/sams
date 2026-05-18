@@ -1,4 +1,5 @@
 from apps.common.models import TenantAwareModel
+from apps.common.fields import EncryptedTextField
 from django.db import models
 
 
@@ -21,7 +22,7 @@ class Player(TenantAwareModel):
     status = models.CharField(max_length=10, choices=Status.choices, default=Status.ACTIVE)
     photo = models.ImageField(upload_to="players/photos/", blank=True)
     gender = models.CharField(max_length=10, choices=Gender.choices, blank=True)
-    medical_notes = models.TextField(blank=True)
+    medical_notes = EncryptedTextField(blank=True)
     emergency_contact = models.JSONField(default=dict, blank=True)
     parent = models.ForeignKey(
         "accounts.User",

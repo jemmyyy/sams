@@ -5,6 +5,7 @@ from django.core.files.base import ContentFile
 from apps.payments.models import Payment
 from apps.attendance.models import Attendance
 from apps.sessions.models import SessionOccurrence, Enrollment
+from apps.analytics.models import SessionUtilizationSnapshot, CoachPerformanceSnapshot
 
 class BaseReportGenerator(ABC):
     def __init__(self, report_instance):
@@ -22,6 +23,10 @@ class BaseReportGenerator(ABC):
             return self._get_financial_data()
         elif report_type == "attendance":
             return self._get_attendance_data()
+        elif report_type == "utilization":
+            return self._get_utilization_data()
+        elif report_type == "performance":
+            return self._get_performance_data()
         return []
 
     def _get_financial_data(self):
@@ -63,6 +68,47 @@ class BaseReportGenerator(ABC):
                 "Marked By": str(a.marked_by)
             }
             for a in attendance
+        ]
+
+    def _get_utilization_data(self):
+        start_date = self.parameters.get("start_date")
+        end_date = self.parameters.get("end_date")
+
+        snapshots = SessionUtilizationSnapshot.objects.filter(academy=self.academy)
+        if start_date:
+            snapshots = snapshots.filter(date__gte=start_date)
+        if end_date:
+            snapshots = snapshots.filter(date__lte=end_date)
+
+        return [
+            {
+                "Date": str(s.date),
+                "Total Sessions": s.total_sessions,
+                "Total Capacity": s.total_capacity,
+                "Total Attended": s.total_attended,
+                "Utilization %": round(s.utilization_rate * 100, 1) if s.utilization_rate else 0,
+            }
+            for s in snapshots
+        ]
+
+    def _get_performance_data(self):
+        start_date = self.parameters.get("start_date")
+        end_date = self.parameters.get("end_date")
+
+        snapshots = CoachPerformanceSnapshot.objects.filter(academy=self.academy)
+        if start_date:
+            snapshots = snapshots.filter(period_start__gte=start_date)
+        if end_date:
+            snapshots = snapshots.filter(period_end__lte=end_date)
+
+        return [
+            {
+                "Coach": s.coach.user.get_full_name() if s.coach and s.coach.user else "N/A",
+                "Sessions Held": s.sessions_held,
+                "Avg Attendance %": round(s.avg_attendance * 100, 1) if s.avg_attendance else 0,
+                "Avg Rating": round(s.avg_rating, 1) if s.avg_rating else 0,
+            }
+            for s in snapshots
         ]
 
 class CSVReportGenerator(BaseReportGenerator):

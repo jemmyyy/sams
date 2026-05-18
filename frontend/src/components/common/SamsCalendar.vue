@@ -2,11 +2,11 @@
   <div class="sams-calendar">
     <div class="row items-center justify-between q-mb-md">
       <div class="row items-center q-gutter-sm">
-        <q-btn flat round icon="chevron_left" @click="prevMonth" color="grey-5" size="sm" />
+        <q-btn flat round icon="chevron_left" @click="prevMonth" color="grey-5" size="sm" aria-label="Previous month" />
         <span class="text-h6 text-white text-weight-medium">{{ monthLabel }}</span>
-        <q-btn flat round icon="chevron_right" @click="nextMonth" color="grey-5" size="sm" />
+        <q-btn flat round icon="chevron_right" @click="nextMonth" color="grey-5" size="sm" aria-label="Next month" />
       </div>
-      <q-btn flat round icon="today" @click="goToday" color="primary" size="sm">
+      <q-btn flat round icon="today" @click="goToday" color="primary" size="sm" aria-label="Go to today">
         <q-tooltip>Today</q-tooltip>
       </q-btn>
     </div>

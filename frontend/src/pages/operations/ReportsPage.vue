@@ -5,7 +5,7 @@
         <h1 class="text-heading heading-lg no-margin text-white">Intelligence Exports</h1>
         <div class="text-subtitle1 text-grey-5">Generate and manage academy data reports.</div>
       </div>
-      <q-btn unelevated class="sams-btn sams-btn-action" label="Request Report" icon="add" outline color="primary" />
+      <q-btn unelevated class="sams-btn sams-btn-action" label="Request Report" icon="add" outline color="primary" @click="showDialog = true" />
     </div>
 
     <div class="row q-col-gutter-lg">
@@ -58,21 +58,120 @@
         </q-card>
       </div>
     </div>
+    <!-- Request Report Dialog -->
+    <q-dialog v-model="showDialog" persistent>
+      <q-card class="sams-card q-pa-lg" style="min-width: 480px">
+        <div class="text-heading text-h6 q-mb-lg text-white">Request New Report</div>
+        <q-form @submit="submitReport">
+          <q-select
+            v-model="reportForm.type"
+            :options="reportTypes"
+            label="Report Type"
+            outlined
+            dark
+            class="q-mb-md"
+            bg-color="surface-2"
+          />
+          <q-select
+            v-model="reportForm.format"
+            :options="['csv', 'xlsx', 'pdf']"
+            label="Format"
+            outlined
+            dark
+            class="q-mb-md"
+            bg-color="surface-2"
+          />
+          <q-input
+            v-model="reportForm.start_date"
+            label="Start Date"
+            type="date"
+            outlined
+            dark
+            class="q-mb-md"
+            bg-color="surface-2"
+          />
+          <q-input
+            v-model="reportForm.end_date"
+            label="End Date"
+            type="date"
+            outlined
+            dark
+            class="q-mb-lg"
+            bg-color="surface-2"
+          />
+          <div class="row justify-end q-gutter-md">
+            <q-btn flat label="Cancel" color="grey-6" v-close-popup />
+            <q-btn unelevated type="submit" label="Generate" color="primary" :loading="submitting" />
+          </div>
+        </q-form>
+      </q-card>
+    </q-dialog>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import api from '../../api';
+
 const toggle = ref(true);
+const showDialog = ref(false);
+const submitting = ref(false);
+
+const reportTypes = [
+  { label: 'Financial', value: 'financial' },
+  { label: 'Attendance', value: 'attendance' },
+  { label: 'Utilization', value: 'utilization' },
+  { label: 'Performance', value: 'performance' },
+];
+
+const reportForm = ref({
+  type: { label: 'Financial', value: 'financial' },
+  format: 'csv',
+  start_date: '',
+  end_date: '',
+});
 
 const reportColumns = [
-  { name: 'date', label: 'DATE', field: 'date', align: 'left' as const },
-  { name: 'type', label: 'TYPE', field: 'type', align: 'left' as const },
+  { name: 'created_at', label: 'DATE', field: (row: any) => row.created_at ? new Date(row.created_at).toLocaleDateString() : '', align: 'left' as const },
+  { name: 'report_type', label: 'TYPE', field: 'report_type', align: 'left' as const },
   { name: 'status', label: 'STATUS', field: 'status', align: 'center' as const },
   { name: 'actions', label: '', field: 'actions', align: 'right' as const },
 ];
 
-const reports = ref<any[]>([]); // To be fetched from API
+const reports = ref<any[]>([]);
+
+async function fetchReports() {
+  try {
+    const response = await api.get('reports/exports/');
+    reports.value = response.data.results || response.data;
+  } catch (err) {
+    console.error('Failed to fetch reports');
+  }
+}
+
+async function submitReport() {
+  submitting.value = true;
+  try {
+    await api.post('reports/exports/', {
+      report_type: reportForm.value.type.value,
+      format: reportForm.value.format,
+      parameters: {
+        start_date: reportForm.value.start_date || undefined,
+        end_date: reportForm.value.end_date || undefined,
+      },
+    });
+    showDialog.value = false;
+    await fetchReports();
+  } catch (err) {
+    console.error('Failed to create report');
+  } finally {
+    submitting.value = false;
+  }
+}
+
+onMounted(() => {
+  fetchReports();
+});
 </script>
 
 <style lang="scss" scoped>

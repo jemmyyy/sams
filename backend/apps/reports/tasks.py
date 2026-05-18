@@ -14,9 +14,9 @@ FORMAT_MAP = {
 }
 
 @shared_task(name="apps.reports.tasks.generate_report_task")
-def generate_report_task(report_id):
+def generate_report_task(report_id, scheduled_report_id=None):
     try:
-        report = GeneratedReport.objects.get(id=report_id)
+        report = GeneratedReport.all_objects.get(id=report_id)
     except GeneratedReport.DoesNotExist:
         logger.error(f"GeneratedReport {report_id} not found")
         return
@@ -31,18 +31,18 @@ def generate_report_task(report_id):
 
         generator = generator_class(report)
         content_file = generator.generate()
-        
+
         filename = f"{report.report_type}_{timezone.now().strftime('%Y%m%d_%H%M%S')}.{report.format}"
         report.file.save(filename, content_file)
-        
+
         report.status = "completed"
         report.save()
-        
+
         # Notify user if requested
         if report.requested_by:
             NotificationService.send_notification(
                 user=report.requested_by,
-                template_code="GENERAL_ANNOUNCEMENT", # Should create a REPORT_READY template later
+                template_code="GENERAL_ANNOUNCEMENT",
                 context_data={
                     "title": "Report Ready",
                     "content": f"Your {report.get_report_type_display()} in {report.format} format is ready for download."
@@ -50,11 +50,45 @@ def generate_report_task(report_id):
                 academy_id=str(report.academy_id)
             )
 
+        # Email scheduled report recipients
+        if scheduled_report_id:
+            _email_report_to_recipients(report, scheduled_report_id)
+
     except Exception as e:
         logger.error(f"Error generating report {report_id}: {str(e)}")
         report.status = "failed"
         report.error_message = str(e)
         report.save()
+
+def _email_report_to_recipients(report, scheduled_report_id):
+    try:
+        scheduled = ScheduledReport.all_objects.get(id=scheduled_report_id)
+    except ScheduledReport.DoesNotExist:
+        return
+
+    recipients = scheduled.recipients
+    if not recipients:
+        return
+
+    from django.core.mail import EmailMessage
+
+    subject = f"{scheduled.name} - {report.get_report_type_display()}"
+    body = f"Your scheduled report '{scheduled.name}' is ready.\n\n"
+    body += f"Type: {report.get_report_type_display()}\n"
+    body += f"Format: {report.format}\n"
+    body += f"Generated: {timezone.now().strftime('%Y-%m-%d %H:%M')}\n"
+
+    email = EmailMessage(
+        subject=subject,
+        body=body,
+        to=recipients,
+    )
+    if report.file:
+        email.attach_file(report.file.path)
+
+    email.send(fail_silently=True)
+    logger.info(f"Sent scheduled report {report.id} to {len(recipients)} recipients")
+
 
 @shared_task(name="apps.reports.tasks.process_scheduled_reports")
 def process_scheduled_reports():
@@ -89,8 +123,4 @@ def process_scheduled_reports():
             item.last_run_at = now
             item.save()
             
-            generate_report_task.delay(str(report.id))
-            
-            # Also notify recipients if emails are provided
-            # This would be handled by generate_report_task once it finishes
-            # For now, let's assume the recipients are handled there or via extra logic
+            generate_report_task.delay(str(report.id), str(item.id))

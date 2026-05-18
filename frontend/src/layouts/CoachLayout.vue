@@ -27,7 +27,7 @@
         <q-space />
 
         <div class="row items-center q-gutter-md">
-          <q-btn flat round icon="notifications_none" color="grey-5">
+          <q-btn flat round icon="notifications_none" color="grey-5" aria-label="Notifications">
             <q-badge floating color="success" rounded />
           </q-btn>
           

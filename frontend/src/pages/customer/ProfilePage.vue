@@ -17,23 +17,23 @@
                 </div>
               </div>
               <div class="col q-ml-xl">
-                <div class="text-overline text-primary letter-spacing-3 uppercase">Professional Division</div>
-                <h2 class="text-heading text-white no-margin">ADAM <span class="text-secondary">SMITH</span></h2>
+                <div class="text-overline text-primary letter-spacing-3 uppercase">{{ player?.gender || 'Athlete' }}</div>
+                <h2 class="text-heading text-white no-margin">{{ player?.first_name || 'Player' }} <span class="text-secondary">{{ player?.last_name || '' }}</span></h2>
                 <div class="row q-gutter-md q-mt-md">
                   <div class="id-pill">
                     <span class="text-grey-5">MEMBER ID:</span>
-                    <span class="text-weight-bold">SAMS-2026-081</span>
+                    <span class="text-weight-bold">{{ memberId }}</span>
                   </div>
                   <div class="id-pill">
                     <span class="text-grey-5">AGE:</span>
-                    <span class="text-weight-bold">12 YEARS</span>
+                    <span class="text-weight-bold">{{ playerAge }}</span>
                   </div>
                 </div>
               </div>
               <div class="col-auto gt-sm text-right">
-                <div class="text-overline text-grey-5 letter-spacing-2">GLOBAL RANK</div>
-                <div class="text-h2 text-weight-black text-white">#04</div>
-                <q-badge color="success" class="q-px-sm">+2 pos</q-badge>
+                <div class="text-overline text-grey-5 letter-spacing-2">STATUS</div>
+                <div class="text-h2 text-weight-black text-white">{{ player?.status || 'N/A' }}</div>
+                <q-badge :color="player?.status === 'active' ? 'success' : 'grey'" class="q-px-sm">{{ player?.status === 'active' ? 'Active' : 'Inactive' }}</q-badge>
               </div>
            </q-card-section>
         </q-card>
@@ -121,25 +121,110 @@
 </template>
 
 <script setup lang="ts">
-const quickStats = [
-  { label: 'Attendance', value: '92%', icon: 'fact_check', color: 'success' },
-  { label: 'Avg Rating', value: '4.8', icon: 'stars', color: 'warning' },
-  { label: 'Units Done', value: '142', icon: 'timer', color: 'primary' },
-  { label: 'Milestones', value: '12', icon: 'emoji_events', color: 'secondary' },
-];
+import { ref, computed, onMounted } from 'vue';
+import { useAuthStore } from '../../stores/auth';
+import { usePlayersStore } from '../../stores/players';
+import { useRatingsStore } from '../../stores/ratings';
+import { useAttendanceStore } from '../../stores/attendance';
+import api from '../../api';
 
-const skills = [
-  { name: 'Technique', value: 0.85, icon: 'sports_handball' },
-  { name: 'Stamina', value: 0.70, icon: 'bolt' },
-  { name: 'Strategy', value: 0.92, icon: 'psychology' },
-  { name: 'Teamwork', value: 0.80, icon: 'groups' }
-];
+const authStore = useAuthStore();
+const playersStore = usePlayersStore();
+const ratingsStore = useRatingsStore();
+const attendanceStore = useAttendanceStore();
 
-const milestones = [
-  { title: 'Golden Grip', desc: 'Excellence in technique award.', icon: 'military_tech', color: 'warning' },
-  { title: 'Iron Lung', desc: 'Completed 10 endurance sessions.', icon: 'air', color: 'info' },
-  { title: 'MVP June', desc: 'Top performer in the U12 category.', icon: 'workspace_premium', color: 'secondary' }
-];
+const player = ref<any>(null);
+const latestRating = ref<any>(null);
+const attendanceCount = ref(0);
+const attendanceRate = ref(0);
+
+const playerName = computed(() => {
+  if (!player.value) return 'Player';
+  return `${player.value.first_name} ${player.value.last_name}`;
+});
+
+const memberId = computed(() => {
+  if (!player.value) return '';
+  return player.value.registration_number || '';
+});
+
+const playerAge = computed(() => {
+  if (!player.value?.birth_date) return '';
+  const age = Math.floor((Date.now() - new Date(player.value.birth_date).getTime()) / 31557600000);
+  return `${age} YEARS`;
+});
+
+const quickStats = computed(() => [
+  { label: 'Attendance', value: `${attendanceRate.value}%`, icon: 'fact_check', color: 'success' },
+  { label: 'Avg Rating', value: latestRating.value ? String(avgRating.value) : 'N/A', icon: 'stars', color: 'warning' },
+  { label: 'Units Done', value: String(attendanceCount.value), icon: 'timer', color: 'primary' },
+  { label: 'Status', value: player.value?.status || 'Active', icon: 'emoji_events', color: 'secondary' },
+]);
+
+const avgRating = computed(() => {
+  if (!latestRating.value) return 0;
+  const r = latestRating.value;
+  const scores = [r.technique, r.stamina, r.teamwork].filter((v: any) => typeof v === 'number');
+  return scores.length ? (scores.reduce((a: number, b: number) => a + b, 0) / scores.length).toFixed(1) : 0;
+});
+
+const skills = computed(() => {
+  if (!latestRating.value) return [];
+  const r = latestRating.value;
+  return [
+    { name: 'Technique', value: (r.technique || 0) / 10, icon: 'sports_handball' },
+    { name: 'Stamina', value: (r.stamina || 0) / 10, icon: 'bolt' },
+    { name: 'Teamwork', value: (r.teamwork || 0) / 10, icon: 'groups' },
+  ];
+});
+
+const milestones = computed(() => {
+  const items = [];
+  if (attendanceCount.value >= 10) {
+    items.push({ title: 'Iron Lung', desc: `Completed ${attendanceCount.value} sessions.`, icon: 'air', color: 'info' });
+  }
+  if (latestRating.value) {
+    items.push({ title: 'Rated', desc: 'Received coach evaluation.', icon: 'military_tech', color: 'warning' });
+  }
+  if (player.value?.status === 'active') {
+    items.push({ title: 'Active', desc: 'Currently enrolled and training.', icon: 'workspace_premium', color: 'secondary' });
+  }
+  return items;
+});
+
+onMounted(async () => {
+  const userId = authStore.user?.id;
+  if (!userId) return;
+
+  try {
+    const playerRes = await api.get('players/', { params: { parent: userId } });
+    const players = playerRes.data.results || playerRes.data;
+    if (players.length) {
+      player.value = players[0];
+
+      await Promise.all([
+        ratingsStore.fetchRatings(player.value.id),
+        attendanceStore.fetchAttendance(),
+      ]);
+
+      const playerRatings = ratingsStore.ratings.filter(
+        (r: any) => r.player === player.value.id || r.player === player.value.first_name
+      );
+      if (playerRatings.length) {
+        latestRating.value = playerRatings[0];
+      }
+
+      const playerAttendance = attendanceStore.records.filter(
+        (a: any) => a.player === player.value.id || a.player === player.value.first_name
+      );
+      attendanceCount.value = playerAttendance.length;
+      const present = playerAttendance.filter((a: any) => a.status === 'Present' || a.status === 'present').length;
+      attendanceRate.value = playerAttendance.length ? Math.round((present / playerAttendance.length) * 100) : 0;
+    }
+  } catch (err) {
+    console.error('Failed to load profile');
+  }
+});
 </script>
 
 <style lang="scss" scoped>
